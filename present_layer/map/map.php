@@ -9,16 +9,36 @@ chdir('../');
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://kit.fontawesome.com/ea2428928f.js" crossorigin="anonymous"></script>   
         <link rel="stylesheet" type="text/css" href="./map.css" />
-        <script type="module" src="./map.js"></script>
+        <script src="./map.js"></script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <a href="javascript:void(0);" class="icon" onclick="myBurger()">penis
-                <i class="fa-solid fa-bars fa-2xl"></i>
-            </a>
-            <h2 class="main">Mapa tiketov</h2>
-            <h2 class="misc">BETA</h2>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="map"></div><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJVGL83AulBYsKWzBA0ooSruG4_CVIWqA&callback=initMap"defer></script>
+    <body>
+        <button href="javascript:void(0);" class="icon" onclick="myBurger()">
+            <i class="fa-solid fa-bars fa-2xl"></i>
+        </button>
+        <button herf="javascript:void(0);" class="reportIcon" onclick="hintBar()">Nahlásiť</button>
+        <button herf="javascript:void(0);" class="myPosition" id="myPosition">
+            <i class="fa-solid fa-location-crosshairs fa-2xl"></i>
+        </button>
+        <button herf="javascript:void(0);" class="SearchIcon" id="SearchIcon" onclick="SearchIcon()">
+            <i class="fa-solid fa-magnifying-glass fa-2xl"></i>
+        </button>
+        <div id="sidebar">
+            <h2>Chytni závadu!</h2>
+            <ul>
+                <li>ahoj</li>
+                <li>martin smrdí</li>
+            </ul>
+        </div>
+        <div id="hintBar">
+            <h2>penis</h2>
+        </div>
+        <div id="searchBar">
+            <form action="">
+                <input type="text" placeholder="Zadaj vyhľadávanú adresu" id="ToSearch">
+            </form>
+        </div>
+        <div id="map"></div><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJVGL83AulBYsKWzBA0ooSruG4_CVIWqA&callback=initMap"defer></script>
     </body>
 </html>
