@@ -23,7 +23,7 @@
         <h3 class="back"><a href = "../../index.php">Späť</a></h2>
     </nav> 
 
-    <table class="admin-table">
+    <table class="admin-table" id="usr-tab"> 
         <thead>
             <tr>
                 <th>ID</th>
@@ -35,10 +35,12 @@
                 <th>Odstrániť</th>
             </tr>
         </thead>
-
+        
         <tbody id="tab-of-users"> 
 
         </tbody>
     </table> 
+
+    <div class="show-tab-but" onclick="usr_tab_but_press()"><i id="show-usr-tab-but" class="fa-sharp fa-solid fa-chevron-up"></i></div>
 
 </html>

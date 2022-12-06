@@ -22,6 +22,8 @@
      */
     function get_user_table_rows()
     {
+        global $roles;
+
         $even = false; // Mark even rows
 
         $data = get_user_table_data();
@@ -43,7 +45,7 @@
             $html_row .= '<td> '.$row['last_name']." </td>\n";
             $html_row .= '<td> '.$row['email']." </td>\n";
             $html_row .= '<td> '.$row['phone']." </td>\n";
-            $html_row .= '<td> '.$row['role']." </td>\n";
+            $html_row .= '<td> '.$roles[ $row['role'] ]." </td>\n";
 
             // button that removes the user. P.S. Admin cannot be removed
             if($row['role'] != ADMIN)

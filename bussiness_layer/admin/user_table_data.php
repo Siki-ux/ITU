@@ -10,8 +10,6 @@
      */
     function get_user_table_data()
     {
-        global $roles;
-
         $stmt = get_all_users();
 
         $json = '[';
@@ -24,7 +22,7 @@
             $json .= ' "last_name":'.'"'.$row['last_name'].'" ,';
             $json .= ' "email":'.'"'.$row['email'].'" ,';
             $json .= ' "phone":'.'"'.$row['phone'].'" ,';
-            $json .= ' "role":'.'"'.$roles[ $row['role'] ].'"';
+            $json .= ' "role":'.'"'.$row['role'].'"';
             $json .= "},";
         }
 

@@ -1,26 +1,20 @@
-body{
-    font-family: sans-serif, Arial, Helvetica;
-}
-
 h2 {
     text-align: center;
 }
 
-form {
+form{
     text-align: center;
 }
-
-
-nav{
-    width:100%;
-    display:flex;
+table {
+    overflow: hidden;
+    transition: height 2s ease-in;
 }
 
 nav > h3 > a {padding: 10px;color: #000000 ;text-decoration: none;border: 1px solid #000000;border-radius: 5px;}
 nav > h3 > a:hover {background-color: #848482;color: #FFFFFFFF}
 
 body{
-    font-family: Arial, Helvetica;
+    font-family: sans-serif, Arial, Helvetica;
     margin:0%;
     font-size: 1rem;
     min-width: 800px;
@@ -28,32 +22,42 @@ body{
     margin-left: auto;
     margin-right: auto;
 }
-nav{
-    width:100%;
-    display:flex;
-}
-h2 {text-align: center;}
-.back{flex-grow: 1;text-align:left}
-table{border-collapse: collapse;width: 100%;}
-th {border: 1px solid #000000;}
-td {border-bottom: 1px solid #000000;text-align: center; height: 40px;}
-td > button {padding: 10px;color: #000000 ;text-decoration: none;border: 1px solid #000000;border-radius: 5px;font-weight: bold;}
-td > button:hover {background-color: #ff0000;color: #FFFFFFFF;}
-
 
 
 .admin-table{
+    
     min-width: 350px;
+    width:100%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     font-size: 0.9em;
-    border-collapse: collapse;
-    margin: 25px 0;
+    transition: height 2s ease-in;
+    margin: 0px;
+    border-radius: 20px;
+}
+
+
+.admin-table tr{
+    text-align: center;
+}
+
+.admin-table td{
+    border-radius: 2px;    
 }
 
 .admin-table thead tr {
     background-color: #043179;
     color: #ffffff;
-    text-align: center;
+}
+
+.admin-table thead th:first-child{
+    border-top-left-radius: 20px;
+}.admin-table thead th:last-child{
+    border-top-right-radius: 20px;
+}
+.admin-table tbody tr:nth-last-child(2) td:first-child{
+    border-bottom-left-radius: 20px;
+}.admin-table tbody tr:nth-last-child(2) td:last-child{
+    border-bottom-right-radius: 20px;
 }
 
 .admin-table th, .admin-table td{
@@ -68,9 +72,6 @@ td > button:hover {background-color: #ff0000;color: #FFFFFFFF;}
     background-color: #f2f2f2;
 }
 
-.admin-table tbody tr:last-of-type {
-    border-bottom: 5px solid #043179;
-}
 
 .admin-table tr.active-row {
     color: #4d5efa;
@@ -79,4 +80,13 @@ td > button:hover {background-color: #ff0000;color: #FFFFFFFF;}
 
 .rem-usr-but:hover{
     color: #ff0000;
+}
+
+.show-tab-but{
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.show-tab-but:hover{
+    background-color: #1f2eb115;
 }
