@@ -13,19 +13,6 @@
     if(session_id() == "")
         session_start();
 
-    // Print table of users
-    echo "
-    <tr>
-        <th>ID</th>
-        <th>Krstné meno</th>
-        <th>Priezvisko</th> 
-        <th>email</th>
-        <th>telefón</th> 
-        <th>rola</th>
-        <th>zmazať</th>
-    </tr>
-    ";
-
     // Print table content
     echo get_user_table_rows();
 ?>

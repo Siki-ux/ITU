@@ -12,13 +12,20 @@
     {
         global $roles;
 
+        $even = false; // Mark even rows
+
         $html = "";
 
         $stmt = get_all_users();
 
         while( $row = $stmt->fetch() )
         {
-            $html_row = '<tr>';
+            if($even)
+                $html_row = '<tr class="even-row">';
+            else
+                $html_row = '<tr>';
+
+            $even = !$even;
 
             $html_row .= '<td> '.$row['id']." </td>\n";
             $html_row .= '<td> '.$row['first_name']." </td>\n";

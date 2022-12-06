@@ -23,6 +23,22 @@
         <h3 class="back"><a href = "../../index.php">Späť</a></h2>
     </nav> 
 
-    <table id="table_to_refresh"></table> 
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Krstné meno</th>
+                <th>Priezvisko</th> 
+                <th>email</th>
+                <th>telefón</th> 
+                <th>rola</th>
+                <th>zmazať</th>
+            </tr>
+        </thead>
+
+        <tbody id="table_to_refresh"> 
+
+        </tbody>
+    </table> 
 
 </html>
