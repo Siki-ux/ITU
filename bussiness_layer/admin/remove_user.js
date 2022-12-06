@@ -1,3 +1,5 @@
+
+
 function remove_user(id)
 {
     req = new XMLHttpRequest();
@@ -10,5 +12,6 @@ function handle_remove_button(id)
 {
     if (confirm('Ste si istí, že chcete ostrániť užívaťeľa s id = ' + id + '?')) {
         remove_user(id);
+        refresh_tables_after(200);
     }
 }
