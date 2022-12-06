@@ -42,16 +42,13 @@ body{
 
 .admin-table thead{
     background-color: #f1f1f1;  
-  position:relative;
-  display: block;
-  width:100%;
+    position:relative;
+    display: block;
+    width:100%;
 }
 .admin-table tbody{
-    /* Position */
     display: block; position:relative;
     width:100%; overflow-y:scroll;
-    /* Decoration */
-    border-top: 1px solid rgba(0,0,0,0.2);
     max-height: 30vh;
   }
   .admin-table tr{
@@ -91,6 +88,8 @@ body{
 .admin-table thead tr {
     background-color: #043179;
     color: #ffffff;
+    text-align: center;
+
 }
 
 .admin-table thead th:first-child{
@@ -101,6 +100,8 @@ body{
 
 .admin-table th, .admin-table td{
     padding: 10px 10px;
+    text-align: center;
+
 }
 
 .admin-table tbody tr:nth-last-child(2){
