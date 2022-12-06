@@ -2,7 +2,7 @@
     // Create connection with database
     $pdo;
     try{
-        $pdo = new PDO("mysql:host=localhost;dbname=xpavel39;port=/var/run/mysql/mysql.sock;charset=utf8mb4", 'xpavel39', 'ojatuho6');
+        $pdo = new PDO("mysql:host=localhost;dbname=xsikul15;port=/var/run/mysql/mysql.sock;charset=utf8mb4", 'xsikul15', '6ikinjar');
     } catch (PDOException $e) {
         echo "Connection error: ".$e->getMessage();
         die();
