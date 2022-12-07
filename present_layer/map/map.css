@@ -208,7 +208,94 @@ button.SearchIcon:hover{
     to {width:0ch}
 }
 
+.infoImg {
+    display: block;
+    min-width: 20px;
+    min-height: 20px;
+    width: 20vw;
+    height: 20vw;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+.hand {
+    display: none;
+    opacity: 1;
+    z-index: 11;
+    position: fixed;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    color:  rgba(177,177,177,0.5);
+}
+
+@keyframes hand_in {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes hand_out {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+#formular {
+    animation-timing-function: linear;
+    bottom: -60%;
+    right:0%;
+    z-index: 8;
+    position: fixed;
+    display: block;
+    width: 100%;
+    height:60%;
+    color: white;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    background: rgb(132,132,130);
+    background: linear-gradient(180deg, rgba(132,132,130,1) 0%, rgba(132,132,130,0.7) 40%, rgba(177,177,177,0.5) 100%);
+}
+
+@keyframes formular_open {
+    from {bottom:-60%}
+    to {bottom: 0%}
+}
+@keyframes formular_close {
+    from {bottom: 0%}
+    to {bottom: -60%}
+}
+
+@keyframes formular_down {
+    from {bottom: 0%}
+    to {bottom: -40%}
+}
+
+@keyframes formular_up {
+    from {bottom:-40%}
+    to {bottom: 0%}
+}
+@keyframes formular_exit {
+    from {bottom:-40%}
+    to {bottom: -60%}
+}
+
+#closeFormular {
+    text-align: center;
+    position: absolute;
+    right:25px;
+    top:10px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    padding: 0px;
+    margin: 0px;
+    background-color: unset;
+    border-width: 0px;
+}
+
+.fa-circle-xmark:hover{
+    background-color: white;
+    border-radius: 50%;
+}
 
 /****************/
 

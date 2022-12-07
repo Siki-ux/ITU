@@ -32,12 +32,19 @@ chdir('../');
             </ul>
         </div>
         <div id="hintBar"  onclick="closeHitBar()">
-            <h2>Kliknutím na mapu zvoľte miesto problému</h2>
+            <h2>Dvojklikom na mapu zvoľte miesto problému</h2>
         </div>
         <div id="searchBar">
+
             <form action="">
                 <input type="text" placeholder="Zadaj vyhľadávanú adresu" id="ToSearch">
             </form>
+        </div>
+        <img src="../../img/hands-click-png-icon-5.png" alt="yell at siki cuz something went wrong" class="hand" id="hand" onclick="closeHitBar()">
+        <div id="formular">
+            <button id="closeFormular">
+                <i class="fa-regular fa-circle-xmark fa-3x"></i>
+            </button>
         </div>
         <div id="map"></div><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJVGL83AulBYsKWzBA0ooSruG4_CVIWqA&callback=initMap"defer></script>
     </body>

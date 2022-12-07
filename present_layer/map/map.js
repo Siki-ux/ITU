@@ -1,12 +1,56 @@
 let all_tickets;
+let form = false;
+let form_pos;
+
+function formular_up(){
+    const formular = document.getElementById("formular");
+    if (formular.style.bottom === "-40%" && form === true) {
+        formular.style.animation = "formular_up 0.7s";
+        formular.style.bottom = "0%";
+    }
+}
+
+function formular_down(){
+    const formular = document.getElementById("formular");
+    if (formular.style.bottom === "0%" && form === true) {
+        formular.style.animation = "formular_down 0.7s";
+        formular.style.bottom = "-40%";
+    }
+}
+
+function formular_change_position(){
+    formular_up();
+}
+
+function formular_close(marker){
+    const formular = document.getElementById("formular");
+    if (formular.style.bottom === "0%" && form === true) {
+        formular.style.animation = "formular_close 0.7s";
+        formular.style.bottom = "-60%";
+        marker.setPosition({lat: 0, lng: 0});
+        form = false
+    }else if (formular.style.bottom === "-40%" && form === true){
+        formular.style.animation = "formular_exit 0.7s";
+        formular.style.bottom = "-60%";
+        marker.setPosition({lat: 0, lng: 0});
+        form = false
+    }
+}
+
+function formular_open(){
+    const formular = document.getElementById("formular");
+    if (formular.style.bottom !== "0%" && form === false) {
+        formular.style.animation = "formular_open 0.7s";
+        formular.style.bottom = "0%";
+        form = true;
+    }else {
+        formular_change_position();
+    }
+}
 
 function SearchIcon(){
     const x = document.getElementById("ToSearch");
     if(x.style.width === "40ch"){
-        if(x.value !== ""){
-            console.log(x.value);
-            //x.value = "";
-        }
         x.style.animation = "search_in 0.7s";
         x.style.width = "0ch";
     }else {
@@ -17,24 +61,32 @@ function SearchIcon(){
 
 function closeHitBar(){
     const x = document.getElementById("hintBar");
+    const hand = document.getElementById("hand");
     if (x.style.bottom === "0%") {
         x.style.animation = "hintbar_down 0.7s";
         x.style.bottom = "-40%";
+        hand.style.animation = "hand_out 0.7s";
+        hand.style.display = "none";
     }
 }
 
 function hintBar(){
     const x = document.getElementById("hintBar");
     const y = document.getElementById("sidebar");
+    const hand = document.getElementById("hand");
     if(y.style.left === "0%"){
         closeBurger();
     }
     if (x.style.bottom === "0%") {
         x.style.animation = "hintbar_down 0.7s";
         x.style.bottom = "-40%";
+        hand.style.animation = "hand_out 0.7s";
+        hand.style.display = "none";
     } else {    
         x.style.animation = "hintbar_up 0.7s";
-        x.style.bottom = "0%";  
+        x.style.bottom = "0%";
+        hand.style.animation = "hand_in 0.7s";
+        hand.style.display = "block";  
       }
 }
 
@@ -49,8 +101,7 @@ function closeBurger(){
 function myBurger() {
     const x = document.getElementById("sidebar");
     closeHitBar();
-    console.log(screen.width);
-    if (screen.width <= 550){
+    if (document.documentElement.clientWidth <= 550){
         if (x.style.left === "0%") {
             x.style.animation = "sidebar_down100 0.7s";
             x.style.left = "-100%";
@@ -73,11 +124,11 @@ function myBurger() {
 function makeMarkers(map,infoWindow){
     for(let i=0;i<all_tickets.length;i++){
         const content =
-        'Kategória:'+
-        'Status:'+
-        'Správa:'+
-        ':'+
-        '';
+        '<b>Kategória:</b> '+all_tickets[i]["category"] + '<br>' +
+        '<b>Status:</b> '+all_tickets[i]["state"]+'<br>'+
+        '<b>Správa:</b> '+all_tickets[i]["msg"]+'<br>'+
+        '<b>Posledná úprava:</b> '+all_tickets[i]["time_modified"]+'<br>'+ 
+        '<img class=infoImg src="'+all_tickets[i]["img"]+'" alt="img">';
         const marker = new google.maps.Marker({
             position: new google.maps.LatLng(all_tickets[i]["lat"],all_tickets[i]["lng"]),
             title: all_tickets[i]["category"],
@@ -110,6 +161,8 @@ function initMap() {
         zoom: 15,
         center: { lat: 49.2269, lng: 16.59689 },
         disableDefaultUI: true,
+        disableDoubleClickZoom: true,
+        panControl: false,
     });
     if (navigator.geolocation) {
          navigator.geolocation.getCurrentPosition(
@@ -180,16 +233,40 @@ function initMap() {
         }
     });
 
-    map.addListener("click", (pos) => {
+    
+
+    const marker = new google.maps.Marker({
+        map: map,
+    });
+
+    map.addListener("dblclick", (click) => {
         infoWindow.close();
         closeBurger();
         closeHitBar();
+        formular_open();
+        form_pos = click.latLng;
+        map.setCenter(click.latLng);
+        map.setZoom(17.5);
+        map.panBy(0, 240);
+        marker.setPosition(click.latLng);  
     });
+
+    map.addListener("click", (click) => {
+        infoWindow.close();
+        closeBurger();
+        closeHitBar();
+        formular_down();
+    });
+
+    const formularCloseButton = document.getElementById("closeFormular");
+
+    formularCloseButton.addEventListener("click", () => {formular_close(marker);});
 
     setInterval(function () {
         if(all_tickets !== all_tickets){
             makeMarkers(map,infoWindow);
         }
+
     }, 1500);
 
     
