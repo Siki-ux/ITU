@@ -49,21 +49,58 @@ function closeBurger(){
 function myBurger() {
     const x = document.getElementById("sidebar");
     closeHitBar();
+    console.log(screen.width);
+    if (screen.width <= 550){
+        if (x.style.left === "0%") {
+            x.style.animation = "sidebar_down100 0.7s";
+            x.style.left = "-100%";
+        } else {    
+            x.style.animation = "sidebar100 0.7s";
+            x.style.left = "0%";  
+        }
+        return;
+    }
+
     if (x.style.left === "0%") {
         x.style.animation = "sidebar_down 0.7s";
         x.style.left = "-50%";
     } else {    
         x.style.animation = "sidebar 0.7s";
         x.style.left = "0%";  
-      }
+    }
+}
+
+function makeMarkers(map,infoWindow){
+    for(let i=0;i<all_tickets.length;i++){
+        const content =
+        'Kategória:'+
+        'Status:'+
+        'Správa:'+
+        ':'+
+        '';
+        const marker = new google.maps.Marker({
+            position: new google.maps.LatLng(all_tickets[i]["lat"],all_tickets[i]["lng"]),
+            title: all_tickets[i]["category"],
+            optimized:false,
+        });
+        marker.setMap(map);
+
+        marker.addListener("click",() => {
+            infoWindow.close();
+            infoWindow.setContent(content);
+            infoWindow.open(marker.getMap(), marker);
+            map.setCenter(new google.maps.LatLng(all_tickets[i]["lat"],all_tickets[i]["lng"]));
+        })
+    }
+
+    
 }
 
 setInterval(function () {
   $.ajax({
         url:'all_tickets_map_data.php',
         success: function(response){
-            all_tickets = JSON.parse(response);
-            //console.log(JSON.stringify(all_tickets));      
+            all_tickets = JSON.parse(response); 
         }
   });
 }, 1000);
@@ -132,23 +169,30 @@ function initMap() {
           handleLocationError(false, infoWindow, map.getCenter());
         }
       });
+    
+    const infoWindow = new google.maps.InfoWindow();
+    
+    $.ajax({
+        url:'all_tickets_map_data.php',
+        success: function(response){
+            all_tickets = JSON.parse(response);
+            makeMarkers(map,infoWindow);
+        }
+    });
 
     map.addListener("click", (pos) => {
+        infoWindow.close();
         closeBurger();
         closeHitBar();
-      });
+    });
 
     setInterval(function () {
-        for(let i=0;i<all_tickets.length;i++){
-            var marker = new google.maps.Marker({});
-            var myLatlng = new google.maps.LatLng(all_tickets[i]["lat"],all_tickets[i]["lng"]);
-            marker = new google.maps.Marker({
-                position: myLatlng,
-                title: all_tickets[i]["category"]
-            });
-            marker.setMap(map);
+        if(all_tickets !== all_tickets){
+            makeMarkers(map,infoWindow);
         }
     }, 1500);
+
+    
     
 }
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {

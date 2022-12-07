@@ -31,8 +31,8 @@ chdir('../');
                 <li>martin smrdí</li>
             </ul>
         </div>
-        <div id="hintBar">
-            <h2>penis</h2>
+        <div id="hintBar"  onclick="closeHitBar()">
+            <h2>Kliknutím na mapu zvoľte miesto problému</h2>
         </div>
         <div id="searchBar">
             <form action="">
