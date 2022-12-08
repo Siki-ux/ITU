@@ -55,7 +55,9 @@ button.icon:hover {background-color: #848482;color: #FFFFFFFF}
 }
 #sidebar ul {
     position: relative;
-    top:40%;
+    top:50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -153,7 +155,7 @@ button.reportIcon:hover {
 
 button.myPosition{
     display: block;
-    z-index: 10;
+    z-index: 7;
     color: black;
     position: fixed;
     float:right;
@@ -171,7 +173,7 @@ button.myPosition:hover{
 }
 button.SearchIcon{
     display: block;
-    z-index: 10;
+    z-index: 7;
     color: black;
     position: fixed;
     right:60px;
@@ -190,7 +192,7 @@ button.SearchIcon:hover{
     display:block;
     width: 0%;
     position: fixed;
-    z-index: 9;
+    z-index: 6;
     right:62px;
     top:8px;
     width: fit-content;
@@ -328,7 +330,7 @@ button.SearchIcon:hover{
 
 #myTickets {
     position: fixed;
-    z-index: 8;
+    z-index: 7;
     color: black;
     right:9px;
     top:60px;

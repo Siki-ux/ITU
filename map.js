@@ -158,7 +158,7 @@ setInterval(function () {
             }
         });
     }else {
-        
+
     }
   
 }, 1000);
@@ -296,7 +296,7 @@ function myTickets(){
     closeBurger();
     all = false;
     button.style.zIndex = 0;
-    replace.style.zIndex = 8;
+    replace.style.zIndex = 7;
     initMap()
 }
 
@@ -308,7 +308,7 @@ function allTickets(){
     closeBurger();
     all = true;
     button.style.zIndex = 0;
-    replace.style.zIndex = 8;
+    replace.style.zIndex = 7;
     initMap()
 }
 
