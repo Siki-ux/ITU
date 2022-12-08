@@ -47,8 +47,10 @@ button.icon:hover {background-color: #848482;color: #FFFFFFFF}
     position: fixed;
     display: block;
     width: 50%;
+    min-width: 275px;
     height: 100%;
-    background-color: rgba(169, 167, 167, 0.8);
+    background: rgb(132,132,130);
+    background: linear-gradient(90deg, rgba(132,132,130,1) 0%, rgba(132,132,130,0.7) 15%, rgba(177,177,177,0.4) 100%);
     
 }
 #sidebar ul {
@@ -76,9 +78,19 @@ button.icon:hover {background-color: #848482;color: #FFFFFFFF}
     to {left:0%}
 }
 
+@keyframes sidebar100{
+    from {left:-100%}
+    to {left:0%}
+}
+
 @keyframes sidebar_down{
     from {left:0%}
     to {left:-50%}
+}
+
+@keyframes sidebar_down100{
+    from {left:0%}
+    to {left:-100%}
 }
 
 button.reportIcon {
@@ -120,8 +132,11 @@ button.reportIcon:hover {
     display: block;
     width: 100%;
     height:40%;
-    border-radius: 30px;
-    background-color: rgba(169, 167, 167, 0.8);
+    color: white;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    background: rgb(132,132,130);
+    background: linear-gradient(180deg, rgba(132,132,130,1) 0%, rgba(132,132,130,0.7) 40%, rgba(177,177,177,0.5) 100%);
 }
 
 #hintBar h2 {
@@ -177,7 +192,7 @@ button.SearchIcon:hover{
 }
 #searchBar input[type=text]{
     width: 0ch;
-    max-width: 40ch;
+    max-width: 60vw;
     height: 30px;
     padding: 20px;
     border: 1px solid #000000;
@@ -191,4 +206,113 @@ button.SearchIcon:hover{
 @keyframes search_in{
     from {width:40ch}
     to {width:0ch}
+}
+
+.infoImg {
+    display: block;
+    min-width: 20px;
+    min-height: 20px;
+    width: 20vw;
+    height: 20vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hand {
+    display: none;
+    opacity: 1;
+    z-index: 11;
+    position: fixed;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    color:  rgba(177,177,177,0.5);
+}
+
+@keyframes hand_in {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes hand_out {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+#formular {
+    animation-timing-function: linear;
+    bottom: -60%;
+    right:0%;
+    z-index: 8;
+    position: fixed;
+    display: block;
+    width: 100%;
+    height:60%;
+    color: white;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    background: rgb(132,132,130);
+    background: linear-gradient(180deg, rgba(132,132,130,1) 0%, rgba(132,132,130,0.7) 40%, rgba(177,177,177,0.5) 100%);
+}
+
+@keyframes formular_open {
+    from {bottom:-60%}
+    to {bottom: 0%}
+}
+@keyframes formular_close {
+    from {bottom: 0%}
+    to {bottom: -60%}
+}
+
+@keyframes formular_down {
+    from {bottom: 0%}
+    to {bottom: -40%}
+}
+
+@keyframes formular_up {
+    from {bottom:-40%}
+    to {bottom: 0%}
+}
+@keyframes formular_exit {
+    from {bottom:-40%}
+    to {bottom: -60%}
+}
+
+#closeFormular {
+    text-align: center;
+    position: absolute;
+    right:25px;
+    top:10px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    padding: 0px;
+    margin: 0px;
+    background-color: unset;
+    border-width: 0px;
+}
+
+.fa-circle-xmark:hover{
+    background-color: white;
+    border-radius: 50%;
+}
+
+/****************/
+
+@media only screen and (max-width: 576px) {
+    #sidebar {
+        width:100%;
+        left:-100%;
+    }
+    body{
+        min-width: 275px;
+    }
+    #map{
+        min-width: 275px;
+    }
+}
+@media only screen and (max-width: 275px) {
+    #searchBar input[type=text]{
+        max-width: 22ch;
+    }
 }
