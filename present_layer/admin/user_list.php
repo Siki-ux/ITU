@@ -14,7 +14,7 @@
         <link rel="stylesheet" type="text/css" href="../../present_layer/admin/admin.css"/>
         <script src="https://kit.fontawesome.com/ea2428928f.js" crossorigin="anonymous"></script>   
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script type="text/javascript" src="../../bussiness_layer/admin/remove_user.js"></script>
+        <script type="text/javascript" src="../../bussiness_layer/admin/alter_user.js"></script>
         <script type="text/javascript" src="./user_list.js"></script>
     </head>
 

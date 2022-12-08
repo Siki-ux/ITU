@@ -17,7 +17,7 @@
         while( $row = $stmt->fetch() )
         {
             $json .= '{';
-            $json .= ' "id": '.' " '.$row['id'].' " , ';
+            $json .= ' "id": '.' "'.$row['id'].'" , ';
             $json .= ' "first_name":'.'"'.$row['first_name'].'" ,';
             $json .= ' "last_name":'.'"'.$row['last_name'].'" ,';
             $json .= ' "email":'.'"'.$row['email'].'" ,';

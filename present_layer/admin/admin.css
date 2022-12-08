@@ -1,3 +1,4 @@
+
 h2 {
     text-align: center;
 }
@@ -49,7 +50,7 @@ body{
 .admin-table tbody{
     display: block; position:relative;
     width:100%; overflow-y:scroll;
-    max-height: 30vh;
+    max-height: 75vh;
   }
   .admin-table tr{
     width: 100%;
@@ -113,12 +114,6 @@ body{
     background-color: #f2f2f2;
 }
 
-
-.admin-table tr.active-row {
-    color: #4d5efa;
-    font-weight: bold;
-}
-
 .rem-usr-but:hover{
     color: #ff0000;
 }
@@ -130,4 +125,30 @@ body{
 
 .show-tab-but:hover{
     background-color: #1f2eb115;
+}
+
+
+
+.role-select {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    margin: none;
+    height: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+}
+
+option{
+    background-color: #fafafa;
+}
+
+.admin-table .role-td{
+    padding: 0px;
 }

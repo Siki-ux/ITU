@@ -18,6 +18,36 @@
     echo get_user_table_rows();
 
     /***
+     * Generate html code that will make the field editable, and will assign a callback function for key events
+     */
+    function set_editable($id, $attr)
+    {
+        return 'id="'.$id.'_'.$attr.'" contenteditable="true" onKeyDown="((event)=>{
+            field_change(event,'.$id.",'".$attr."'".');
+          })(event)"';
+    }
+
+    function gen_select_menu($id, $role)
+    {
+        global $roles;
+        $html = '<select class="role-select" id="role_'.$id.'" onchange="select_change('.$id.')">';
+
+        foreach($roles as $key => $val)
+        {
+            $html .= '<option value = "'.$key.'" ';
+
+            if($key == $role)
+                $html .= 'selected ';
+
+            // Close option
+            $html .= '>'.$val.'</option>';
+        }
+        $html .= '</select>';
+
+        return $html;
+    }
+
+    /***
      * Return HTML of table containing all users 
      */
     function get_user_table_rows()
@@ -34,18 +64,25 @@
 
         foreach($json as $row) { 
             if($even)
-                $html_row = '<tr class="even-row">';
+                $html_row = '<tr class="even-row" ';
             else
-                $html_row = '<tr>';
+                $html_row = '<tr ';
 
             $even = !$even;
 
+            // Add row id and close 'tr' tag
+
+            $html_row .= 'id="row_'.$row['id'].'" >';
+
+            // '.set_editable($row['id'],'first_name').' STACI VLOZIT
+
             $html_row .= '<td> '.$row['id']." </td>\n";
-            $html_row .= '<td> '.$row['first_name']." </td>\n";
-            $html_row .= '<td> '.$row['last_name']." </td>\n";
-            $html_row .= '<td> '.$row['email']." </td>\n";
-            $html_row .= '<td> '.$row['phone']." </td>\n";
-            $html_row .= '<td> '.$roles[ $row['role'] ]." </td>\n";
+            $html_row .= '<td '.set_editable($row['id'],'first_name').'> '.$row['first_name']." </td>\n";
+            $html_row .= '<td '.set_editable($row['id'],'last_name').'> '.$row['last_name']." </td>\n";
+            $html_row .= '<td '.set_editable($row['id'],'email').'> '.$row['email']." </td>\n";
+            $html_row .= '<td '.set_editable($row['id'],'phone').'> '.$row['phone']." </td>\n";
+
+            $html_row .= '<td class="role-td"> '.gen_select_menu($row['id'],$row['role'])." </td>\n";
 
             // button that removes the user. P.S. Admin cannot be removed
             if($row['role'] != ADMIN)
