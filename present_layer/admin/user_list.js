@@ -1,6 +1,7 @@
 /// Variables used for ordering table by column
 ord_col = 0;
 ord_dir_up = true;
+filter = "";
 
 
 setInterval(function () {
@@ -50,6 +51,17 @@ function fix_order()
     }
 }
 
+function filter_change()
+{
+    filt = document.getElementById("filter-input");
+    if(filt == null)
+        return;
+
+    filter = filt.value;
+
+    refresh_tables();
+}
+
 /***
  * Handle the change of table ordering
  */
@@ -93,6 +105,16 @@ function refresh_tables_after(time)
     setTimeout(refresh_tables,time);
 }
 
+function filter_reset()
+{
+    elt = document.getElementById("filter-input");
+    if(elt != null)
+        elt.value = "";
+    
+    filter = "";
+    refresh_tables();
+}
+
 /***
  * Refresh the table of users
  */
@@ -100,7 +122,7 @@ function refresh_usr_tab()
 {
     $.ajax({
         url:'get_user_table_rows.php',
-        data: jQuery.param({ col: ord_col, asc : ord_dir_up?1:0}),
+        data: jQuery.param({ col: ord_col, asc : ord_dir_up?1:0, filt : filter}),
         type: 'GET',
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
         success: function(response){

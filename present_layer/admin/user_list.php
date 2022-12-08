@@ -33,8 +33,19 @@
 
     <div>
         <nav>
-            <h3><a class="back-but" href = "../../index.php"><i class="back-arr fa-2xl fa-solid fa-arrow-left"></i></a> <div class="headline">Správa užívateľov</div></h3>
+            <h3>
+                <a class="back-but ico-hover" href = "../../index.php">
+                    <i class="back-arr fa-2xl fa-solid fa-arrow-left"></i>
+                </a> 
+                <div class="headline">Správa užívateľov</div>
+            </h3>
         </nav>
+    </div>
+
+    <div class="filter">
+        <label for="filer" class="filter-label">Hľadať:</label>
+        <input name="filter" class="filter-input" id="filter-input" onKeyUp="filter_change();">
+        <label onclick="filter_reset();" for="filter" class="filter-ico ico-hover"><i class="fa-lg fa-regular fa-circle-xmark"></i></label>
     </div>
 
     <table class="admin-table" id="usr-tab"> 

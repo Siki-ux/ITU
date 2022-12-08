@@ -11,11 +11,11 @@
     /***
      * Return data of all users as .json
      */
-    function get_user_table_data($ord_col, $asc)
+    function get_user_table_data($ord_col, $asc, $filter = "")
     {
         global $cols;
 
-        $stmt = get_all_users($cols[$ord_col], $asc);
+        $stmt = get_all_users($cols[$ord_col], $asc, $filter);
 
         $json = '[';
 

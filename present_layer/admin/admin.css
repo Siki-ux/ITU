@@ -12,9 +12,27 @@ table {
 }
 
 nav > h3 > a {padding: 10px;color: #043179 ;text-decoration: none;border:none;border-radius: 5px;}
-nav > h3 > a:hover {background-color: #04317973;color: #FFFFFFFF}
+.ico-hover:hover {background-color: #04317973;color: #FFFFFFFF}
+
+
+.filter{
+    float: right;
+    height: 40px;
+}
+.filter-input{
+    height: 25px;
+    border-radius: 5px;
+    background-color: #0a68ff34;
+}
+.filter-ico{
+    position: relative;
+    top: 2px;
+    border-radius: 5px;
+    padding: 5px;
+}
 
 .headline{
+    color: #043179 ;
     padding: 16px;
     text-align: center;
 }

@@ -58,7 +58,9 @@
 
         $ord_col = isset($_GET['col']) ? $_GET['col'] : 0;
         $asc = isset($_GET['asc']) ? $_GET['asc'] : 1;
-        $data = get_user_table_data($ord_col,$asc);
+        $filter = isset($_GET['filt']) ? $_GET['filt'] : "";
+
+        $data = get_user_table_data($ord_col,$asc,$filter);
 
         $json = json_decode($data,true);
 
