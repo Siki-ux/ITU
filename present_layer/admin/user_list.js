@@ -62,3 +62,12 @@ function collapse_usr_tab()
     console.log("A");
 
 }
+
+
+function field_change(event,id,attr)
+{
+    if (event.keyCode == 13) { // Enter pressed
+        
+    }
+}
+
