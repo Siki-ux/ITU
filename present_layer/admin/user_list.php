@@ -10,7 +10,7 @@
     function gen_col_head($name,$col)
     {
         echo '
-            <div onclick="order_change('.$col.')">
+            <div class="order-div" onclick="order_change('.$col.')">
                 <div class="col-name" id="col-name-'.$col.'">'.$name.'</div>
                 <div class="order-but-div"><i id="order-but-'.$col.'" class="order-but fa-sharp fa-solid fa-xs fa-chevron-up"></i> </div>
             </div>

@@ -194,6 +194,10 @@ option{
     float: inline-end;
 }
 
+.order-div:hover{
+    color: #8cb8ff;
+}
+
 .col-name{
     float: inline-start;
 }
