@@ -99,5 +99,16 @@
         return false;
     }
 
+    /***
+     * Update row with 'id'. Change the value in 'col' to 'new_val'
+     */
+    function update_user($id,$col,$new_val)
+    {
+        $pdo = get_pdo();
+
+        $stmt = $pdo->prepare('UPDATE PERSON SET '.$col.' = :new_val WHERE id = :id');
+        $stmt->execute(['new_val' => $new_val , 'id' => $id]);
+    }
+
 
 ?>

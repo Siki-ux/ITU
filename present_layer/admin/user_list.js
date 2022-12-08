@@ -18,7 +18,7 @@ function refresh_tables()
 
 function refresh_tables_after(time)
 {
-    setTimeout(refresh_tables),time;
+    setTimeout(refresh_tables,time);
 }
 
 function refresh_usr_tab()
@@ -64,10 +64,17 @@ function collapse_usr_tab()
 }
 
 
-function field_change(event,id,attr)
+function field_change(event,id,col)
 {
     if (event.keyCode == 13) { // Enter pressed
-        
+        event.preventDefault();
+        elt = document.getElementById(id + "_" + col);
+        if(elt != null)
+        {
+            update_user(id,col,elt.innerHTML);
+            refresh_tables_after(100);
+        }
+
     }
 }
 

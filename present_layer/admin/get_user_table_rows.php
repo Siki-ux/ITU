@@ -22,7 +22,7 @@
      */
     function set_editable($id, $attr)
     {
-        return 'contenteditable="true" onKeyDown="((event)=>{
+        return 'id="'.$id.'_'.$attr.'" contenteditable="true" onKeyDown="((event)=>{
             field_change(event,'.$id.",'".$attr."'".');
           })(event)"';
     }
@@ -44,11 +44,15 @@
 
         foreach($json as $row) { 
             if($even)
-                $html_row = '<tr class="even-row">';
+                $html_row = '<tr class="even-row" ';
             else
-                $html_row = '<tr>';
+                $html_row = '<tr ';
 
             $even = !$even;
+
+            // Add row id and close 'tr' tag
+
+            $html_row .= 'id="row_'.$row['id'].'" >';
 
             // '.set_editable($row['id'],'first_name').' STACI VLOZIT
 
