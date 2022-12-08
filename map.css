@@ -55,22 +55,32 @@ button.icon:hover {background-color: #848482;color: #FFFFFFFF}
 }
 #sidebar ul {
     position: relative;
-    top:40%;
+    top:50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
     margin-left: 10px;
     margin-right: 10px;
 }
 #sidebar li:hover {
-    border: 3px solid rgba(169, 167, 167, 0.9);
+    border: 3px solid rgb(8, 8, 8);
     border-radius: 10px;
+    background-color: rgba(169, 167, 167, 0.8);
 }
 
 #sidebar li{
     text-align: center;
-    border: 3px solid rgba(169, 167, 167, 0);
+    border: 3px solid rgba(169, 167, 167, 0.8);
     border-radius: 10px;
     font-size: x-large;
     list-style: none;
     padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#sidebar a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
 }
 
 @keyframes sidebar{
@@ -145,7 +155,7 @@ button.reportIcon:hover {
 
 button.myPosition{
     display: block;
-    z-index: 10;
+    z-index: 7;
     color: black;
     position: fixed;
     float:right;
@@ -163,7 +173,7 @@ button.myPosition:hover{
 }
 button.SearchIcon{
     display: block;
-    z-index: 10;
+    z-index: 7;
     color: black;
     position: fixed;
     right:60px;
@@ -182,7 +192,7 @@ button.SearchIcon:hover{
     display:block;
     width: 0%;
     position: fixed;
-    z-index: 9;
+    z-index: 6;
     right:62px;
     top:8px;
     width: fit-content;
@@ -223,6 +233,7 @@ button.SearchIcon:hover{
     opacity: 1;
     z-index: 11;
     position: fixed;
+    max-height: 40%;
     bottom: 50%;
     left: 50%;
     transform: translate(-50%, 0);
@@ -243,7 +254,7 @@ button.SearchIcon:hover{
     animation-timing-function: linear;
     bottom: -60%;
     right:0%;
-    z-index: 8;
+    z-index: 7;
     position: fixed;
     display: block;
     width: 100%;
@@ -295,6 +306,43 @@ button.SearchIcon:hover{
 .fa-circle-xmark:hover{
     background-color: white;
     border-radius: 50%;
+}
+
+#formular form {
+    margin:auto;
+    width: fit-content;
+}
+
+#allTickets {
+    position: fixed;
+    z-index: 0;
+    color: black;
+    right:9px;
+    top:60px;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    padding: 8px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+#allTickets:hover{
+    background-color: #848482;color: #FFFFFFFF;
+}
+
+#myTickets {
+    position: fixed;
+    z-index: 7;
+    color: black;
+    right:9px;
+    top:60px;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    padding: 8px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+#myTickets:hover {
+    background-color: #848482;color: #FFFFFFFF;
 }
 
 /****************/
