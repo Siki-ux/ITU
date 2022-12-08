@@ -1,5 +1,5 @@
 <?php 
-chdir('../..'); // ---> root
+chdir('../'); // ---> root
 
 include_once('./bussiness_layer/checks.php');
 //is_logged(); // Allow only authenticated users

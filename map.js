@@ -1,6 +1,7 @@
 let all_tickets;
 let form = false;
 let form_pos;
+let all = true;
 
 function formular_up(){
     const formular = document.getElementById("formular");
@@ -101,6 +102,7 @@ function closeBurger(){
 function myBurger() {
     const x = document.getElementById("sidebar");
     closeHitBar();
+    formular_down();
     if (document.documentElement.clientWidth <= 550){
         if (x.style.left === "0%") {
             x.style.animation = "sidebar_down100 0.7s";
@@ -128,7 +130,7 @@ function makeMarkers(map,infoWindow){
         '<b>Status:</b> '+all_tickets[i]["state"]+'<br>'+
         '<b>Správa:</b> '+all_tickets[i]["msg"]+'<br>'+
         '<b>Posledná úprava:</b> '+all_tickets[i]["time_modified"]+'<br>'+ 
-        '<img class=infoImg src="'+all_tickets[i]["img"]+'" alt="img">';
+        '<img class=infoImg src="'+all_tickets[i]["img"].substring(1)+'" alt="img">';
         const marker = new google.maps.Marker({
             position: new google.maps.LatLng(all_tickets[i]["lat"],all_tickets[i]["lng"]),
             title: all_tickets[i]["category"],
@@ -148,12 +150,17 @@ function makeMarkers(map,infoWindow){
 }
 
 setInterval(function () {
-  $.ajax({
-        url:'all_tickets_map_data.php',
-        success: function(response){
-            all_tickets = JSON.parse(response); 
-        }
-  });
+    if (all === true){
+        $.ajax({
+            url:'./bussiness_layer/all_tickets_map_data.php',
+            success: function(response){
+                all_tickets = JSON.parse(response); 
+            }
+        });
+    }else {
+        
+    }
+  
 }, 1000);
 
 function initMap() {
@@ -225,13 +232,18 @@ function initMap() {
     
     const infoWindow = new google.maps.InfoWindow();
     
-    $.ajax({
-        url:'all_tickets_map_data.php',
-        success: function(response){
-            all_tickets = JSON.parse(response);
-            makeMarkers(map,infoWindow);
-        }
-    });
+    if(all === true){
+        $.ajax({
+            url:'./bussiness_layer/all_tickets_map_data.php',
+            success: function(response){
+                all_tickets = JSON.parse(response);
+                makeMarkers(map,infoWindow);
+            }
+        });
+    }else {
+
+    }
+    
 
     
 
@@ -248,7 +260,10 @@ function initMap() {
         map.setCenter(click.latLng);
         map.setZoom(17.5);
         map.panBy(0, 240);
-        marker.setPosition(click.latLng);  
+        marker.setPosition(click.latLng);
+        let json = click.latLng.toJSON();
+        document.getElementById("lng").setAttribute('value',json["lng"].toFixed(6));
+        document.getElementById("lat").setAttribute('value',json["lat"].toFixed(6));
     });
 
     map.addListener("click", (click) => {
@@ -272,6 +287,32 @@ function initMap() {
     
     
 }
+
+function myTickets(){
+    const button = document.getElementById("myTickets");
+    const replace = document.getElementById("allTickets");
+    closeHitBar();
+    formular_down();
+    closeBurger();
+    all = false;
+    button.style.zIndex = 0;
+    replace.style.zIndex = 8;
+    initMap()
+}
+
+function allTickets(){
+    const button = document.getElementById("allTickets");
+    const replace = document.getElementById("myTickets");
+    closeHitBar();
+    formular_down();
+    closeBurger();
+    all = true;
+    button.style.zIndex = 0;
+    replace.style.zIndex = 8;
+    initMap()
+}
+
+
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
     infoWindow.setContent(
