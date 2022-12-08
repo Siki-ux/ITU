@@ -7,6 +7,19 @@
 
     enforce_admin();
 
+    function gen_col_head($name,$col)
+    {
+        echo '
+            <div class="order-div" onclick="order_change('.$col.')">
+                <div class="col-name" id="col-name-'.$col.'">'.$name.'</div>
+                <div class="order-but-div"><i id="order-but-'.$col.'" class="order-but fa-sharp fa-solid fa-xs fa-chevron-up"></i> </div>
+            </div>
+
+        ';
+        // <div class="show-tab-but" onclick="usr_tab_but_press()"></div>
+        
+    }
+
 ?>
 
 <html>
@@ -18,20 +31,32 @@
         <script type="text/javascript" src="./user_list.js"></script>
     </head>
 
-    <h2 class="main">Správa užívateľov</h2>
-    <nav>
-        <h3 class="back"><a href = "../../index.php">Späť</a></h2>
-    </nav> 
+    <div>
+        <nav>
+            <h3>
+                <a class="back-but ico-hover" href = "../../index.php">
+                    <i class="back-arr fa-2xl fa-solid fa-arrow-left"></i>
+                </a> 
+                <div class="headline">Správa užívateľov</div>
+            </h3>
+        </nav>
+    </div>
+
+    <div class="filter">
+        <label for="filer" class="filter-label">Hľadať:</label>
+        <input name="filter" class="filter-input" id="filter-input" onKeyUp="filter_change();">
+        <label onclick="filter_reset();" for="filter" class="filter-ico ico-hover"><i class="fa-lg fa-regular fa-circle-xmark"></i></label>
+    </div>
 
     <table class="admin-table" id="usr-tab"> 
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Krstné meno</th>
-                <th>Priezvisko</th> 
-                <th>e-mail</th>
-                <th>Telefón</th> 
-                <th>Rola</th>
+                <th><?php gen_col_head('id',0); ?></th>
+                <th><?php gen_col_head('Krstné meno',1); ?></th>
+                <th><?php gen_col_head('Priezvisko',2); ?></th> 
+                <th><?php gen_col_head('e-mail',3); ?></th>
+                <th><?php gen_col_head('Telefón',4); ?></th> 
+                <th><?php gen_col_head('Rola',5); ?></th>
                 <th>Odstrániť</th>
             </tr>
         </thead>
@@ -40,7 +65,5 @@
 
         </tbody>
     </table> 
-
-    <div class="show-tab-but" onclick="usr_tab_but_press()"><i id="show-usr-tab-but" class="fa-sharp fa-solid fa-chevron-up"></i></div>
 
 </html>

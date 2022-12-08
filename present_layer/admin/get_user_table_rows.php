@@ -56,7 +56,11 @@
 
         $even = false; // Mark even rows
 
-        $data = get_user_table_data();
+        $ord_col = isset($_GET['col']) ? $_GET['col'] : 0;
+        $asc = isset($_GET['asc']) ? $_GET['asc'] : 1;
+        $filter = isset($_GET['filt']) ? $_GET['filt'] : "";
+
+        $data = get_user_table_data($ord_col,$asc,$filter);
 
         $json = json_decode($data,true);
 
@@ -96,7 +100,6 @@
                 else
                 {
                     // Generate delete button
-                    //$html_row .= '<td> <div class="rem-usr-but" onclick="handle_remove_button('.$row['id'].')">     <i class="fa-regular fa-circle-xmark fa-2xl"></i>     </div></td>';
                     $html_row .= '<td><div class="rem-usr-but" onclick="handle_remove_button('.$row['id'].')">  <i class="del-ico fa-regular fa-circle-xmark fa-2xl"></i> </div></td>';
                 }
             }

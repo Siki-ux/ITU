@@ -1,5 +1,6 @@
-
-
+/***
+ * Using AJAX emove user with given 'id'
+ */
 function remove_user(id)
 {
     req = new XMLHttpRequest();
@@ -8,6 +9,9 @@ function remove_user(id)
     req.send("remove_user_id=" + id);
 }
 
+/***
+ * Using AJAX update user
+ */
 function update_user(id,col,new_val)
 {
     req = new XMLHttpRequest();
@@ -16,6 +20,9 @@ function update_user(id,col,new_val)
     req.send("id=" + id + "&col=" + col + "&new_val=" + new_val);
 }
 
+/***
+ * Hande the press of remove user button
+ */
 function handle_remove_button(id)
 {
     if (confirm('Ste si istí, že chcete ostrániť užívaťeľa s id = ' + id + '?')) {

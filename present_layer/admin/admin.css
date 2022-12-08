@@ -11,8 +11,40 @@ table {
     transition: height 2s ease-in;
 }
 
-nav > h3 > a {padding: 10px;color: #000000 ;text-decoration: none;border: 1px solid #000000;border-radius: 5px;}
-nav > h3 > a:hover {background-color: #848482;color: #FFFFFFFF}
+nav > h3 > a {padding: 10px;color: #043179 ;text-decoration: none;border:none;border-radius: 5px;}
+.ico-hover:hover {background-color: #04317973;color: #FFFFFFFF}
+
+
+.filter{
+    float: right;
+    height: 40px;
+}
+.filter-input{
+    height: 25px;
+    border-radius: 5px;
+    background-color: #0a68ff34;
+}
+.filter-ico{
+    position: relative;
+    top: 2px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.headline{
+    color: #043179 ;
+    padding: 16px;
+    text-align: center;
+}
+
+.back-but{
+    float: left;
+    height: 33px;
+}
+.back-arr{
+    position: relative;
+    top: 16px;
+}
 
 body{
     font-family: sans-serif, Arial, Helvetica;
@@ -61,9 +93,10 @@ body{
     flex-basis:100%;
     flex-grow:2;
     display: block;
-    padding: 1rem;
+    padding: 1px;
     text-align:left;
-  }.admin-table td:first-child,
+  }
+  .admin-table td:first-child,
   .admin-table th:first-child{
     flex-basis:20%;
     flex-grow:1;
@@ -151,4 +184,26 @@ option{
 
 .admin-table .role-td{
     padding: 0px;
+}
+
+
+.order-but-div{
+    position: relative;
+    top: 5px;
+    padding: 5px;
+    float: inline-end;
+}
+
+.order-div:hover{
+    color: #8cb8ff;
+}
+
+.col-name{
+    float: inline-start;
+}
+
+.arrow-hidden{
+    color: #326fd1;
+}.arrow-visible{
+    color: #ffffff;
 }
