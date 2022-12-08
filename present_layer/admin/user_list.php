@@ -7,6 +7,19 @@
 
     enforce_admin();
 
+    function gen_col_head($name,$col)
+    {
+        echo '
+            <div onclick="order_change('.$col.')">
+                <div class="col-name" id="col-name-'.$col.'">'.$name.'</div>
+                <div class="order-but-div"><i id="order-but-'.$col.'" class="order-but fa-sharp fa-solid fa-xs fa-chevron-up"></i> </div>
+            </div>
+
+        ';
+        // <div class="show-tab-but" onclick="usr_tab_but_press()"></div>
+        
+    }
+
 ?>
 
 <html>
@@ -26,12 +39,12 @@
     <table class="admin-table" id="usr-tab"> 
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Krstné meno</th>
-                <th>Priezvisko</th> 
-                <th>e-mail</th>
-                <th>Telefón</th> 
-                <th>Rola</th>
+                <th><?php gen_col_head('id',0); ?></th>
+                <th><?php gen_col_head('Krstné meno',1); ?></th>
+                <th><?php gen_col_head('Priezvisko',2); ?></th> 
+                <th><?php gen_col_head('e-mail',3); ?></th>
+                <th><?php gen_col_head('Telefón',4); ?></th> 
+                <th><?php gen_col_head('Rola',5); ?></th>
                 <th>Odstrániť</th>
             </tr>
         </thead>
@@ -40,7 +53,5 @@
 
         </tbody>
     </table> 
-
-    <div class="show-tab-but" onclick="usr_tab_but_press()"><i id="show-usr-tab-but" class="fa-sharp fa-solid fa-chevron-up"></i></div>
 
 </html>
