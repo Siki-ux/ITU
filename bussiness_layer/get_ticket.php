@@ -131,4 +131,17 @@ function all_tickets_map_json(){
     $json =$json . "]";
     return $json;
 }
+//Function that parse my tickets data from database to JSON format
+//Return: string: JSON format
+function my_tickets_map_json(){
+    $json = "[";
+    $tickets = get_my_tickets(get_user_by_email($_SESSION["email"])["id"]);
+    while($row = $tickets->fetch()){
+        $ticket = get_ticket_data($row);
+        $json = $json .'{"id":'.$ticket[0].',"category":"'.$ticket[1].'","lng":'.$ticket[2].', "lat":'.$ticket[3].', "state":"'.$ticket[4].'", "msg":"'.$ticket[5].'", "time_created":"'.$ticket[6].'", "time_modified":"'.$ticket[7].'", "img":"'.$ticket[8].'"},'; //TODO
+    }
+    $json = rtrim($json,",");
+    $json =$json . "]";
+    return $json;
+}
 ?>

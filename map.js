@@ -158,7 +158,12 @@ setInterval(function () {
             }
         });
     }else {
-
+        $.ajax({
+            url:'./bussiness_layer/my_tickets_map_data.php',
+            success: function(response){
+                all_tickets = JSON.parse(response);
+            }
+        });
     }
   
 }, 1000);
@@ -241,7 +246,13 @@ function initMap() {
             }
         });
     }else {
-
+        $.ajax({
+            url:'./bussiness_layer/my_tickets_map_data.php',
+            success: function(response){
+                all_tickets = JSON.parse(response);
+                makeMarkers(map,infoWindow);
+            }
+        });
     }
     
 
