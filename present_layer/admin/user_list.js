@@ -52,8 +52,6 @@ function order_change(col)
     {
         // Reverse order by same column
         ord_dir_up = !ord_dir_up;
-
-        console.log(col);
     }
     fix_order();
     refresh_tables();
@@ -90,7 +88,7 @@ function refresh_usr_tab()
 {
     $.ajax({
         url:'get_user_table_rows.php',
-        data: jQuery.param({ col: ord_col, asc : ord_dir_up}),
+        data: jQuery.param({ col: ord_col, asc : ord_dir_up?1:0}),
         type: 'GET',
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
         success: function(response){

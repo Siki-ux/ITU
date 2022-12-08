@@ -1,6 +1,7 @@
 <?php
     include_once('db_setup.php');
 
+
     /***
      * Get the first user wth given email from database
      * @return dict representing user with given email
@@ -34,12 +35,12 @@
      * Get all rows from the PERSON table
      * @return PDOStatement object
      */
-    function get_all_users()
+    function get_all_users($col = 'id', $asc = 1)
     {
         $pdo = get_pdo();
 
-        $stmt = $pdo->query('SELECT id,first_name,last_name,email,phone,role FROM PERSON;');
- 
+        $stmt = $pdo->query("SELECT id,first_name,last_name,email,phone,role FROM PERSON ORDER BY $col ".(($asc == 1) ? 'ASC' : 'DESC').";");
+
         return $stmt;
     }
 
