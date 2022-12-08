@@ -27,6 +27,26 @@
           })(event)"';
     }
 
+    function gen_select_menu($id, $role)
+    {
+        global $roles;
+        $html = '<select class="role-select" id="role_'.$id.'" onchange="select_change('.$id.')">';
+
+        foreach($roles as $key => $val)
+        {
+            $html .= '<option value = "'.$key.'" ';
+
+            if($key == $role)
+                $html .= 'selected ';
+
+            // Close option
+            $html .= '>'.$val.'</option>';
+        }
+        $html .= '</select>';
+
+        return $html;
+    }
+
     /***
      * Return HTML of table containing all users 
      */
@@ -61,7 +81,8 @@
             $html_row .= '<td '.set_editable($row['id'],'last_name').'> '.$row['last_name']." </td>\n";
             $html_row .= '<td '.set_editable($row['id'],'email').'> '.$row['email']." </td>\n";
             $html_row .= '<td '.set_editable($row['id'],'phone').'> '.$row['phone']." </td>\n";
-            $html_row .= '<td> '.$roles[ $row['role'] ]." </td>\n";
+
+            $html_row .= '<td class="role-td"> '.gen_select_menu($row['id'],$row['role'])." </td>\n";
 
             // button that removes the user. P.S. Admin cannot be removed
             if($row['role'] != ADMIN)
