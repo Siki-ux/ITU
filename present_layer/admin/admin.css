@@ -11,8 +11,22 @@ table {
     transition: height 2s ease-in;
 }
 
-nav > h3 > a {padding: 10px;color: #000000 ;text-decoration: none;border: 1px solid #000000;border-radius: 5px;}
-nav > h3 > a:hover {background-color: #848482;color: #FFFFFFFF}
+nav > h3 > a {padding: 10px;color: #043179 ;text-decoration: none;border:none;border-radius: 5px;}
+nav > h3 > a:hover {background-color: #04317973;color: #FFFFFFFF}
+
+.headline{
+    padding: 16px;
+    text-align: center;
+}
+
+.back-but{
+    float: left;
+    height: 33px;
+}
+.back-arr{
+    position: relative;
+    top: 16px;
+}
 
 body{
     font-family: sans-serif, Arial, Helvetica;
@@ -164,4 +178,10 @@ option{
 
 .col-name{
     float: inline-start;
+}
+
+.arrow-hidden{
+    color: #326fd1;
+}.arrow-visible{
+    color: #ffffff;
 }

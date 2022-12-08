@@ -98,7 +98,6 @@
                 else
                 {
                     // Generate delete button
-                    //$html_row .= '<td> <div class="rem-usr-but" onclick="handle_remove_button('.$row['id'].')">     <i class="fa-regular fa-circle-xmark fa-2xl"></i>     </div></td>';
                     $html_row .= '<td><div class="rem-usr-but" onclick="handle_remove_button('.$row['id'].')">  <i class="del-ico fa-regular fa-circle-xmark fa-2xl"></i> </div></td>';
                 }
             }

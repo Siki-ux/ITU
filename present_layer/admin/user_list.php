@@ -31,10 +31,11 @@
         <script type="text/javascript" src="./user_list.js"></script>
     </head>
 
-    <h2 class="main">Správa užívateľov</h2>
-    <nav>
-        <h3 class="back"><a href = "../../index.php">Späť</a></h2>
-    </nav> 
+    <div>
+        <nav>
+            <h3><a class="back-but" href = "../../index.php"><i class="back-arr fa-2xl fa-solid fa-arrow-left"></i></a> <div class="headline">Správa užívateľov</div></h3>
+        </nav>
+    </div>
 
     <table class="admin-table" id="usr-tab"> 
         <thead>

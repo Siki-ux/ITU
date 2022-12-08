@@ -26,10 +26,22 @@ function fix_order()
 
     for (let i = 0; i < res.length; i++)
     {
-        res[i].classList.remove("fa-chevron-up");
         res[i].classList.remove("fa-chevron-down");
+        res[i].classList.add("fa-chevron-up");
+        res[i].classList.remove("arrow-visible");
+        res[i].classList.add("arrow-hidden");
+        res[i].classList.remove("fa-xl");
+        res[i].classList.add("fa-xs");
+
+
         if(i == ord_col)
         {
+            res[i].classList.add("arrow-visible");
+            res[i].classList.remove("arrow-hidden");
+
+            res[i].classList.remove("fa-xs");
+            res[i].classList.add("fa-xl");
+            
             if(ord_dir_up)
                 res[i].classList.add("fa-chevron-up");
             else
