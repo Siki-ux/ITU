@@ -3,9 +3,21 @@ chdir('.');
 if (session_id() == "")
     session_start();
 
+include './bussiness_layer/authentication/check_login.php';
 include_once("./bussiness_layer/checks.php");
 include_once("./bussiness_layer/admin/check_admin.php");
 include_once('./bussiness_layer/print_categories.php');
+
+$res = check_login();
+
+if( isset($_POST['email']) ){
+    if($res == 1){
+        echo '<script>alert("Neznámy email");</script>';
+    }else if($res == 2){
+        echo '<script>alert("Zlé heslo");</script>';
+    }
+    
+}
 
 if( is_admin() )
     header("Location: ./admin.php");
@@ -21,7 +33,8 @@ if( is_worker() )
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://kit.fontawesome.com/ea2428928f.js" crossorigin="anonymous"></script>   
+        <script src="https://kit.fontawesome.com/ea2428928f.js" crossorigin="anonymous"></script>  
+        <script type="text/javascript" src="./bussiness_layer/remove_ticket.js"></script> 
         <link rel="stylesheet" type="text/css" href="./map.css" />
         <script src="./map.js"></script>
         <meta charset="utf-8">
@@ -48,18 +61,16 @@ if( is_worker() )
         </button>
         <div id="sidebar">
             <h2>Chytni závadu!</h2>
-            <ul>
+            <ul id="sidebar-ul">
                 <?php
                 if( ! is_logged_in()){
                     echo '
-                    <a href="present_layer/authentication/login.php"><li>Prihlásiť</li></a>
+                    <a onclick="login_gen()"><li>Prihlásiť</li></a>
                     <a href="present_layer/authentication/register.php"><li>Registrovať</li></a>';
                 }else {
                     echo '
-                    <a href="present_layer/TODO.php"><li>Môj účet</li></a>
-                    <a href="present_layer/new_ticket.php"><li>Nový tiket OLD</li></a>
-                    <a href="present_layer/all_tickets.php"><li>Všetky tikety OLD</li></a>
-                    <a href="present_layer/my_tickets.php"><li>Moje tikety OLD</li></a>
+                    <a id="tik""><li  onclick="myTickets()">Moje tikety</li></a>
+                    <a id="sidebarNewTicket"><li>Nový tiket</li></a>
                     <a href="present_layer/authentication/logout.php"><li>Odhlásiť</li></a>';
                 }
                 ?>
@@ -76,20 +87,29 @@ if( is_worker() )
             </form>
         </div>
         <img src="./img/hands-click-png-icon-5.png" alt="yell at siki cuz something went wrong" class="hand" id="hand" onclick="closeHitBar()">
-        <div id="formular">
+        <div id="formular" onclick="formular_up()">
             <button id="closeFormular">
                 <i class="fa-regular fa-circle-xmark fa-3x"></i>
             </button>
             <form id="form" method="post" action="./bussiness_layer/create_ticket.php" enctype="multipart/form-data">
                 <input type="hidden" id="lng" name="lng" onKeyDown="return false" readonly required>
                 <input type="hidden" id="lat" name="lat" onKeyDown="return false" readonly required>
-                <label for="category">Kategoria</label><br>
-                <select name="category">  <?php print_categories(); ?> </select><br>
-                <label for="fileToUpload">Nahraj fotku (volitelne)</label><br>
-                <input type="file" id="fileToUpload" name="fileToUpload"><br>
-                <br><input type = "submit" value="Odoslat"><br>
+                <label for="category">Kategória</label>
+                <select name="category">  <?php print_categories(); ?> </select>
+                <label for="fileToUpload" id="upload"><i class="fa fa-cloud-upload"></i> Nahraj fotku <i id="vol">(volitelné)</i></label>
+                <input type="file" id="fileToUpload" name="fileToUpload">
+                <input type = "submit" id="submit" value="Odoslat">
             </form>
         </div>
         <div id="map"></div><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJVGL83AulBYsKWzBA0ooSruG4_CVIWqA&callback=initMap"defer></script>
     </body>
 </html>
+
+<?php
+if( is_admin() )
+    header("Location: ./admin.php");
+if( is_manager() )
+    header("Location: ./manager.php");
+if( is_worker() )
+    header("Location: ./worker.php");
+?>
