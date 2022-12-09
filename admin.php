@@ -8,6 +8,9 @@
 
     if( ! is_admin() ) 
         header('Location: ./index.php');
+
+    header('Location: ./present_layer/admin/user_list.php');
+
 ?>
 
 <html>

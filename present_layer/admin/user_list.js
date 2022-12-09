@@ -14,7 +14,26 @@ setInterval(function () {
 window.addEventListener('load', function(){
     refresh_tables();
     fix_order();
-});    
+    setup_click_away();
+}); 
+
+
+/***
+ * Prepare the document to hide menu contend when user clicks away
+ */
+function setup_click_away(){
+    document.addEventListener('click', function handleClickOutsideBox(event) {
+        // 👇️ the element the user clicked
+        console.log('user clicked: ', event.target);
+      
+        menu = document.getElementById('dropdown-menu');
+        menu_but = document.getElementById("menu-but");
+      
+        if ( /*(!menu.contains(event.target)) && */(!menu_but.contains(event.target)))
+            hide_dropdown_menu(menu);
+      });
+      
+}
 
 /***
  * Make sure that table order buttons are prepared correctly
@@ -51,6 +70,9 @@ function fix_order()
     }
 }
 
+/***
+ * React to the change of table content filter
+ */
 function filter_change()
 {
     filt = document.getElementById("filter-input");
@@ -165,3 +187,26 @@ function select_change(id)
     }
 }
 
+menu_hidden = true;
+function toggle_dropdown_menu()
+{
+    menu = document.getElementById("dropdown-menu");
+    if(menu == null)
+        return;
+
+    if(menu_hidden)
+        show_dropdown_menu(menu);
+    else
+        hide_dropdown_menu(menu);
+}
+
+function show_dropdown_menu(menu)
+{
+    menu.classList.remove("content-hidden");
+    menu_hidden = false;
+}
+function hide_dropdown_menu(menu)
+{
+    menu.classList.add("content-hidden");
+    menu_hidden = true;
+}
