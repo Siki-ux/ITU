@@ -36,6 +36,8 @@ button.icon {
     padding: 8px;
     padding-top: 20px;
     padding-bottom: 20px;
+    width: 40px;
+    height: 40px;
 }
 
 button.icon:hover {background-color: #848482;color: #FFFFFFFF}
@@ -50,7 +52,7 @@ button.icon:hover {background-color: #848482;color: #FFFFFFFF}
     min-width: 275px;
     height: 100%;
     background: rgb(132,132,130);
-    background: linear-gradient(90deg, rgba(132,132,130,1) 0%, rgba(132,132,130,0.7) 15%, rgba(177,177,177,0.4) 100%);
+    background: linear-gradient(90deg, rgba(132,132,130,1) 0%, rgba(132,132,130,0.7) 80%, rgba(177,177,177,0.4) 100%);
     
 }
 #sidebar ul {
@@ -310,7 +312,90 @@ button.SearchIcon:hover{
 
 #formular form {
     margin:auto;
+    width: 80vw;
+}
+
+#formular label {
+    font-weight: bold;
+    font-size: x-large;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 3%;
+}
+
+#formular select {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding: 10px;
+    border: 3px solid #000000;
+    font-size: x-large;
+    border-radius: 10px;
+}
+
+#upload {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: large;
+}
+#upload:hover {
+    background-color: #848482;color: #FFFFFFFF;
+}
+
+#vol {
+    font-weight: normal;
+    font-style: normal;  
+}
+
+input[type="file"] {
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: large;
+}
+
+input::file-selector-button{
+    text-align: center;
     width: fit-content;
+    padding: 15px;
+    border: 3px solid #000000;
+    font-size: large;
+    border-radius: 10px;
+    color: #000000;
+    background-color: white;
+    margin-left:1%;
+}
+
+input::file-selector-button:hover {
+    background-color: #848482;color: #FFFFFFFF;
+}
+
+#submit {
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-weight: bold;
+    font-size: xx-large;
+    color: black;
+    bottom: 3%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 15px;
+    border: 1px solid #000000;
+    border-radius: 40px;
+}
+
+#submit:hover{
+    background-color: #848482;color: #FFFFFFFF;
 }
 
 #allTickets {
@@ -345,11 +430,115 @@ button.SearchIcon:hover{
     background-color: #848482;color: #FFFFFFFF;
 }
 
-/****************/
+#sidebar form {
+    display: block;
+    width: max-content;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 40vw;
+}
 
+#sidebar form label{
+    font-weight: bold;
+    font-size: x-large;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 3%;
+    color:white
+    
+
+}
+
+#email , #password {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding: 10px;
+    border: 3px solid #000000;
+    font-size: x-large;
+    border-radius: 10px;
+    max-width: 100%;
+}
+
+#loginButton {
+    margin-top: 3%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: large;
+    border: 3px solid #000000;
+    font-size: x-large;
+    border-radius: 10px;
+    background-color: white;
+}
+
+#loginButton:hover , #backLogin:hover , #removeTicketButton:hover{
+    background-color: #848482;color: #FFFFFFFF
+}
+
+#backLogin {
+    display: block;
+    position: absolute;
+    top: 60px;
+    left: 8px;
+    z-index: 13;
+    color: black;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 1px solid #000000;
+}
+
+#removeTicketButton {
+    font-weight: bold;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 40px;
+}
+
+#f_name,#l_name,#register #email,#register #password,#phone{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding: 10px;
+    border: 3px solid #000000;
+    font-size: large;
+    border-radius: 10px;
+    max-width: 100%;
+}
+
+#register #email,#register #password{
+    border-color: red;
+}
+
+#backRegister {
+    display: block;
+    position: absolute;
+    z-index: 13;
+    color: black;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 1px solid #000000;
+    top: 60px;
+    left: 8px;
+}
+/****************/
+@media only screen and (max-width: 775px) {
+
+}
 @media only screen and (max-width: 576px) {
     #sidebar {
-        width:100%;
+        width:85%;
         left:-100%;
     }
     body{
@@ -358,9 +547,19 @@ button.SearchIcon:hover{
     #map{
         min-width: 275px;
     }
+    #sidebar form {
+        max-width: 60vw;
+    }
+    #sidebar-ul {
+        padding-left: 1%;
+    }
+    
 }
 @media only screen and (max-width: 275px) {
     #searchBar input[type=text]{
         max-width: 22ch;
+    }
+    #sidebar-ul {
+        padding-left: 0%;
     }
 }

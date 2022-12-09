@@ -1,7 +1,64 @@
 let all_tickets;
+let all_tickets_old
 let form = false;
 let form_pos;
 let all = true;
+let reg = false;
+
+function register_gen(){
+    reg = true;
+    document.getElementById("sidebar").innerHTML+= ''+
+    '<button id="backRegister" onclick="back_login_gen()">'+
+        '<i class="fa-solid fa-arrow-left fa-2xl"></i>'+
+    '</button>'+
+    '';
+    const sidebar = document.getElementById("sidebar-ul");
+    sidebar.style.top="10vh";
+    sidebar.style.transform="unset";
+    sidebar.innerHTML = ''+
+    '<form id="register" action="./bussiness_layer/authentication/check_registerXD.php" method="post">'+
+        '<label for="f_name">Krstné meno:</label>'+
+        '<input type="text" name="f_name" id="f_name">'+
+        '<label for="l_name">Priezvisko:</label>'+
+        '<input type="text" name="l_name" id="l_name">'+
+        '<label for="email"> E-mail: </label>'+
+        '<input type="text" name="email" id="email" placeholder="E-mail" required>'+
+        '<label for="password"> Heslo: </label>'+
+        '<input type="password" name="password" id="password" placeholder="Heslo" required>'+
+        '<label for="phone">Telefónne číslo:</label>'+
+        '<input type="tel" name="phone" id="phone">'+
+        '<input type="submit" id="loginButton" value="Registrovať">'+
+    '</form>'+
+    '';
+}
+
+function back_login_gen(){
+    reg = false;
+    document.getElementById("sidebar").innerHTML = '<ul id="sidebar-ul"></ul>';
+    const sidebar = document.getElementById("sidebar-ul");
+    sidebar.innerHTML = ''+
+    '<a onclick="login_gen()"><li>Prihlásiť</li></a>'+
+    '<a onclick="register_gen()"><li>Registrovať</li></a>';
+}
+
+function login_gen(){
+    document.getElementById("sidebar").innerHTML+= ''+
+    '<button id="backLogin" onclick="back_login_gen()">'+
+        '<i class="fa-solid fa-arrow-left fa-2xl"></i>'+
+    '</button>'+
+    '';
+    const sidebar = document.getElementById("sidebar-ul");
+    sidebar.innerHTML = ''+
+    '<form action="index.php" method="post">'+
+        '<label for="email"> E-mail: </label>'+
+        '<input type="text" name="email" id="email" placeholder="E-mail">'+
+        '<label for="password"> Heslo: </label>'+
+        '<input type="password" name="password" id="password" placeholder="Heslo">'+
+        '<input type="submit" id="loginButton" value="Prihlasiť">'+
+    '</form>'+
+    '';
+    
+}
 
 function formular_up(){
     const formular = document.getElementById("formular");
@@ -39,6 +96,7 @@ function formular_close(marker){
 }
 
 function formular_open(){
+    closeBurger();
     const formular = document.getElementById("formular");
     if (formular.style.bottom !== "0%" && form === false) {
         formular.style.animation = "formular_open 0.7s";
@@ -94,8 +152,14 @@ function hintBar(){
 function closeBurger(){
     const x = document.getElementById("sidebar");
     if (x.style.left === "0%"){
-        x.style.animation = "sidebar_down 0.7s";
-        x.style.left = "-50%";
+        if (document.documentElement.clientWidth <= 550){
+            x.style.animation = "sidebar_down100 0.7s";
+            x.style.left = "-100%";
+        }else {
+            x.style.animation = "sidebar_down 0.7s";
+            x.style.left = "-50%";
+        }
+        
     }
 }
 
@@ -125,12 +189,15 @@ function myBurger() {
 
 function makeMarkers(map,infoWindow){
     for(let i=0;i<all_tickets.length;i++){
-        const content =
+        let content =
         '<b>Kategória:</b> '+all_tickets[i]["category"] + '<br>' +
         '<b>Status:</b> '+all_tickets[i]["state"]+'<br>'+
         '<b>Správa:</b> '+all_tickets[i]["msg"]+'<br>'+
         '<b>Posledná úprava:</b> '+all_tickets[i]["time_modified"]+'<br>'+ 
         '<img class=infoImg src="'+all_tickets[i]["img"].substring(1)+'" alt="img">';
+        if (all_tickets[i]["state"]==="Zaevidovaný" && all === false){
+            content += '<button id="removeTicketButton" onclick="handle_remove_button('+ all_tickets[i]["id"] +')">Odstrániť tiket</button>';
+        }
         const marker = new google.maps.Marker({
             position: new google.maps.LatLng(all_tickets[i]["lat"],all_tickets[i]["lng"]),
             title: all_tickets[i]["category"],
@@ -183,6 +250,7 @@ function initMap() {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude,
                 };
+                form_pos = pos;
                 map.setCenter(pos);
             },
             () => {
@@ -289,19 +357,39 @@ function initMap() {
     formularCloseButton.addEventListener("click", () => {formular_close(marker);});
 
     setInterval(function () {
-        if(all_tickets !== all_tickets){
+        if(all_tickets !== all_tickets_old){
             makeMarkers(map,infoWindow);
+            all_tickets_old = all_tickets;
         }
 
     }, 1500);
 
+    const sideBarNewTicket = document.getElementById("sidebarNewTicket");
+    if (sideBarNewTicket !== null) {
+        sideBarNewTicket.addEventListener("click",() => {
+            infoWindow.close();
+            closeBurger();
+            closeHitBar();
+            formular_open();
+            form_pos = map.getCenter();
+            map.setCenter(form_pos);
+            map.setZoom(17.5);
+            map.panBy(0, 240);
+            marker.setPosition(form_pos);
+            let json = form_pos.toJSON();
+            document.getElementById("lng").setAttribute('value',json["lng"].toFixed(6));
+            document.getElementById("lat").setAttribute('value',json["lat"].toFixed(6));
+        });
+    }
     
     
 }
 
 function myTickets(){
+    const burgerButton = document.getElementById("tik");
     const button = document.getElementById("myTickets");
     const replace = document.getElementById("allTickets");
+    burgerButton.innerHTML = '<li onclick="allTickets()">Všetky tikety</li>';
     closeHitBar();
     formular_down();
     closeBurger();
@@ -312,8 +400,10 @@ function myTickets(){
 }
 
 function allTickets(){
+    const burgerButton = document.getElementById("tik");
     const button = document.getElementById("allTickets");
     const replace = document.getElementById("myTickets");
+    burgerButton.innerHTML = '<li onclick="myTickets()">Moje tikety</li>';
     closeHitBar();
     formular_down();
     closeBurger();

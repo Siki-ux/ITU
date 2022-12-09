@@ -6,7 +6,8 @@
     if (session_id() == "")
         session_start();
     session_destroy();
-    echo("Odhlasujem...");
-    header("refresh:0.5; ../../bussiness_layer/redirect.php");
+    //echo("Odhlasujem...");
+    //header("refresh:0.5; index.php");
+    header("Location: ../../index.php");
  
 ?>
