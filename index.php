@@ -81,8 +81,7 @@ if( is_worker() )
             <h2>Dvojklikom na mapu zvoľte miesto problému</h2>
         </div>
         <div id="searchBar">
-
-            <form action="">
+            <form onkeydown="return event.key != 'Enter';">
                 <input type="text" placeholder="Zadaj vyhľadávanú adresu" id="ToSearch">
             </form>
         </div>
