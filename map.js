@@ -4,6 +4,7 @@ let form = false;
 let form_pos;
 let all = true;
 let reg = false;
+let worker = false;
 
 function register_gen(){
     reg = true;
@@ -198,8 +199,19 @@ function makeMarkers(map,infoWindow){
         if (all_tickets[i]["state"]==="Zaevidovaný" && all === false){
             content += '<button id="removeTicketButton" onclick="handle_remove_button('+ all_tickets[i]["id"] +')">Odstrániť tiket</button>';
         }
+        if (worker === true) {
+            content = 
+            '<b>Kategória:</b> '+all_tickets[i]["category"] + '<br>' +
+            '<b>Status:</b> '+all_tickets[i]["state_req"]+'<br>'+
+            '<b>Popis:</b> '+all_tickets[i]["description"]+'<br>'+
+            '<b>Očakávaná oprava do:</b> '+all_tickets[i]["expected_date"]+'<br>'+
+            '<b>Posledná úprava:</b> '+all_tickets[i]["time_modified"]+'<br>'+ 
+            '<img class=infoImg src="'+all_tickets[i]["img"].substring(1)+'" alt="img">'+
+            '<form action="present_layer/worker_requests.php" method="GET"><input type=hidden id="ticketID" name=ticketID value='+all_tickets[i]["id"]+'><input type="submit" id=redirectButton value="Prejsť na tiket"><form>';
+        }
+        let pos =  new google.maps.LatLng(all_tickets[i]["lat"],all_tickets[i]["lng"]);
         const marker = new google.maps.Marker({
-            position: new google.maps.LatLng(all_tickets[i]["lat"],all_tickets[i]["lng"]),
+            position: pos,
             title: all_tickets[i]["category"],
             optimized:false,
         });
@@ -209,7 +221,7 @@ function makeMarkers(map,infoWindow){
             infoWindow.close();
             infoWindow.setContent(content);
             infoWindow.open(marker.getMap(), marker);
-            map.setCenter(new google.maps.LatLng(all_tickets[i]["lat"],all_tickets[i]["lng"]));
+            map.setCenter(pos);
         })
     }
 
@@ -222,6 +234,13 @@ setInterval(function () {
             url:'./bussiness_layer/all_tickets_map_data.php',
             success: function(response){
                 all_tickets = JSON.parse(response); 
+            }
+        });
+    }else if(worker === true){
+        $.ajax({
+            url:'./bussiness_layer/worker_requests_map_data.php',
+            success: function(response){
+                all_tickets = JSON.parse(response);
             }
         });
     }else {
@@ -313,6 +332,14 @@ function initMap() {
                 makeMarkers(map,infoWindow);
             }
         });
+    }else if(worker === true){
+        $.ajax({
+            url:'./bussiness_layer/worker_requests_map_data.php',
+            success: function(response){
+                all_tickets = JSON.parse(response);
+                makeMarkers(map,infoWindow);
+            }
+        });
     }else {
         $.ajax({
             url:'./bussiness_layer/my_tickets_map_data.php',
@@ -387,7 +414,11 @@ function initMap() {
 
 function myTickets(){
     const burgerButton = document.getElementById("tik");
-    const button = document.getElementById("myTickets");
+    let button = document.getElementById("myTickets");
+    if (worker === true) {
+        button.style.zIndex = 0;
+        button = document.getElementById("workerTickets");
+    }
     const replace = document.getElementById("allTickets");
     burgerButton.innerHTML = '<li onclick="allTickets()">Všetky tikety</li>';
     closeHitBar();
@@ -399,14 +430,28 @@ function myTickets(){
     initMap()
 }
 
+function workerTickets(){
+    worker = true;
+    myTickets();
+}
+
 function allTickets(){
     const burgerButton = document.getElementById("tik");
     const button = document.getElementById("allTickets");
-    const replace = document.getElementById("myTickets");
-    burgerButton.innerHTML = '<li onclick="myTickets()">Moje tikety</li>';
+    let replace = document.getElementById("myTickets");
+    if (worker === true) {
+        replace = document.getElementById("workerTickets");
+    }
+    if (worker === true){
+        burgerButton.innerHTML = '<li onclick="workerTickets()">Zobraziť žiadosti</li>';
+    }else {
+        burgerButton.innerHTML = '<li onclick="myTickets()">Moje tikety</li>';
+    }
+    
     closeHitBar();
     formular_down();
     closeBurger();
+    worker = false;
     all = true;
     button.style.zIndex = 0;
     replace.style.zIndex = 7;

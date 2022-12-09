@@ -55,6 +55,15 @@ button.icon:hover {background-color: #848482;color: #FFFFFFFF}
     background: linear-gradient(90deg, rgba(132,132,130,1) 0%, rgba(132,132,130,0.7) 80%, rgba(177,177,177,0.4) 100%);
     
 }
+#sidebar h3 {
+    text-align: center;
+}
+#sidebar h3 i{
+    font-style: normal;
+    color: white;
+    font-weight: bolder;
+    font-size: larger;
+}
 #sidebar ul {
     position: relative;
     top:50%;
@@ -414,7 +423,7 @@ input::file-selector-button:hover {
     background-color: #848482;color: #FFFFFFFF;
 }
 
-#myTickets {
+#myTickets, #workerTickets {
     position: fixed;
     z-index: 7;
     color: black;
@@ -426,7 +435,9 @@ input::file-selector-button:hover {
     padding-top: 20px;
     padding-bottom: 20px;
 }
-#myTickets:hover {
+
+
+#myTickets:hover, #workerTickets:hover {
     background-color: #848482;color: #FFFFFFFF;
 }
 
@@ -477,7 +488,7 @@ input::file-selector-button:hover {
     background-color: white;
 }
 
-#loginButton:hover , #backLogin:hover , #removeTicketButton:hover{
+#loginButton:hover , #backLogin:hover , #removeTicketButton:hover, #redirectButton:hover{
     background-color: #848482;color: #FFFFFFFF
 }
 
@@ -494,7 +505,7 @@ input::file-selector-button:hover {
     border: 1px solid #000000;
 }
 
-#removeTicketButton {
+#removeTicketButton , #redirectButton{
     font-weight: bold;
     display: block;
     margin-left: auto;
@@ -502,6 +513,7 @@ input::file-selector-button:hover {
     padding: 10px;
     border: 1px solid #000000;
     border-radius: 40px;
+    margin-top:1%;
 }
 
 #f_name,#l_name,#register #email,#register #password,#phone{

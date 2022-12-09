@@ -7,6 +7,7 @@ include './bussiness_layer/authentication/check_login.php';
 include_once("./bussiness_layer/checks.php");
 include_once("./bussiness_layer/admin/check_admin.php");
 include_once('./bussiness_layer/print_categories.php');
+include_once("./bussiness_layer/user.php");
 
 $res = check_login();
 
@@ -23,9 +24,6 @@ if( is_admin() )
     header("Location: ./admin.php");
 if( is_manager() )
     header("Location: ./manager.php");
-if( is_worker() )
-    header("Location: ./worker.php");
-
 ?>
 <html>
     <head>
@@ -45,8 +43,13 @@ if( is_worker() )
             if(is_logged_in()) {
                 echo '
                     <button herf="javascript:void(0);" class="tickets" id="allTickets" onclick="allTickets()"><i class="fa-solid fa-globe fa-2xl"></i></button>
-                    <button herf="javascript:void(0);" class="tickets" id="myTickets" onclick="myTickets()"><i class="fa-solid fa-user fa-2xl"></i></button>
+                    <button herf="javascript:void(0);" class="tickets" id="myTickets" onclick="myTickets()"><i class="fa-solid fa-user fa-2xl"></i></button>';
+                if (is_worker()){
+                    echo '
+                    <button herf="javascript:void(0);" class="tickets" id="workerTickets" onclick="workerTickets()"><i class="fa-solid fa-user fa-2xl"></i></button>
                     ';
+                }
+                    
             }
         ?>
         <button href="javascript:void(0);" class="icon" onclick="myBurger()">
@@ -61,15 +64,21 @@ if( is_worker() )
         </button>
         <div id="sidebar">
             <h2>Chytni závadu!</h2>
+            <h3>Prihlásený ako:<br><i><?php echo get_name();?></i></h3>
             <ul id="sidebar-ul">
                 <?php
                 if( ! is_logged_in()){
                     echo '
                     <a onclick="login_gen()"><li>Prihlásiť</li></a>
                     <a onclick="register_gen()"><li>Registrovať</li></a>';
+                }else if(is_worker()){
+                    echo '
+                    <a id="tik"><li  onclick="workerTickets()">Zobraziť žiadosti</li></a>
+                    <a href= "present_layer/worker_requests.php"><li>Opravy</li></a>
+                    <a href="present_layer/authentication/logout.php"><li>Odhlásiť</li></a>';
                 }else {
                     echo '
-                    <a id="tik""><li  onclick="myTickets()">Moje tikety</li></a>
+                    <a id="tik"><li  onclick="myTickets()">Moje tikety</li></a>
                     <a id="sidebarNewTicket"><li>Nový tiket</li></a>
                     <a href="present_layer/authentication/logout.php"><li>Odhlásiť</li></a>';
                 }
@@ -109,6 +118,4 @@ if( is_admin() )
     header("Location: ./admin.php");
 if( is_manager() )
     header("Location: ./manager.php");
-if( is_worker() )
-    header("Location: ./worker.php");
 ?>

@@ -2,6 +2,7 @@
 
 include_once("db_setup.php");
 include_once("db_user.php");
+include_once("db_request.php");
 
 //function which handles database query
 //Takes: int: tikcet id
@@ -101,5 +102,11 @@ function get_tickets_by_state_manager($state){
         return $db->query("SELECT * FROM TICKET WHERE id = ANY (SELECT for_ticket FROM SERVICE_REQUEST WHERE state = 1);"); // Fixing
     else if($state == 4)
         return $db->query("SELECT * FROM TICKET WHERE id = ANY (SELECT for_ticket FROM SERVICE_REQUEST WHERE state = 2);"); // Fixed
+}
+
+function get_ticket_by_id($id){
+    $db = get_pdo();
+    $stmt =  $db->query("SELECT * FROM TICKET WHERE id='".$id."';");
+    return $stmt->fetch();
 }
 ?>
