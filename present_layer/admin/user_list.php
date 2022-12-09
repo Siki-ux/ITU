@@ -16,8 +16,6 @@
             </div>
 
         ';
-        // <div class="show-tab-but" onclick="usr_tab_but_press()"></div>
-        
     }
 
 ?>
@@ -35,13 +33,13 @@
         <nav>
             <h3>
                 <div class="menu-div">
-                    <div class="sett-but ico-hover" onclick="toggle_dropdown_menu()">
+                    <div class="sett-but ico-hover" id="menu-but" onclick="toggle_dropdown_menu()">
                         <i class="ico fa-2xl fa-solid fa-bars"></i>
                     </div>
                     <div id="dropdown-menu" class="dropdown-content content-hidden">
                         <a href="../authentication/logout.php" onclick="console.log(1);">Odhlásiť</a>
-                        <div onclick="console.log(2);">Priať užívateľa</div>
-                        <div onclick="console.log(3);">Resetovať filter</div>
+                        <a href="./add_manager.php">Priať užívateľa</a>
+                        <div onclick="filter_reset();">Resetovať filter</div>
 
                     </div>
                 </div> 
