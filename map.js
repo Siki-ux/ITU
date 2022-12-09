@@ -207,7 +207,7 @@ function makeMarkers(map,infoWindow){
             '<b>Očakávaná oprava do:</b> '+all_tickets[i]["expected_date"]+'<br>'+
             '<b>Posledná úprava:</b> '+all_tickets[i]["time_modified"]+'<br>'+ 
             '<img class=infoImg src="'+all_tickets[i]["img"].substring(1)+'" alt="img">'+
-            '<form action="present_layer/worker_requests.php" method="GET"><input type=hidden id="ticketID" name=ticketID value='+all_tickets[i]["id"]+'><input type="submit" id=redirectButton value="Prejsť na tiket"><form>';
+            '<form action="present_layer/worker_requests.php" method="GET"><input type=hidden id="requestID" name=requestID value='+all_tickets[i]["id"]+'><input type="submit" id=redirectButton value="Prejsť na žiadosť"></form>';
         }
         let pos =  new google.maps.LatLng(all_tickets[i]["lat"],all_tickets[i]["lng"]);
         const marker = new google.maps.Marker({
