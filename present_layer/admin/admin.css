@@ -11,7 +11,7 @@ table {
     transition: height 2s ease-in;
 }
 
-nav > h3 > a {padding: 10px;color: #043179 ;text-decoration: none;border:none;border-radius: 5px;}
+nav > h3 > div {padding: 10px;color: #043179 ;text-decoration: none;border:none;border-radius: 5px;}
 .ico-hover:hover {background-color: #04317973;color: #FFFFFFFF}
 
 
@@ -35,16 +35,49 @@ nav > h3 > a {padding: 10px;color: #043179 ;text-decoration: none;border:none;bo
     color: #043179 ;
     padding: 16px;
     text-align: center;
+    margin-top: 10px;
 }
 
-.back-but{
+.menu-div{
+    height: 0;
+    padding: 0;
+}
+
+.sett-but{
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
     float: left;
     height: 33px;
 }
-.back-arr{
+.ico{
     position: relative;
     top: 16px;
 }
+.dropdown-content {
+    position: absolute;
+    top: 63px;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content div,a {
+    color: #043179;
+    border-radius: 5px;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content div:hover ,a:hover{background-color: #ddd;}
+.content-hidden{
+    display: none;
+}
+
+
+
+
 
 body{
     font-family: sans-serif, Arial, Helvetica;
@@ -149,15 +182,6 @@ body{
 
 .rem-usr-but:hover{
     color: #ff0000;
-}
-
-.show-tab-but{
-    padding: 10px;
-    border-radius: 10px;
-}
-
-.show-tab-but:hover{
-    background-color: #1f2eb115;
 }
 
 

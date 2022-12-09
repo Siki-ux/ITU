@@ -34,9 +34,17 @@
     <div>
         <nav>
             <h3>
-                <a class="back-but ico-hover" href = "../../index.php">
-                    <i class="back-arr fa-2xl fa-solid fa-arrow-left"></i>
-                </a> 
+                <div class="menu-div">
+                    <div class="sett-but ico-hover" onclick="toggle_dropdown_menu()">
+                        <i class="ico fa-2xl fa-solid fa-bars"></i>
+                    </div>
+                    <div id="dropdown-menu" class="dropdown-content content-hidden">
+                        <a href="../authentication/logout.php" onclick="console.log(1);">Odhlásiť</a>
+                        <div onclick="console.log(2);">Priať užívateľa</div>
+                        <div onclick="console.log(3);">Resetovať filter</div>
+
+                    </div>
+                </div> 
                 <div class="headline">Správa užívateľov</div>
             </h3>
         </nav>

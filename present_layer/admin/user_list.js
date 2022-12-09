@@ -165,3 +165,20 @@ function select_change(id)
     }
 }
 
+menu_hidden = true;
+function toggle_dropdown_menu()
+{
+    menu = document.getElementById("dropdown-menu");
+    if(menu == null)
+        return;
+
+    if(menu_hidden)
+        // Show menu
+        menu.classList.remove("content-hidden");
+    else
+        // Hide menu
+        menu.classList.add("content-hidden");
+
+    menu_hidden = !menu_hidden;
+
+}
