@@ -66,7 +66,7 @@ if( is_worker() )
                 if( ! is_logged_in()){
                     echo '
                     <a onclick="login_gen()"><li>Prihlásiť</li></a>
-                    <a href="present_layer/authentication/register.php"><li>Registrovať</li></a>';
+                    <a onclick="register_gen()"><li>Registrovať</li></a>';
                 }else {
                     echo '
                     <a id="tik""><li  onclick="myTickets()">Moje tikety</li></a>

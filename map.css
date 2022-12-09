@@ -36,6 +36,8 @@ button.icon {
     padding: 8px;
     padding-top: 20px;
     padding-bottom: 20px;
+    width: 40px;
+    height: 40px;
 }
 
 button.icon:hover {background-color: #848482;color: #FFFFFFFF}
@@ -481,6 +483,9 @@ input::file-selector-button:hover {
 
 #backLogin {
     display: block;
+    position: absolute;
+    top: 60px;
+    left: 8px;
     z-index: 13;
     color: black;
     height: 40px;
@@ -498,6 +503,35 @@ input::file-selector-button:hover {
     border: 1px solid #000000;
     border-radius: 40px;
 }
+
+#f_name,#l_name,#register #email,#register #password,#phone{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding: 10px;
+    border: 3px solid #000000;
+    font-size: large;
+    border-radius: 10px;
+    max-width: 100%;
+}
+
+#register #email,#register #password{
+    border-color: red;
+}
+
+#backRegister {
+    display: block;
+    position: absolute;
+    z-index: 13;
+    color: black;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 1px solid #000000;
+    top: 60px;
+    left: 8px;
+}
 /****************/
 @media only screen and (max-width: 775px) {
 
@@ -505,7 +539,7 @@ input::file-selector-button:hover {
 @media only screen and (max-width: 576px) {
     #sidebar {
         width:85%;
-        left:-85%;
+        left:-100%;
     }
     body{
         min-width: 275px;

@@ -3,13 +3,42 @@ let all_tickets_old
 let form = false;
 let form_pos;
 let all = true;
+let reg = false;
+
+function register_gen(){
+    reg = true;
+    document.getElementById("sidebar").innerHTML+= ''+
+    '<button id="backRegister" onclick="back_login_gen()">'+
+        '<i class="fa-solid fa-arrow-left fa-2xl"></i>'+
+    '</button>'+
+    '';
+    const sidebar = document.getElementById("sidebar-ul");
+    sidebar.style.top="10vh";
+    sidebar.style.transform="unset";
+    sidebar.innerHTML = ''+
+    '<form id="register" action="./bussiness_layer/authentication/check_registerXD.php" method="post">'+
+        '<label for="f_name">Krstné meno:</label>'+
+        '<input type="text" name="f_name" id="f_name">'+
+        '<label for="l_name">Priezvisko:</label>'+
+        '<input type="text" name="l_name" id="l_name">'+
+        '<label for="email"> E-mail: </label>'+
+        '<input type="text" name="email" id="email" placeholder="E-mail" required>'+
+        '<label for="password"> Heslo: </label>'+
+        '<input type="password" name="password" id="password" placeholder="Heslo" required>'+
+        '<label for="phone">Telefónne číslo:</label>'+
+        '<input type="tel" name="phone" id="phone">'+
+        '<input type="submit" id="loginButton" value="Registrovať">'+
+    '</form>'+
+    '';
+}
 
 function back_login_gen(){
+    reg = false;
     document.getElementById("sidebar").innerHTML = '<ul id="sidebar-ul"></ul>';
     const sidebar = document.getElementById("sidebar-ul");
     sidebar.innerHTML = ''+
     '<a onclick="login_gen()"><li>Prihlásiť</li></a>'+
-    '<a href="present_layer/authentication/register.php"><li>Registrovať</li></a>';
+    '<a onclick="register_gen()"><li>Registrovať</li></a>';
 }
 
 function login_gen(){
@@ -125,7 +154,7 @@ function closeBurger(){
     if (x.style.left === "0%"){
         if (document.documentElement.clientWidth <= 550){
             x.style.animation = "sidebar_down100 0.7s";
-            x.style.left = "-85%";
+            x.style.left = "-100%";
         }else {
             x.style.animation = "sidebar_down 0.7s";
             x.style.left = "-50%";
@@ -141,7 +170,7 @@ function myBurger() {
     if (document.documentElement.clientWidth <= 550){
         if (x.style.left === "0%") {
             x.style.animation = "sidebar_down100 0.7s";
-            x.style.left = "-85%";
+            x.style.left = "-100%";
         } else {    
             x.style.animation = "sidebar100 0.7s";
             x.style.left = "0%";  
@@ -336,21 +365,23 @@ function initMap() {
     }, 1500);
 
     const sideBarNewTicket = document.getElementById("sidebarNewTicket");
-
-    sideBarNewTicket.addEventListener("click",() => {
-        infoWindow.close();
-        closeBurger();
-        closeHitBar();
-        formular_open();
-        form_pos = map.getCenter();
-        map.setCenter(form_pos);
-        map.setZoom(17.5);
-        map.panBy(0, 240);
-        marker.setPosition(form_pos);
-        let json = form_pos.toJSON();
-        document.getElementById("lng").setAttribute('value',json["lng"].toFixed(6));
-        document.getElementById("lat").setAttribute('value',json["lat"].toFixed(6));
-    });
+    if (sideBarNewTicket !== null) {
+        sideBarNewTicket.addEventListener("click",() => {
+            infoWindow.close();
+            closeBurger();
+            closeHitBar();
+            formular_open();
+            form_pos = map.getCenter();
+            map.setCenter(form_pos);
+            map.setZoom(17.5);
+            map.panBy(0, 240);
+            marker.setPosition(form_pos);
+            let json = form_pos.toJSON();
+            document.getElementById("lng").setAttribute('value',json["lng"].toFixed(6));
+            document.getElementById("lat").setAttribute('value',json["lat"].toFixed(6));
+        });
+    }
+    
     
 }
 
