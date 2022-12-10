@@ -3,22 +3,16 @@ form {
     text-align: center;
 }
 
-.password{
-    color:#cb2502;
-} 
-
-.email{
-    color:#cb2502;
-}
-
 body{
     font-family: sans-serif, Arial, Helvetica;
     margin:0%;
+    text-align: center;
     font-size: 1rem;
     min-width: 800px;
     width:90%;
     margin-left: auto;
     margin-right: auto;
+
 }
 
 nav{
@@ -27,7 +21,7 @@ nav{
 }
 
 .ico-hover:hover {background-color: #04317973;color: #FFFFFFFF}
-nav h3{
+nav h2{
     width: 100%;
     margin: 0;
 }
@@ -35,7 +29,6 @@ nav h3{
 .headline{
     color: #043179 ;
     padding: 16px;
-    width: 100%;
     text-align: center;
     margin-top: 10px;
 }
@@ -52,9 +45,40 @@ nav h3{
     top: 16px;
 }
 
-.err_msg{
+.err-msg{
     color:red;
     text-align: center;
 }
+.hidden{
+    display: none;
+}
+table{
+    font-size: larger;
+    margin-left: auto;
+    margin-right: auto;
+}
+input{
+    border-radius: 5px;
+    height: 30px;
+    border-color: #04317980;
+}
+td{
+    text-align: right;
+}
+#password, #email{
+    border-color: rgb(3, 5, 117);
+}
 
 
+.submit {
+  background-color: #086de0;
+  text-align: center;
+  border-radius: 8px;
+  border-style: none;
+  font-size: larger;
+  color: #fff;
+}
+
+.submit:hover {
+  background-color: #1C84FF;
+}
