@@ -273,6 +273,7 @@ function makeMarkers(map,infoWindow){
             '<img class=infoImg src="'+all_tickets[i]["img"].substring(1)+'" alt="img">'+
             '<form action="present_layer/worker_requests.php" method="GET"><input type=hidden id="requestID" name=requestID value='+all_tickets[i]["id"]+'><input type="submit" id=redirectButton value="Prejsť na žiadosť"></form>';
         }
+
         let pos =  new google.maps.LatLng(all_tickets[i]["lat"],all_tickets[i]["lng"]);
         const marker = new google.maps.Marker({
             position: pos,
@@ -281,7 +282,7 @@ function makeMarkers(map,infoWindow){
         });
         let icon;
         let status = all_tickets[i]["state"];
-        if (status === null){
+        if (status === undefined){
             status = all_tickets[i]["state_req"];
         }
         
