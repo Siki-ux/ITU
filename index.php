@@ -1,16 +1,22 @@
 <?php
+/***
+ * @author: xsikul@stud.fit.vutbr.cz, Jakub Sikula
+ * This file serves as main aplication HTML and PHP with login and registration
+ */
 chdir('.');
 if (session_id() == "")
     session_start();
 
-include './bussiness_layer/authentication/check_login.php';
+include_once('./bussiness_layer/authentication/check_login.php');
 include_once("./bussiness_layer/checks.php");
 include_once("./bussiness_layer/admin/check_admin.php");
 include_once('./bussiness_layer/print_categories.php');
 include_once("./bussiness_layer/user.php");
 
+//The application is reloaded after logging in and changed accordingly for the user or worker
 $res = check_login();
 
+//User is alerted in case of unsuccessful login
 if( isset($_POST['email']) ){
     if($res == 1){
         echo '<script>alert("Neznámy email");</script>';
@@ -20,6 +26,7 @@ if( isset($_POST['email']) ){
     
 }
 
+//If user is admin or manager he is redirected to thier site
 if( is_admin() )
     header("Location: ./admin.php");
 if( is_manager() )
@@ -40,11 +47,13 @@ if( is_manager() )
     </head>
     <body>
         <?php
+            //if user or worker is logged in show corresponding buttons
             if(is_logged_in()) {
                 echo '
                     <button herf="javascript:void(0);" class="tickets" id="allTickets" onclick="allTickets()"><i class="fa-solid fa-globe fa-2xl"></i></button>
                     <button herf="javascript:void(0);" class="tickets" id="myTickets" onclick="myTickets()"><i class="fa-solid fa-user fa-2xl"></i></button>';
                 if (is_worker()){
+                    echo '<script>logged_worker()</script>';
                     echo '
                     <button herf="javascript:void(0);" class="tickets" id="workerTickets" onclick="workerTickets()"><i class="fa-solid fa-user fa-2xl"></i></button>
                     ';
@@ -55,7 +64,11 @@ if( is_manager() )
         <button href="javascript:void(0);" class="icon" onclick="myBurger()">
             <i class="fa-solid fa-bars fa-2xl"></i>
         </button>
-        <button herf="javascript:void(0);" class="reportIcon" onclick="hintBar()">Nahlásiť</button>
+        <?php 
+            if (!is_worker()){
+                echo ' <button herf="javascript:void(0);" class="reportIcon" onclick="hintBar()">Nahlásiť</button>';
+            }
+        ?>
         <button herf="javascript:void(0);" class="myPosition" id="myPosition">
             <i class="fa-solid fa-location-crosshairs fa-2xl"></i>
         </button>
@@ -67,6 +80,7 @@ if( is_manager() )
             <h3>Prihlásený ako:<br><i><?php echo get_name();?></i></h3>
             <ul id="sidebar-ul">
                 <?php
+                //if user or worker is logged in show corresponding buttons
                 if( ! is_logged_in()){
                     echo '
                     <a onclick="login_gen()"><li>Prihlásiť</li></a>
@@ -109,7 +123,7 @@ if( is_manager() )
                 <input type = "submit" id="submit" value="Odoslat">
             </form>
         </div>
-        <div id="map"></div><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJVGL83AulBYsKWzBA0ooSruG4_CVIWqA&callback=initMap"defer></script>
+        <div id="map"></div><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJVGL83AulBYsKWzBA0ooSruG4_CVIWqA&v=beta&libraries=marker&callback=initMap"defer></script>
     </body>
 </html>
 

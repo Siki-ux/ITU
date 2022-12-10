@@ -1,11 +1,65 @@
-let all_tickets;
-let all_tickets_old
-let form = false;
-let form_pos;
-let all = true;
-let reg = false;
-let worker = false;
+/***
+ * @author: xsikul@stud.fit.vutbr.cz, Jakub Sikula
+ * This file serves as main aplication backend.
+ * It contains all the operational and action elements
+ */
 
+//Global variable containing up-to-date data obtained from the database
+let all_tickets;
+//Global variable containing old data obtained from the database
+let all_tickets_old
+//Global variable representing state of open/closed formular for creating new ticket
+let form = false;
+//Global variable containing position of new ticket
+let form_pos;
+//Global variable representing if all tickets are shown
+let all = true;
+//Global variable representing if registration is shown
+let reg = false;
+//Global variable representing if worker requests are shown
+let worker = false;
+//Global variable representing if worker is logged in
+let worker_logged = false;
+
+function get_category(category){
+    let marker_category;
+    if (category === "Lampa nesvieti"){
+        marker_category = "lamp" ;
+    }else if(category === "Odpadky"){
+        marker_category = "trash";
+    }else if(category === "Poškodený chodník"){
+        marker_category = "walk";
+    }
+    else if(category === "Poškodená cesta"){
+        marker_category = "road";
+    }else if(category === "Spadnutý strom"){
+        marker_category = "tree";
+    }
+    else if(category === "Problém s kanalizáciou"){
+        marker_category = "canal";
+    }
+    else if(category === "Vrak auta"){
+        marker_category = "car";
+    }
+    else if(category === "Iné"){
+        marker_category = "other";
+    }
+    return marker_category
+}
+
+function get_color(status){
+    let color;
+    if (status === "Zaevidovaný"){
+        color = "red";
+    }else if (status === "Pracujeme na tom"){
+        color = "orange";
+    }else {
+        color = "green";
+    }
+    return color;
+}
+
+//Function which generate html in case of registration is shown
 function register_gen(){
     reg = true;
     document.getElementById("sidebar").innerHTML+= ''+
@@ -33,6 +87,7 @@ function register_gen(){
     '';
 }
 
+//Function which generate html in case button back from login is pressed
 function back_login_gen(){
     reg = false;
     document.getElementById("sidebar").innerHTML = '<ul id="sidebar-ul"></ul>';
@@ -42,6 +97,7 @@ function back_login_gen(){
     '<a onclick="register_gen()"><li>Registrovať</li></a>';
 }
 
+//Function which generate html in case of login is shown
 function login_gen(){
     document.getElementById("sidebar").innerHTML+= ''+
     '<button id="backLogin" onclick="back_login_gen()">'+
@@ -61,6 +117,7 @@ function login_gen(){
     
 }
 
+//Function which changes atributes and animation of formular when going up
 function formular_up(){
     const formular = document.getElementById("formular");
     if (formular.style.bottom === "-40%" && form === true) {
@@ -68,7 +125,7 @@ function formular_up(){
         formular.style.bottom = "0%";
     }
 }
-
+//Function which changes atributes and animation of formular when going down
 function formular_down(){
     const formular = document.getElementById("formular");
     if (formular.style.bottom === "0%" && form === true) {
@@ -77,10 +134,7 @@ function formular_down(){
     }
 }
 
-function formular_change_position(){
-    formular_up();
-}
-
+//Function which changes atributes,animation of formular and "removes" new marker when closing
 function formular_close(marker){
     const formular = document.getElementById("formular");
     if (formular.style.bottom === "0%" && form === true) {
@@ -96,6 +150,7 @@ function formular_close(marker){
     }
 }
 
+//Function which changes atributes,animation of formular when opening
 function formular_open(){
     closeBurger();
     const formular = document.getElementById("formular");
@@ -104,10 +159,11 @@ function formular_open(){
         formular.style.bottom = "0%";
         form = true;
     }else {
-        formular_change_position();
+        formular_up();
     }
 }
 
+//Function which changes atributes and animation of search bar when search icon is pressed
 function SearchIcon(){
     const x = document.getElementById("ToSearch");
     if(x.style.width === "40ch"){
@@ -119,6 +175,7 @@ function SearchIcon(){
     }
 }
 
+//Function which changes atributes and animation of hint bar on closing
 function closeHitBar(){
     const x = document.getElementById("hintBar");
     const hand = document.getElementById("hand");
@@ -130,6 +187,7 @@ function closeHitBar(){
     }
 }
 
+//Function which changes atributes and animation of hint Bar when opening
 function hintBar(){
     const x = document.getElementById("hintBar");
     const y = document.getElementById("sidebar");
@@ -150,6 +208,7 @@ function hintBar(){
       }
 }
 
+//Function which changes atributes and animation of sidebar when closeing
 function closeBurger(){
     const x = document.getElementById("sidebar");
     if (x.style.left === "0%"){
@@ -164,6 +223,7 @@ function closeBurger(){
     }
 }
 
+//Function which changes atributes and animation of sidebar when opening
 function myBurger() {
     const x = document.getElementById("sidebar");
     closeHitBar();
@@ -188,6 +248,10 @@ function myBurger() {
     }
 }
 
+//Function which makes new marker, info window and click event for every ticket in global all_tickets.
+//It sets content acording to if user is logged in, if worker is logged in or if aplication
+//is showing all tickets.
+//Takes: map handle and info Window handle
 function makeMarkers(map,infoWindow){
     for(let i=0;i<all_tickets.length;i++){
         let content =
@@ -215,6 +279,20 @@ function makeMarkers(map,infoWindow){
             title: all_tickets[i]["category"],
             optimized:false,
         });
+        let icon;
+        let status = all_tickets[i]["state"];
+        if (status === null){
+            status = all_tickets[i]["state_req"];
+        }
+        
+        
+        icon = {
+            url: "./img/markers/"+get_category(all_tickets[i]["category"])+"_"+get_color(status)+".png", // url
+            scaledSize: new google.maps.Size(50, 50), // scaled size
+            origin: new google.maps.Point(0,0), // origin
+            anchor: new google.maps.Point(0, 50) // anchor
+        };
+        marker.setIcon(icon);
         marker.setMap(map);
 
         marker.addListener("click",() => {
@@ -228,7 +306,9 @@ function makeMarkers(map,infoWindow){
     
 }
 
-setInterval(function () {
+//Set of commands which are called in 1 second interval.
+//It is used to get up-to-date data from database
+/*setInterval(function () {
     if (all === true){
         $.ajax({
             url:'./bussiness_layer/all_tickets_map_data.php',
@@ -252,16 +332,20 @@ setInterval(function () {
         });
     }
   
-}, 1000);
+}, 1000);*/
 
+//Function which inicialze whole map with geolocation function and other events
 function initMap() {
     const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 15,
+        /*Location of VUT FIT*/
         center: { lat: 49.2269, lng: 16.59689 },
         disableDefaultUI: true,
         disableDoubleClickZoom: true,
         panControl: false,
+        mapId:'c34d843644105241',
     });
+    //Try to geolocate user position
     if (navigator.geolocation) {
          navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -277,16 +361,18 @@ function initMap() {
             }
         );
     } else {
-        // Browser doesn't support Geolocation
+        //Browser doesntt support Geolocation
         handleLocationError(false, infoWindow, map.getCenter());
     }
-    const search = document.getElementById("SearchIcon");
 
+    const search = document.getElementById("SearchIcon");
+    //Event in case search icon is clicked
+    //If something is in search bar it will try to find and center around that location
     search.addEventListener("click",() => {
-        const x = document.getElementById("ToSearch");
-        if(x.value !== ""){
+        const searchBar = document.getElementById("ToSearch");
+        if(searchBar.value !== ""){
             var geocoder = new google.maps.Geocoder();
-            geocoder.geocode({'address': x.value },function(results,status){
+            geocoder.geocode({'address': searchBar.value },function(results,status){
                 let lat = results[0].geometry.location.lat();
                 let lng = results[0].geometry.location.lng();
                 const pos = {
@@ -296,11 +382,12 @@ function initMap() {
                 map.setCenter(pos);
             });
         }
-        x.value = "";
+        searchBar.value = "";
     });
 
     const locationButton = document.getElementById("myPosition");
-
+    //Event in case locationButton is clicked
+    //Map will be centered around user location, if its avalible
     locationButton.addEventListener("click", () => {
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
@@ -317,13 +404,15 @@ function initMap() {
             }
           );
         } else {
-          // Browser doesn't support Geolocation
+          //Browser doesnt support Geolocation
           handleLocationError(false, infoWindow, map.getCenter());
         }
-      });
+    });
     
     const infoWindow = new google.maps.InfoWindow();
-    
+    //Set of commands which are used to initialze data.
+    //They get about tickets or requests form database based on who is logged in
+    //or if all ticktes are shown
     if(all === true){
         $.ajax({
             url:'./bussiness_layer/all_tickets_map_data.php',
@@ -356,22 +445,28 @@ function initMap() {
     const marker = new google.maps.Marker({
         map: map,
     });
-
+    //Event in case of dubble click on map.
+    //used to create new ticket 
     map.addListener("dblclick", (click) => {
-        infoWindow.close();
-        closeBurger();
-        closeHitBar();
-        formular_open();
-        form_pos = click.latLng;
-        map.setCenter(click.latLng);
-        map.setZoom(17.5);
-        map.panBy(0, 240);
-        marker.setPosition(click.latLng);
-        let json = click.latLng.toJSON();
-        document.getElementById("lng").setAttribute('value',json["lng"].toFixed(6));
-        document.getElementById("lat").setAttribute('value',json["lat"].toFixed(6));
+        if (worker === false && worker_logged === false){
+            infoWindow.close();
+            closeBurger();
+            closeHitBar();
+            formular_open();
+            form_pos = click.latLng;
+            map.setCenter(click.latLng);
+            map.setZoom(17.5);
+            map.panBy(0, 240);
+            marker.setPosition(click.latLng);
+            let json = click.latLng.toJSON();
+            document.getElementById("lng").setAttribute('value',json["lng"].toFixed(6));
+            document.getElementById("lat").setAttribute('value',json["lat"].toFixed(6));
+        }
+        
     });
 
+    //Event in case of click on map
+    //used to close all pop-ups
     map.addListener("click", (click) => {
         infoWindow.close();
         closeBurger();
@@ -380,9 +475,11 @@ function initMap() {
     });
 
     const formularCloseButton = document.getElementById("closeFormular");
-
+    //Event in case close formular button is presed
     formularCloseButton.addEventListener("click", () => {formular_close(marker);});
 
+    //Interval in which are compared new incoming data whith old shown data
+    //in case they are not the same markers on map will be rewriten
     setInterval(function () {
         if(all_tickets !== all_tickets_old){
             makeMarkers(map,infoWindow);
@@ -391,6 +488,8 @@ function initMap() {
 
     }, 1500);
 
+    //Event in case side bar have button to create new ticket.
+    //Opens new formular on position of map center
     const sideBarNewTicket = document.getElementById("sidebarNewTicket");
     if (sideBarNewTicket !== null) {
         sideBarNewTicket.addEventListener("click",() => {
@@ -412,6 +511,8 @@ function initMap() {
     
 }
 
+//Function which is called when myTickets buttons are pressed
+//It changes showing of markers to showing markers submited by user
 function myTickets(){
     const burgerButton = document.getElementById("tik");
     let button = document.getElementById("myTickets");
@@ -430,11 +531,15 @@ function myTickets(){
     initMap()
 }
 
+//Function which is called when worker requests button is clicked
+//It changes showing of markers to showing markers of worker
 function workerTickets(){
     worker = true;
     myTickets();
 }
 
+//Function which is called when all tickets button is clicked
+//It changes showing of markers other to showing all tickets markers
 function allTickets(){
     const burgerButton = document.getElementById("tik");
     const button = document.getElementById("allTickets");
@@ -458,7 +563,8 @@ function allTickets(){
     initMap()
 }
 
-
+//function which is called in case geolocation error
+//It handles this problem :)
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
     infoWindow.setContent(
@@ -467,6 +573,11 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         : "Error: Your browser doesn't support geolocation."
     );
     infoWindow.open(map);
+}
+
+//Function which change state if worker is logged
+function logged_worker(){
+    worker_logged = true;
 }
 
 window.initMap = initMap;
