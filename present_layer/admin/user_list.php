@@ -38,9 +38,9 @@
                         <i class="ico fa-2xl fa-solid fa-bars"></i>
                     </div>
                     <div id="dropdown-menu" class="dropdown-content content-hidden">
-                        <a href="../authentication/logout.php" onclick="console.log(1);">Odhlásiť</a>
                         <a href="./add_manager.php">Priať užívateľa</a>
                         <div onclick="filter_reset();">Resetovať filter</div>
+                        <a href="../authentication/logout.php">Odhlásiť</a>
 
                     </div>
                 </div> 
