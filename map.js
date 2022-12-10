@@ -308,7 +308,7 @@ function makeMarkers(map,infoWindow){
 
 //Set of commands which are called in 1 second interval.
 //It is used to get up-to-date data from database
-/*setInterval(function () {
+setInterval(function () {
     if (all === true){
         $.ajax({
             url:'./bussiness_layer/all_tickets_map_data.php',
@@ -332,7 +332,7 @@ function makeMarkers(map,infoWindow){
         });
     }
   
-}, 1000);*/
+}, 1000);
 
 //Function which inicialze whole map with geolocation function and other events
 function initMap() {
@@ -481,12 +481,12 @@ function initMap() {
     //Interval in which are compared new incoming data whith old shown data
     //in case they are not the same markers on map will be rewriten
     setInterval(function () {
-        if(all_tickets !== all_tickets_old){
+        if(!_.isEqual(all_tickets_old, all_tickets)){
             makeMarkers(map,infoWindow);
             all_tickets_old = all_tickets;
         }
 
-    }, 1500);
+    }, 1000);
 
     //Event in case side bar have button to create new ticket.
     //Opens new formular on position of map center

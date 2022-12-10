@@ -38,6 +38,7 @@ if( is_manager() )
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
         <script src="https://kit.fontawesome.com/ea2428928f.js" crossorigin="anonymous"></script>  
         <script type="text/javascript" src="./bussiness_layer/remove_ticket.js"></script> 
         <link rel="stylesheet" type="text/css" href="./map.css" />
