@@ -78,7 +78,11 @@ if( is_manager() )
         </button>
         <div id="sidebar">
             <h2>Chytni závadu!</h2>
-            <h3>Prihlásený ako:<br><i><?php echo get_name();?></i></h3>
+            <?php 
+                if (is_logged_in() || is_worker()){
+                    echo '<h3>Prihlásený ako:<br><i><?php echo get_name();?></i></h3>';
+                }
+            ?>
             <ul id="sidebar-ul">
                 <?php
                 //if user or worker is logged in show corresponding buttons

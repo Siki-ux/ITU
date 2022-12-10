@@ -106,15 +106,45 @@ function login_gen(){
     '';
     const sidebar = document.getElementById("sidebar-ul");
     sidebar.innerHTML = ''+
-    '<form action="index.php" method="post">'+
+    '<form action="javascript:check_login()" method="post">'+
         '<label for="email"> E-mail: </label>'+
         '<input type="text" name="email" id="email" placeholder="E-mail">'+
         '<label for="password"> Heslo: </label>'+
         '<input type="password" name="password" id="password" placeholder="Heslo">'+
         '<input type="submit" id="loginButton" value="Prihlasiť">'+
     '</form>'+
+    '<div id=wrongLogin></div>'+
     '';
     
+}
+
+//Function which checks login data and changes output message based on result
+function check_login(){
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+    const out = document.getElementById("wrongLogin")
+    if (email.value === ""){
+        alert("Zadaj Email!");
+    }else if(password.value === ""){
+        alert("Zadaj Heslo!");
+    }else {
+        $.ajax({
+            type:"POST",
+            url:"./bussiness_layer/authentication/check_loginXD.php",
+            data:{email:email.value,password:password.value},
+            success: function(res){
+                if(res === '0')
+                    window.location.replace("index.php");
+                else if (res === '1'){
+                    out.innerHTML = "Neznámy email!";
+                }else if (res === '2'){
+                    out.innerHTML = "Zlé heslo!";
+                }else {
+                    out.innerHTML = "Something went wrong!";
+                }
+            }
+        });
+    }
 }
 
 //Function which changes atributes and animation of formular when going up

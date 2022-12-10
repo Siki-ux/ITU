@@ -544,6 +544,13 @@ input::file-selector-button:hover {
     top: 60px;
     left: 8px;
 }
+
+#wrongLogin {
+    color: rgb(128, 1, 1);
+    text-align: center;
+    font-size: larger;
+    font-weight: bolder;
+}
 /****************/
 @media only screen and (max-width: 775px) {
 
