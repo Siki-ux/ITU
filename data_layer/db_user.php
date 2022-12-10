@@ -39,7 +39,7 @@
     {
         $pdo = get_pdo();
 
-        $stmt = $pdo->prepare("SELECT id,first_name,last_name,email,phone,role FROM PERSON WHERE (first_name LIKE :filter) OR (last_name LIKE :filter) OR (email LIKE :filter) OR (phone LIKE :filter) ORDER BY $col ".(($asc == 1) ? 'ASC' : 'DESC').";");
+        $stmt = $pdo->prepare("SELECT id,first_name,last_name,email,phone,role FROM PERSON WHERE (first_name LIKE :filter) OR (last_name LIKE :filter) OR (email LIKE :filter) OR (phone LIKE :filter) OR (id LIKE :filter) ORDER BY $col ".(($asc == 1) ? 'ASC' : 'DESC').";");
         $stmt->execute(['filter' => '%'.$filter.'%']);
 
         return $stmt;

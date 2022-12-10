@@ -22,6 +22,7 @@
 
 <html>
     <head>
+        <title>Chytni závadu: správa užívateľov</title>
         <link rel="stylesheet" type="text/css" href="../../present_layer/admin/admin.css"/>
         <script src="https://kit.fontawesome.com/ea2428928f.js" crossorigin="anonymous"></script>   
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

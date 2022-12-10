@@ -23,9 +23,6 @@ window.addEventListener('load', function(){
  */
 function setup_click_away(){
     document.addEventListener('click', function handleClickOutsideBox(event) {
-        // 👇️ the element the user clicked
-        console.log('user clicked: ', event.target);
-      
         menu = document.getElementById('dropdown-menu');
         menu_but = document.getElementById("menu-but");
       
@@ -156,20 +153,20 @@ function refresh_usr_tab()
 /***
  * Handle a key press in a table input field
  */
-function field_change(event,id,col)
+function field_change(event,id,col,reload=true)
 {
-    if (event.keyCode == 13) { // Enter pressed
+     // Enter pressed
         event.preventDefault();
         elt = document.getElementById(id + "_" + col);
         if(elt != null)
         {
             update_user(id,col,elt.innerHTML);
-            refresh_tables_after(20);
-            refresh_tables_after(200);
-            refresh_tables_after(1000);
-    }
-
-    }
+            if(reload)
+            {
+                refresh_tables_after(20);
+                refresh_tables_after(200);
+            }
+        }
 }
 
 /***

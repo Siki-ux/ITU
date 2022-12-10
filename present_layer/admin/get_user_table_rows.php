@@ -22,9 +22,14 @@
      */
     function set_editable($id, $attr)
     {
-        return 'id="'.$id.'_'.$attr.'" contenteditable="true" onKeyDown="((event)=>{
-            field_change(event,'.$id.",'".$attr."'".');
-          })(event)"';
+        return 'id="'.$id.'_'.$attr.'" contenteditable="true" spellcheck="false" 
+            onfocusout="((event)=>{
+                field_change(event,'.$id.",'".$attr."'".',false);
+              })(event)"
+            onKeyDown="((event)=>{
+                if (event.keyCode == 13) // Enter
+                    field_change(event,'.$id.",'".$attr."'".');
+            })(event)"';
     }
 
     function gen_select_menu($id, $role)
