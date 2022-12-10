@@ -144,4 +144,20 @@ function my_tickets_map_json(){
     $json =$json . "]";
     return $json;
 }
+
+//Function that parse service requests data from database to JSON format
+//Return: string: JSON format
+function worker_requests_map_json(){
+    global $description_state;
+    $json = "[";
+    $request = get_my_requests(get_user_by_email($_SESSION["email"])["id"]);
+    while($row = $request->fetch()){
+        $ticket = get_ticket_by_id($row["for_ticket"]);
+        //TODO check of valid data
+        $json = $json .'{"id":'.$row["id"].', "description":"'.$row["description_from_manager"].'", "expected_date":"'.$row["expected_date"].'", "state_req":"'.$description_state[$row["state"]].'", "lng":'.$ticket["lng"].', "lat":'.$ticket["lat"].', "img":"'.$ticket["photo"].'", "time_modified":"'.$ticket["time_modified"].'", "category":"'. get_ticket_category($ticket["category"]).'" },';
+    }
+    $json = rtrim($json,",");
+    $json =$json . "]";
+    return $json;
+}
 ?>

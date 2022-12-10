@@ -15,6 +15,12 @@ if(isset($_POST['email'])){
         header("refresh:0.1; ../../index.php");
         exit();
     }
+    $role = 0;
+    $pw_hash = hash('sha256',$_POST['password'],);
+    $f_name = isset($_POST['f_name']) ? $_POST['f_name'] : "";
+    $l_name = isset($_POST['l_name']) ? $_POST['l_name'] : "";
+    $phone = isset($_POST['phone']) ? $_POST['phone'] : "";
+    insert_user($f_name,$l_name,$email,$phone,$pw_hash,$role);
     echo "<script>alert('Uspešne zaregistrovaný')</script>";
     header("refresh:0.1; ../../index.php");
 

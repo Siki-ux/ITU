@@ -13,9 +13,9 @@ $target_dir = "../img/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 //if no image was posted, use placeholdeer
 if($target_file=="../img/"){
-  echo "<h2>Nový tiket je nahratý bez obrázku.</h2><br><h3>Presmerujeme vás na hlavnú stránku...</h3>";
+  echo "<script>alert('Nový tiket je nahratý bez obrázku.')</script>";
   upload_new_ticket($_POST["category"],$_POST["lng"],$_POST["lat"],$target_file."placeholder-image.png",$author);
-  header("refresh:1;redirect.php");
+  header("refresh:0.1;../index.php");
   exit();
 }
 $uploadOk = 1;
@@ -24,10 +24,10 @@ $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 if(isset($_POST["submit"])) {
   $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
   if($check !== false) {
-    echo "Súbor je obrázok - " . $check["mime"] . ".";
+    echo "<script>alert('Súbor je obrázok - " . $check["mime"] . ".')</script>";
     $uploadOk = 1;
   } else {
-    echo "<h1>Súbor nieje obrázok.</h1>";
+    echo "<script>alert('Súbor nieje obrázok.')</script>";
     $uploadOk = 0;
   }
 }
@@ -43,31 +43,31 @@ if (file_exists($target_file)) {
 }
 
 // Check file size
-if ($_FILES["fileToUpload"]["size"] > 500000) {
-  echo "<h1>Osprapravedlňujem sa ale váš súbor je príliš veľký.</h1>";
+if ($_FILES["fileToUpload"]["size"] > 50000000) {
+  echo "<script>alert('Ospravedňujeme sa ale váš obrázok je príliš veľký')</script>";
   $uploadOk = 0;
 }
 
 // Allow certain file formats
 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-  echo "<h1>Povolené su iba formáty jpg, ong, a jpeg.</h1>";
+  echo "<script>alert('Povolené su iba formáty jpg, ong, a jpeg.')</script>";
   $uploadOk = 0;
 }
 
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
-    echo "<h2>Ospravedlňujeme sa, ale nepodarilo sa nahrať váš súbor.</h2><br><h3>Presmerujeme vás na hlavnú stránku...<h3>";
-    header("refresh:3;redirect.php");
+    echo "<script>alert('Ospravedlňujeme sa, ale nepodarilo sa nahrať váš súbor.')</script>";
+    header("refresh:0.1;../index.php");
 // if everything is ok, try to upload file, else redirect
 } else {
   if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     chmod($target_file, 0755);
-    echo "<h2>Nový tiket je nahratý s obrákom ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). ".</h2>";
+    echo "<script>alert('Nový tiket je nahratý s obrákom ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). ".')</script>";
     upload_new_ticket($_POST["category"],$_POST["lng"],$_POST["lat"],$target_file,$author);
-    header("refresh:1;redirect.php");
+    header("refresh:0.1;redirect.php");
   } else {
-    echo "<h2>Ospravedlňujeme sa nastala chyba s vaším súborom.</h2><br><h3>Presmerujeme vás na hlavnú stránku...<h3>";
-    header("refresh:3;redirect.php");
+    echo "<script>alert('Ospravedlňujeme sa nastala chyba s vaším súborom.)</script>";
+    header("refresh:0.1;../index.php");
   }
 }
 
