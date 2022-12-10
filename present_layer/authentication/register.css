@@ -1,8 +1,4 @@
 
-h2 {
-    text-align: center;
-}
-
 form {
     text-align: center;
 }
@@ -15,15 +11,50 @@ form {
     color:#cb2502;
 }
 
+body{
+    font-family: sans-serif, Arial, Helvetica;
+    margin:0%;
+    font-size: 1rem;
+    min-width: 800px;
+    width:90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 nav{
     width:100%;
     display:flex;
 }
 
-nav > h3 > a {padding: 10px;color: #000000 ;text-decoration: none;border: 1px solid #000000;border-radius: 5px;}
-nav > h3 > a:hover {background-color: #848482;color: #FFFFFFFF}
+.ico-hover:hover {background-color: #04317973;color: #FFFFFFFF}
+nav h3{
+    width: 100%;
+    margin: 0;
+}
+
+.headline{
+    color: #043179 ;
+    padding: 16px;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+.back-but{
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+    float: left;
+    height: 33px;
+    color: #043179;
+}
+.ico{
+    position: relative;
+    top: 16px;
+}
 
 .err_msg{
     color:red;
     text-align: center;
 }
+
+

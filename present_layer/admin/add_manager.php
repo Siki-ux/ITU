@@ -14,14 +14,22 @@
 
     <head>
             <link rel="stylesheet" type="text/css" href="../../present_layer/authentication/register.css"/>
+        	<script src="https://kit.fontawesome.com/ea2428928f.js" crossorigin="anonymous"></script>   
     </head>
 
 
-    <nav>
-        <h3 class="back"><a href = "../../admin.php">Späť</a></h2>
-    </nav> 
 
-    <h2>Pridať správcu mesta</h2>
+
+	<div>
+        <nav>
+            <h3>
+				<a class="back-but ico-hover" id="back-but" href="./user_list.php">
+                    <i class="ico fa-2xl fa-solid fa-arrow-left"></i>
+				</a>
+				<div class="headline">Pridať nového užívateľa</div>
+            </h3>
+        </nav>
+    </div>
 
     <form action='<? $_SERVER['PHP_SELF']?>' method='post'>
 		<label for="f_name">Krstné meno:</label>
