@@ -26,11 +26,7 @@ if( isset($_POST['email']) ){
     
 }
 
-//If user is admin or manager he is redirected to thier site
-if( is_admin() )
-    header("Location: ./admin.php");
-if( is_manager() )
-    header("Location: ./manager.php");
+
 ?>
 <html>
     <head>
@@ -59,8 +55,13 @@ if( is_manager() )
                     <button herf="javascript:void(0);" class="tickets" id="workerTickets" onclick="workerTickets()"><i class="fa-solid fa-user fa-2xl"></i></button>
                     ';
                 }
-                    
+                //If user is admin or manager he is redirected to thier site
+                if( is_admin() )
+                    header("Location: ./admin.php");
+                if( is_manager() )
+                    header("Location: ./manager.php");       
             }
+            
         ?>
         <button href="javascript:void(0);" class="icon" onclick="myBurger()">
             <i class="fa-solid fa-bars fa-2xl"></i>

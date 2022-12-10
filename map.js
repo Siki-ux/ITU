@@ -133,9 +133,10 @@ function check_login(){
             url:"./bussiness_layer/authentication/check_loginXD.php",
             data:{email:email.value,password:password.value},
             success: function(res){
-                if(res === '0')
+                if(res === '0'){
+                    sessionStorage.setItem("email",email.value);
                     window.location.replace("index.php");
-                else if (res === '1'){
+                }else if (res === '1'){
                     out.innerHTML = "Neznámy email!";
                 }else if (res === '2'){
                     out.innerHTML = "Zlé heslo!";
