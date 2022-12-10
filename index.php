@@ -124,7 +124,7 @@ if( is_manager() )
                 <input type = "submit" id="submit" value="Odoslat">
             </form>
         </div>
-        <div id="map"></div><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJVGL83AulBYsKWzBA0ooSruG4_CVIWqA&v=beta&libraries=marker&callback=initMap"defer></script>
+        <div id="map"></div><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJVGL83AulBYsKWzBA0ooSruG4_CVIWqA&callback=initMap"defer></script>
     </body>
 </html>
 
