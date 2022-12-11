@@ -31,7 +31,6 @@
             </h2>
         </nav>
     </div>
-
 	<table>
 		<tbody>
 			<tr>
@@ -43,24 +42,32 @@
 				<td><input type="text" name="l_name" id="l_name" value=<?php echo(isset($_SESSION['filled_l_name'])?$_SESSION['filled_l_name']:"" );?>></td>
 			</tr>
 			<tr>
-				<td><label for="email">Email: *</label></td>
+				<td><label for="email" class="req">Email: *</label></td>
 				<td><input type="text" name="email" id="email" value=<?php echo(isset($_SESSION['filled_email'])?$_SESSION['filled_email']:"" );?>></td>
 			</tr>
 			<tr>
-				<td><label for="password">Heslo: *</label></td>
+				<td><label for="password" class="req">Heslo: *</label></td>
 				<td><input type="password" name="password" id="password"></td>
 			</tr>
 			<tr>
 				<td><label for="phone">Telefónne číslo:</label></td>
 				<td><input type="tel" name="phone" id="phone" value=<?php echo(isset($_SESSION['filled_phone'])?$_SESSION['filled_phone']:"" );?>></td>
 			</tr>
+			<tr>
+				<td><label for="role">Rola:</label></td>
+				<td><select name="role" id="role">
+					<option>Správca mesta</option>
+					<option>Technik</option>
+					<option>Administrátor</option>
+					<option>Obyčajný užívateľ</option>
+				</select></td>
+			</tr>
 		</tbody>
 	</table>
 	<br>
-	<input type="submit" class="submit" value="Pridať"> 
+	<div class="err-msg hidden" id="err-msg">Chyba</div>
 	<br>
-	<br>
-	<div class="err-msg hidden">Chyba</div>
+	<input type="submit" class="submit" value="Pridať" onclick="submit();"> 
 
 </html>
 

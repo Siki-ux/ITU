@@ -1,4 +1,10 @@
 /***
+ * @author Martin Pavella xpavel39
+ */
+
+
+
+/***
  * Using AJAX emove user with given 'id'
  */
 function remove_user(id)

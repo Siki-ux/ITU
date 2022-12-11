@@ -1,3 +1,8 @@
+/***
+ * @author Martin Pavella xpavel39
+ */
+
+
 /// Variables used for ordering table by column
 ord_col = 0;
 ord_dir_up = true;
@@ -124,6 +129,9 @@ function refresh_tables_after(time)
     setTimeout(refresh_tables,time);
 }
 
+/**
+ * Reset the table filter and refresh table
+ */
 function filter_reset()
 {
     elt = document.getElementById("filter-input");
@@ -155,18 +163,17 @@ function refresh_usr_tab()
  */
 function field_change(event,id,col,reload=true)
 {
-     // Enter pressed
-        event.preventDefault();
-        elt = document.getElementById(id + "_" + col);
-        if(elt != null)
+    event.preventDefault();
+    elt = document.getElementById(id + "_" + col);
+    if(elt != null)
+    {
+        update_user(id,col,elt.innerHTML);
+        if(reload)
         {
-            update_user(id,col,elt.innerHTML);
-            if(reload)
-            {
-                refresh_tables_after(20);
-                refresh_tables_after(200);
-            }
+            refresh_tables_after(20);
+            refresh_tables_after(200);
         }
+    }
 }
 
 /***

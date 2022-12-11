@@ -1,8 +1,3 @@
-
-form {
-    text-align: center;
-}
-
 body{
     font-family: sans-serif, Arial, Helvetica;
     margin:0%;
@@ -49,6 +44,10 @@ nav h2{
     color:red;
     text-align: center;
 }
+.succ-msg{
+    color:#043179;
+    text-align: center;
+}
 .hidden{
     display: none;
 }
@@ -57,10 +56,23 @@ table{
     margin-left: auto;
     margin-right: auto;
 }
+select,
 input{
     border-radius: 5px;
     height: 30px;
-    border-color: #04317980;
+    border-color: #0431794b;
+}
+select{
+    width: 100%;
+    font-size: large;
+}
+option{
+    background-color: #d8e7ff;
+    border-radius: 5px;
+}
+option:hover{
+    background-color: #043179;
+    color: red;
 }
 td{
     text-align: right;
@@ -68,10 +80,13 @@ td{
 #password, #email{
     border-color: rgb(3, 5, 117);
 }
+.req{
+    color: #054bbd;
+}
 
 
 .submit {
-  background-color: #086de0;
+  background-color: #043179;
   text-align: center;
   border-radius: 8px;
   border-style: none;
@@ -80,5 +95,5 @@ td{
 }
 
 .submit:hover {
-  background-color: #1C84FF;
+  background-color: #0431798f;
 }
