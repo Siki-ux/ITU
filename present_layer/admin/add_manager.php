@@ -35,24 +35,12 @@
 	<table>
 		<tbody>
 			<tr>
-				<td><label for="f_name">Krstné meno:</label></td>
-				<td><input type="text" name="f_name" id="f_name" value=<?php echo(isset($_SESSION['filled_f_name'])?$_SESSION['filled_f_name']:"" );?>></td>
-			</tr>
-			<tr>
-				<td><label for="l_name">Priezvisko:</label></td>
-				<td><input type="text" name="l_name" id="l_name" value=<?php echo(isset($_SESSION['filled_l_name'])?$_SESSION['filled_l_name']:"" );?>></td>
-			</tr>
-			<tr>
 				<td><label for="email" class="req">Email: *</label></td>
 				<td><input type="text" name="email" id="email" value=<?php echo(isset($_SESSION['filled_email'])?$_SESSION['filled_email']:"" );?>></td>
 			</tr>
 			<tr>
 				<td><label for="password" class="req">Heslo: *</label></td>
 				<td><input type="password" name="password" id="password"></td>
-			</tr>
-			<tr>
-				<td><label for="phone">Telefónne číslo:</label></td>
-				<td><input type="tel" name="phone" id="phone" value=<?php echo(isset($_SESSION['filled_phone'])?$_SESSION['filled_phone']:"" );?>></td>
 			</tr>
 			<tr>
 				<td><label for="role">Rola:</label></td>
@@ -62,6 +50,18 @@
 					<option value=1>Administrátor</option>
 					<option value=0>Obyčajný užívateľ</option>
 				</select></td>
+			</tr>
+			<tr>
+				<td><label for="f_name">Krstné meno:</label></td>
+				<td><input type="text" name="f_name" id="f_name" value=<?php echo(isset($_SESSION['filled_f_name'])?$_SESSION['filled_f_name']:"" );?>></td>
+			</tr>
+			<tr>
+				<td><label for="l_name">Priezvisko:</label></td>
+				<td><input type="text" name="l_name" id="l_name" value=<?php echo(isset($_SESSION['filled_l_name'])?$_SESSION['filled_l_name']:"" );?>></td>
+			</tr>
+			<tr>
+				<td><label for="phone">Telefónne číslo:</label></td>
+				<td><input type="tel" name="phone" id="phone" value=<?php echo(isset($_SESSION['filled_phone'])?$_SESSION['filled_phone']:"" );?>></td>
 			</tr>
 		</tbody>
 	</table>

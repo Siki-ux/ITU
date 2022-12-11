@@ -61,7 +61,7 @@ select,
 input{
     border-radius: 5px;
     height: 30px;
-    border-color: #0431794b;
+    border-color: #04317962;
     font-size: large;
 }
 select{
@@ -81,6 +81,7 @@ td{
 }
 #password, #email{
     border-color: rgb(3, 5, 117);
+    background-color: #04317909;
 }
 .req{
     color: #054bbd;
