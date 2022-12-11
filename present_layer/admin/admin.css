@@ -55,6 +55,7 @@ nav > h3 > div {padding: 10px;color: #043179 ;text-decoration: none;border:none;
     top: 16px;
 }
 .dropdown-content {
+    font-size: large;
     position: absolute;
     top: 63px;
     border-radius: 5px;

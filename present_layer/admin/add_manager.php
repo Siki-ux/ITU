@@ -15,6 +15,7 @@
         	<script src="https://kit.fontawesome.com/ea2428928f.js" crossorigin="anonymous"></script>   
 			<script type="text/javascript" src="../../bussiness_layer/admin/alter_user.js"></script>
         	<script type="text/javascript" src="./add_user.js"></script>
+			<title>Chytni závadu: Pridať užívateľa</title>
     </head>
 
 

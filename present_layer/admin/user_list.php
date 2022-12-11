@@ -22,7 +22,7 @@
 
 <html>
     <head>
-        <title>Chytni závadu: správa užívateľov</title>
+        <title>Chytni závadu: Správa užívateľov</title>
         <link rel="stylesheet" type="text/css" href="../../present_layer/admin/admin.css"/>
         <script src="https://kit.fontawesome.com/ea2428928f.js" crossorigin="anonymous"></script>   
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -32,7 +32,7 @@
 
     <div>
         <nav>
-            <h3>
+            <h2>
                 <div class="menu-div">
                     <div class="sett-but ico-hover" id="menu-but" onclick="toggle_dropdown_menu()">
                         <i class="ico fa-2xl fa-solid fa-bars"></i>
@@ -45,7 +45,7 @@
                     </div>
                 </div> 
                 <div class="headline">Správa užívateľov</div>
-            </h3>
+            </h2>
         </nav>
     </div>
 
