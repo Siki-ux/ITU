@@ -26,11 +26,7 @@ if( isset($_POST['email']) ){
     
 }
 
-//If user is admin or manager he is redirected to thier site
-if( is_admin() )
-    header("Location: ./admin.php");
-if( is_manager() )
-    header("Location: ./manager.php");
+
 ?>
 <html>
     <head>
@@ -38,6 +34,7 @@ if( is_manager() )
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
         <script src="https://kit.fontawesome.com/ea2428928f.js" crossorigin="anonymous"></script>  
         <script type="text/javascript" src="./bussiness_layer/remove_ticket.js"></script> 
         <link rel="stylesheet" type="text/css" href="./map.css" />
@@ -58,8 +55,13 @@ if( is_manager() )
                     <button herf="javascript:void(0);" class="tickets" id="workerTickets" onclick="workerTickets()"><i class="fa-solid fa-user fa-2xl"></i></button>
                     ';
                 }
-                    
+                //If user is admin or manager he is redirected to thier site
+                if( is_admin() )
+                    header("Location: ./admin.php");
+                if( is_manager() )
+                    header("Location: ./manager.php");       
             }
+            
         ?>
         <button href="javascript:void(0);" class="icon" onclick="myBurger()">
             <i class="fa-solid fa-bars fa-2xl"></i>
@@ -77,7 +79,11 @@ if( is_manager() )
         </button>
         <div id="sidebar">
             <h2>Chytni závadu!</h2>
-            <h3>Prihlásený ako:<br><i><?php echo get_name();?></i></h3>
+            <?php 
+                if (is_logged_in() || is_worker()){
+                    echo '<h3>Prihlásený ako:<br><i><?php echo get_name();?></i></h3>';
+                }
+            ?>
             <ul id="sidebar-ul">
                 <?php
                 //if user or worker is logged in show corresponding buttons
@@ -123,7 +129,7 @@ if( is_manager() )
                 <input type = "submit" id="submit" value="Odoslat">
             </form>
         </div>
-        <div id="map"></div><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJVGL83AulBYsKWzBA0ooSruG4_CVIWqA&v=beta&libraries=marker&callback=initMap"defer></script>
+        <div id="map"></div><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJVGL83AulBYsKWzBA0ooSruG4_CVIWqA&callback=initMap"defer></script>
     </body>
 </html>
 
