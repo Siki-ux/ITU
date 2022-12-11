@@ -56,10 +56,10 @@
 			<tr>
 				<td><label for="role">Rola:</label></td>
 				<td><select name="role" id="role">
-					<option>Správca mesta</option>
-					<option>Technik</option>
-					<option>Administrátor</option>
-					<option>Obyčajný užívateľ</option>
+					<option value=2>Správca mesta</option>
+					<option value=3>Technik</option>
+					<option value=1>Administrátor</option>
+					<option value=0>Obyčajný užívateľ</option>
 				</select></td>
 			</tr>
 		</tbody>

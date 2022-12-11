@@ -29,6 +29,7 @@ nav h2{
 }
 .back-but{
     padding: 10px;
+    margin-top: 10px;
     border-radius: 5px;
     position: relative;
     float: left;
@@ -61,6 +62,7 @@ input{
     border-radius: 5px;
     height: 30px;
     border-color: #0431794b;
+    font-size: large;
 }
 select{
     width: 100%;

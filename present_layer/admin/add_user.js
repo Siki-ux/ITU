@@ -3,6 +3,13 @@
  */
 
 
+document.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        submit();
+    }
+});
+
+
 /**
  * Handle form submit. Try to add new user or display error
  */
@@ -25,12 +32,47 @@ function submit(){
         return;
     }
 
+    // Check phone number is valid
+    if( ! check_phone())
+    {
+        bad_phone();
+        return;
+    }
+
     // Try to add new user
     add_user(email);
 }
 
+/***
+ * Send data from form directly to server using AJAX to create a new user
+ */
 function send_form()
 {
+    // Get data from form
+    f_name = get_value_by_id("f_name");
+    l_name = get_value_by_id("l_name");
+    email = get_value_by_id("email");
+    pwd = get_value_by_id("password");
+    phone = get_value_by_id("phone");
+    role = get_value_by_id("role");
+
+    // Send
+    req = new XMLHttpRequest();
+    req.open("POST","../../bussiness_layer/admin/add_user.php");
+    req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    req.onreadystatechange = function() {
+        if(this.readyState === 4 && this.status === 200) {
+            if(this.responseText == false)
+                // Error occured
+                show_err("Nepodarilo sa pridať užívateľa!");
+            else
+                // Everything OK
+                show_succ();
+        }
+    };
+    req.send("first_name=" + f_name + "&last_name=" + l_name + "&email=" + email + "&password=" + pwd + "&phone=" + phone + "&role=" + role);
+
+    // Prepare for next use
     clean_up();
 }
 
@@ -44,7 +86,7 @@ function clean_up()
     clear_value_by_id("email");
     clear_value_by_id("password");
     clear_value_by_id("phone");
-    show_succ();
+    hide_err();
 }
 
 /***
@@ -60,19 +102,32 @@ function clear_value_by_id(id)
 }
 
 /***
+ * Get the value of the element with given id
+ */
+function get_value_by_id(id)
+{
+    elt = document.getElementById(id);
+    if(elt == null)
+        return "";
+
+    return elt.value;
+}
+
+/***
  * Functions that print error messages
  */
 function email_exists()
 {
     show_err("Zadaný e-mail je už používaný!");
-}
-function bad_email()
+}function bad_email()
 {
     show_err("Skontrolujte formát e-mailu!");
-}
-function bad_pwd()
+}function bad_pwd()
 {
     show_err("Heslo musí mať aspoň 8 znakov!");
+}function bad_phone()
+{
+    show_err("Skontrolujte formát telefónneho čísla!");
 }
 
 
@@ -89,7 +144,21 @@ function show_err(err)
     err_msg.classList.remove("hidden");
     err_msg.classList.add("err-msg");
     err_msg.classList.remove("succ-msg");
+}
 
+/***
+ * Hode the error message
+ */
+function hide_err()
+{
+    err_msg = document.getElementById("err-msg");
+    if(err_msg == null)
+        return
+
+    err_msg.innerHTML = "";
+    err_msg.classList.add("hidden");
+    err_msg.classList.remove("err-msg");
+    err_msg.classList.remove("succ-msg");
 }
 
 /***
@@ -149,4 +218,17 @@ function check_pwd()
         return
     pwd = e_pwd.value;
     return pwd.length >= 8;
+}
+
+/***
+ * Check phone number format
+ */
+function check_phone()
+{
+    e_phone = document.getElementById("phone");
+    if(e_phone == null)
+        return
+    phone = e_phone.value;
+
+    return /^[+0-9 ]*$/.test(phone) && phone.length < 20;
 }
