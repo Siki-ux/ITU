@@ -35,7 +35,7 @@
             <h2>
                 <div class="menu-div">
                     <div class="sett-but ico-hover" id="menu-but" onclick="toggle_dropdown_menu()">
-                        <i class="ico fa-2xl fa-solid fa-bars"></i>
+                        <i class="ico fa-xl fa-solid fa-bars"></i>
                     </div>
                     <div id="dropdown-menu" class="dropdown-content content-hidden">
                         <a href="./add_manager.php">Priať užívateľa</a>

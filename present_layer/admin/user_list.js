@@ -52,7 +52,7 @@ function fix_order()
         res[i].classList.add("fa-chevron-up");
         res[i].classList.remove("arrow-visible");
         res[i].classList.add("arrow-hidden");
-        res[i].classList.remove("fa-xl");
+        res[i].classList.remove("fa-lg");
         res[i].classList.add("fa-xs");
 
 
@@ -62,7 +62,7 @@ function fix_order()
             res[i].classList.remove("arrow-hidden");
 
             res[i].classList.remove("fa-xs");
-            res[i].classList.add("fa-xl");
+            res[i].classList.add("fa-lg");
             
             if(ord_dir_up)
                 res[i].classList.add("fa-chevron-up");
@@ -171,7 +171,7 @@ function field_change(event,id,col,reload=true)
         if(reload)
         {
             refresh_tables_after(20);
-            refresh_tables_after(200);
+            refresh_tables_after(100);
         }
     }
 }
@@ -186,8 +186,7 @@ function select_change(id)
     {
         update_user(id,"role",elt.value);
         refresh_tables_after(20);
-        refresh_tables_after(200);
-        refresh_tables_after(1000);
+        refresh_tables_after(100);
     }
 }
 
