@@ -119,16 +119,17 @@ if( isset($_POST['email']) ){
             <button id="closeFormular">
                 <i class="fa-regular fa-circle-xmark fa-3x"></i>
             </button>
-            <form id="form" method="post" action="./bussiness_layer/create_ticket.php" enctype="multipart/form-data">
+            <form id="form" method="post" action="javascript:createTicket()" enctype="multipart/form-data">
                 <input type="hidden" id="lng" name="lng" onKeyDown="return false" readonly required>
                 <input type="hidden" id="lat" name="lat" onKeyDown="return false" readonly required>
                 <label for="category">Kategória</label>
-                <select name="category">  <?php print_categories(); ?> </select>
+                <select name="category" id="category">  <?php print_categories(); ?> </select>
                 <label for="fileToUpload" id="upload"><i class="fa fa-cloud-upload"></i> Nahraj fotku <i id="vol">(volitelné)</i></label>
                 <input type="file" id="fileToUpload" name="fileToUpload">
                 <input type = "submit" id="submit" value="Odoslat">
             </form>
         </div>
+        <div id="bigSpot"></div>
         <div id="map"></div><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJVGL83AulBYsKWzBA0ooSruG4_CVIWqA&callback=initMap"defer></script>
     </body>
 </html>

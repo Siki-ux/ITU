@@ -20,6 +20,10 @@ let reg = false;
 let worker = false;
 //Global variable representing if worker is logged in
 let worker_logged = false;
+//Global variable representing new marker
+let newMarker;
+//Global variable representing if image is zoomed;
+let zoom = false;
 
 function get_category(category){
     let marker_category;
@@ -290,7 +294,7 @@ function makeMarkers(map,infoWindow){
         '<b>Status:</b> '+all_tickets[i]["state"]+'<br>'+
         '<b>Správa:</b> '+all_tickets[i]["msg"]+'<br>'+
         '<b>Posledná úprava:</b> '+all_tickets[i]["time_modified"]+'<br>'+ 
-        '<img class=infoImg src="'+all_tickets[i]["img"].substring(1)+'" alt="img">';
+        '<img class=infoImg id= "infoImg" onClick="ZoomImg()" src="'+all_tickets[i]["img"].substring(1)+'" alt="img">';
         if (all_tickets[i]["state"]==="Zaevidovaný" && all === false){
             content += '<button id="removeTicketButton" onclick="handle_remove_button('+ all_tickets[i]["id"] +')">Odstrániť tiket</button>';
         }
@@ -301,9 +305,11 @@ function makeMarkers(map,infoWindow){
             '<b>Popis:</b> '+all_tickets[i]["description"]+'<br>'+
             '<b>Očakávaná oprava do:</b> '+all_tickets[i]["expected_date"]+'<br>'+
             '<b>Posledná úprava:</b> '+all_tickets[i]["time_modified"]+'<br>'+ 
-            '<img class=infoImg src="'+all_tickets[i]["img"].substring(1)+'" alt="img">'+
+            'XD'+
+            '<img class="infoImg" id= "infoImg" onClick="ZoomImg()" src="'+all_tickets[i]["img"].substring(1)+'" alt="img">'+
             '<form action="present_layer/worker_requests.php" method="GET"><input type=hidden id="requestID" name=requestID value='+all_tickets[i]["id"]+'><input type="submit" id=redirectButton value="Prejsť na žiadosť"></form>';
         }
+
 
         let pos =  new google.maps.LatLng(all_tickets[i]["lat"],all_tickets[i]["lng"]);
         const marker = new google.maps.Marker({
@@ -490,6 +496,7 @@ function initMap() {
             map.setZoom(17.5);
             map.panBy(0, 240);
             marker.setPosition(click.latLng);
+            newMarker = marker;
             let json = click.latLng.toJSON();
             document.getElementById("lng").setAttribute('value',json["lng"].toFixed(6));
             document.getElementById("lat").setAttribute('value',json["lat"].toFixed(6));
@@ -610,6 +617,37 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 //Function which change state if worker is logged
 function logged_worker(){
     worker_logged = true;
+}
+//Function which send data about new ticket
+function createTicket(){
+    const form = document.querySelector('#form');
+    const formData = new FormData(form);
+
+    $.ajax({
+        type:"POST",
+        url:"./bussiness_layer/create_ticket.php",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(res){
+           alert(res);
+           formular_close(newMarker);
+        }
+    })
+}
+
+function ZoomImg(){
+    const image = document.getElementById("infoImg");
+    const bigSpot = document.getElementById("bigSpot");
+    if (!zoom){
+        zoom = true;
+        bigSpot.innerHTML = "<img id='bigImage' onClick='ZoomImg()' src='"+image.src+"'>"
+        bigSpot.style.zIndex = "40";
+
+    }else {
+        zoom = false;
+        bigSpot.style.zIndex = "-10";
+    }
 }
 
 window.initMap = initMap;
