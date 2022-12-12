@@ -76,4 +76,40 @@ function insert_request($worker_id, $ticket_id, $task)
     $stmt->execute(["worker_id"=>$worker_id, "ticket_id" => $ticket_id , "task"=> $task , 'state'=>$state]);
 }
 
+/***
+ * Get all rows from the REQUEST table
+ * @return PDOStatement object
+ */
+function get_my_requests_list($col = 'id', $asc = 1, $filter = "", $choice = "%", $id = 1) // not using worker $id
+{
+    $pdo = get_pdo();
+
+    if($col == "description")
+        $zone = "CATEGORY";
+    else
+        $zone = "SERVICE_REQUEST";
+
+    $stmt = $pdo->prepare("SELECT * FROM SERVICE_REQUEST LEFT JOIN TICKET ON SERVICE_REQUEST.for_ticket=TICKET.id LEFT JOIN CATEGORY ON TICKET.category=CATEGORY.id WHERE worker_id=$id AND ( (SERVICE_REQUEST.id LIKE :filter) ) AND state LIKE '$choice' ORDER BY $zone.$col ".(($asc == 1) ? 'ASC' : 'DESC').";");
+    $stmt->execute(['filter' => '%'.$filter.'%']);
+
+    return $stmt;
+}
+
+
+
+
+///////////
+// function insert_requestsss()
+// {
+
+//     $db = get_pdo();
+//     return $db->query('INSERT INTO PERSON (first_name,last_name,email,PW_HASH,role) VALUES ("Nimad","","nimad@fit.com","8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",1);');
+// }
+
+function change_state()
+{
+    $db = get_pdo();
+    return $db->query("UPDATE SERVICE_REQUEST SET state=1, date_fixed=CURDATE() WHERE id=2;");
+}
+
 ?>
