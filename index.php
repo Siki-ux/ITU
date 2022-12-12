@@ -81,7 +81,7 @@ if( isset($_POST['email']) ){
             <h2>Chytni závadu!</h2>
             <?php 
                 if (is_logged_in() || is_worker()){
-                    echo '<h3>Prihlásený ako:<br><i><?php echo get_name();?></i></h3>';
+                    echo '<h3>Prihlásený ako:<br><i>'.get_name().'</i></h3>';
                 }
             ?>
             <ul id="sidebar-ul">

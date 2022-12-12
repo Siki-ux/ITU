@@ -25,6 +25,8 @@ let newMarker;
 //Global variable representing if image is zoomed;
 let zoom = false;
 
+let infoG;
+
 function get_category(category){
     let marker_category;
     if (category === "Lampa nesvieti"){
@@ -304,8 +306,7 @@ function makeMarkers(map,infoWindow){
             '<b>Status:</b> '+all_tickets[i]["state_req"]+'<br>'+
             '<b>Popis:</b> '+all_tickets[i]["description"]+'<br>'+
             '<b>Očakávaná oprava do:</b> '+all_tickets[i]["expected_date"]+'<br>'+
-            '<b>Posledná úprava:</b> '+all_tickets[i]["time_modified"]+'<br>'+ 
-            'XD'+
+            '<b>Posledná úprava:</b> '+all_tickets[i]["time_modified"]+'<br>'+
             '<img class="infoImg" id= "infoImg" onClick="ZoomImg()" src="'+all_tickets[i]["img"].substring(1)+'" alt="img">'+
             '<form action="present_layer/worker_requests.php" method="GET"><input type=hidden id="requestID" name=requestID value='+all_tickets[i]["id"]+'><input type="submit" id=redirectButton value="Prejsť na žiadosť"></form>';
         }
@@ -448,6 +449,7 @@ function initMap() {
     });
     
     const infoWindow = new google.maps.InfoWindow();
+    infoG = infoWindow;
     //Set of commands which are used to initialze data.
     //They get about tickets or requests form database based on who is logged in
     //or if all ticktes are shown
@@ -567,7 +569,7 @@ function myTickets(){
     all = false;
     button.style.zIndex = 0;
     replace.style.zIndex = 7;
-    initMap()
+    initMap();
 }
 
 //Function which is called when worker requests button is clicked
@@ -599,7 +601,7 @@ function allTickets(){
     all = true;
     button.style.zIndex = 0;
     replace.style.zIndex = 7;
-    initMap()
+    initMap();
 }
 
 //function which is called in case geolocation error
