@@ -14,7 +14,7 @@ include_once('./bussiness_layer/print_categories.php');
 include_once("./bussiness_layer/user.php");
 
 //The application is reloaded after logging in and changed accordingly for the user or worker
-$res = check_login();
+/*$res = check_login();
 
 //User is alerted in case of unsuccessful login
 if( isset($_POST['email']) ){
@@ -24,7 +24,7 @@ if( isset($_POST['email']) ){
         echo '<script>alert("Zlé heslo");</script>';
     }
     
-}
+}*/
 
 
 ?>
@@ -36,7 +36,7 @@ if( isset($_POST['email']) ){
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
         <script src="https://kit.fontawesome.com/ea2428928f.js" crossorigin="anonymous"></script>  
-        <script type="text/javascript" src="./bussiness_layer/remove_ticket.js"></script> 
+        <script type="text/javascript" src="./bussiness_layer/remove_ticket.js"></script>
         <link rel="stylesheet" type="text/css" href="./map.css" />
         <script src="./map.js"></script>
         <meta charset="utf-8">

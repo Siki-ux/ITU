@@ -25,7 +25,11 @@ let newMarker;
 //Global variable representing if image is zoomed;
 let zoom = false;
 
+let markers = [];
+
 let infoG;
+
+let map;
 
 function get_category(category){
     let marker_category;
@@ -77,7 +81,8 @@ function register_gen(){
     sidebar.style.top="10vh";
     sidebar.style.transform="unset";
     sidebar.innerHTML = ''+
-    '<form id="register" action="./bussiness_layer/authentication/check_registerXD.php" method="post">'+
+    '<div style = "overflow-y:auto; max-height:70vh">'+
+    '<form id="register" action="javascript:submit_reg()">'+
         '<label for="f_name">Krstné meno:</label>'+
         '<input type="text" name="f_name" id="f_name">'+
         '<label for="l_name">Priezvisko:</label>'+
@@ -88,8 +93,10 @@ function register_gen(){
         '<input type="password" name="password" id="password" placeholder="Heslo" required>'+
         '<label for="phone">Telefónne číslo:</label>'+
         '<input type="tel" name="phone" id="phone">'+
+        '<input type="hidden" id="role" value="0">'+
         '<input type="submit" id="loginButton" value="Registrovať">'+
     '</form>'+
+    '</div>'+
     '';
 }
 
@@ -285,11 +292,19 @@ function myBurger() {
     }
 }
 
+function setMapOnAll(map) {
+    for (let i = 0; i < markers.length; i++) {
+      markers[i].setMap(map);
+    }
+}
+
 //Function which makes new marker, info window and click event for every ticket in global all_tickets.
 //It sets content acording to if user is logged in, if worker is logged in or if aplication
 //is showing all tickets.
 //Takes: map handle and info Window handle
 function makeMarkers(map,infoWindow){
+    setMapOnAll(null);
+    markers = [];
     for(let i=0;i<all_tickets.length;i++){
         let content =
         '<b>Kategória:</b> '+all_tickets[i]["category"] + '<br>' +
@@ -307,7 +322,7 @@ function makeMarkers(map,infoWindow){
             '<b>Popis:</b> '+all_tickets[i]["description"]+'<br>'+
             '<b>Očakávaná oprava do:</b> '+all_tickets[i]["expected_date"]+'<br>'+
             '<b>Posledná úprava:</b> '+all_tickets[i]["time_modified"]+'<br>'+
-            '<img class="infoImg" id= "infoImg" onClick="ZoomImg()" src="'+all_tickets[i]["img"].substring(1)+'" alt="img">'+
+            '<img class="infoImg" id= "infoImg" onClick="ZoomImg()" src="'+aliconl_tickets[i]["img"].substring(1)+'" alt="img">'+
             '<form action="present_layer/worker_requests.php" method="GET"><input type=hidden id="requestID" name=requestID value='+all_tickets[i]["id"]+'><input type="submit" id=redirectButton value="Prejsť na žiadosť"></form>';
         }
 
@@ -329,7 +344,7 @@ function makeMarkers(map,infoWindow){
             url: "./img/markers/"+get_category(all_tickets[i]["category"])+"_"+get_color(status)+".png", // url
             scaledSize: new google.maps.Size(50, 50), // scaled size
             origin: new google.maps.Point(0,0), // origin
-            anchor: new google.maps.Point(0, 50) // anchor
+            anchor: new google.maps.Point(25, 50) // anchor
         };
         marker.setIcon(icon);
         marker.setMap(map);
@@ -375,7 +390,7 @@ setInterval(function () {
 
 //Function which inicialze whole map with geolocation function and other events
 function initMap() {
-    const map = new google.maps.Map(document.getElementById("map"), {
+    map = new google.maps.Map(document.getElementById("map"), {
         zoom: 15,
         /*Location of VUT FIT*/
         center: { lat: 49.2269, lng: 16.59689 },
@@ -652,4 +667,40 @@ function ZoomImg(){
     }
 }
 
+function submit_reg() {
+    const form = document.querySelector('#register');
+    const formData = new FormData(form);
+    $.ajax({
+        type:"POST",
+        url:"./bussiness_layer/authentication/check_registerXD.php",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(res){
+            alert(res);
+            if (res==="Uspešne zaregistrovaný"){
+                $.ajax({
+                    type:"POST",
+                    url:"./bussiness_layer/authentication/check_loginXD.php",
+                    data:formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(result){
+                        if(result === '0'){
+                            sessionStorage.setItem("email",email.value);
+                            window.location.replace("index.php");
+                        }else if (result === '1'){
+                            alert("Neznámy email!");
+                        }else if (result === '2'){
+                            alert("Zlé heslo!");
+                        }else {
+                            alert("Something went wrong!");
+                        }
+                    }
+                });
+            }
+        }
+    })
+
+}
 window.initMap = initMap;

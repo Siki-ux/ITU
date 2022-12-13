@@ -4,15 +4,23 @@ include_once('./data_layer/db_user.php');
 
 if(isset($_POST['email'])){
     if( ! email_ok($_POST['email'])){
-        echo "<script>alert('Neplatný e-mail')</script>";
-        header("refresh:0.1; ../../index.php");
+        echo 'Neplatný e-mail';
         exit();
     }
     $email = $_POST['email'];
 
     if(get_user_by_email($email) !== false){
-        echo "<script>alert('E-mail sa už používa!')</script>";
-        header("refresh:0.1; ../../index.php");
+        echo 'E-mail sa už používa!';
+        exit();
+    }
+
+    if (strlen($_POST['password']) < 8) {
+        echo 'Heslo musí mať minimálne 8 znakov';
+        exit();
+    }
+
+    if ((!preg_match("/^[+0-9 ]*$/",$_POST['phone']) || strlen($_POST['phone']) > 20)) {
+        echo 'Neplatné telefónne číslo';
         exit();
     }
     $role = 0;
@@ -21,13 +29,11 @@ if(isset($_POST['email'])){
     $l_name = isset($_POST['l_name']) ? $_POST['l_name'] : "";
     $phone = isset($_POST['phone']) ? $_POST['phone'] : "";
     insert_user($f_name,$l_name,$email,$phone,$pw_hash,$role);
-    echo "<script>alert('Uspešne zaregistrovaný')</script>";
-    header("refresh:0.1; ../../index.php");
+    echo 'Uspešne zaregistrovaný';
 
 
 }else {
-    echo "<script>alert('Something went wrong')</script>";
-    header("refresh:0.1; ../../index.php");
+    echo 'Something went wrong';
     exit();
 }
 
