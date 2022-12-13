@@ -24,7 +24,7 @@ if(! is_manager() )
 	<div>
 		<nav>
 			<h2>
-				<a class="back-but ico-hover" id="back-but" href="./user_list.php">
+				<a class="back-but ico-hover" id="back-but" href="../manager_tickets.php">
 					<i class="ico fa-2xl fa-solid fa-arrow-left"></i>
 				</a>
 				<div class="headline">Pridať Technického pracovníka</div>

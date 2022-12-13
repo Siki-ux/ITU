@@ -66,7 +66,7 @@
                     <i class="ico fa-xl fa-solid fa-bars"></i>
                 </div>
                 <div id="dropdown-menu" class="dropdown-content content-hidden">
-                    <a href="./add_worker.php">Add worker</a>
+                    <a href="./worker/add_worker.php">Add worker</a>
                     <div onclick="filter_reset();">Reset filter</div>
                     <a href="./authentication/logout.php">Logout</a>
 
