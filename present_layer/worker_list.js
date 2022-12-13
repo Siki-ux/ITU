@@ -145,7 +145,7 @@ function refresh_tables_after(time)
 function refresh_usr_tab()
 {
     $.ajax({
-        url:'get_user_table_rows.php',
+        url:'get_requests_table_rows.php',
         data: jQuery.param({ col: ord_col, asc : ord_dir_up?1:0, filt : filter, choi : choice}),
         type: 'GET',
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
