@@ -11,7 +11,7 @@ function get_name(){
     if(isset($_SESSION['email'])) {
         $user = get_user_by_email($_SESSION['email']);
         if (isset($user["first_name"]) && isset($user["last_name"])){
-            if ($user["first_name"] != "" && $user["last_name"] == ""){
+            if ($user["first_name"] != "" && $user["last_name"] != ""){
                 return $user["first_name"]. " " . $user["last_name"];
             }
         }
