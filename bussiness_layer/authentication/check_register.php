@@ -3,6 +3,7 @@
  * @author sikul15@stud.fit.vutbr.cz
  * Check of user registration
  */
+chdir("../..");
 include_once('./data_layer/db_user.php');
 
 if(isset($_POST['email'])){

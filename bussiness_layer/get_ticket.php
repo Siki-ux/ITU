@@ -3,6 +3,8 @@
  * @author xsikul15@stud.fit.vutbr.cz
  * Set of funtions which are used to work with tickets
  */
+if (session_id() == "")
+    session_start();
 include_once("./data_layer/db_tickets.php");
 include_once("./data_layer/db_user.php");
 include_once("./bussiness_layer/constants.php");
