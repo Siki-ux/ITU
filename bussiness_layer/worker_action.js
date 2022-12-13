@@ -40,7 +40,7 @@ function state_update_xml_1_2(rid)
  */
 function handle_button_0_1(rid, counter)
 {
-    if (confirm('Are you sure about sending the form?')) {
+    if (confirm('Ste si istý odoslaním formulára?')) {
 
         
         var price = document.getElementById("price"+counter).value;
@@ -48,7 +48,7 @@ function handle_button_0_1(rid, counter)
         var comment = document.getElementById("comment"+counter).value;
 
         if (price == "" || exp_date == "") {
-            alert("Fill in all the fields!");
+            alert("Vyplňte všetky polia!");
         }
         else {
             state_update_xml_0_1(rid, price, exp_date, comment);
@@ -62,7 +62,7 @@ function handle_button_0_1(rid, counter)
  */
 function handle_button_1_2(rid)
 {
-    if (confirm('Are you sure about finishing the request?')) {
+    if (confirm('Ste si istý dokončením žiadosti?')) {
         state_update_xml_1_2(rid);
         refresh_tables_after(100);
     }

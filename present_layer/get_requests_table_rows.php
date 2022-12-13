@@ -117,7 +117,7 @@
             </colgroup>
             <thead>
                 <tr>
-                    <th colspan='6'>Request</th>
+                    <th colspan='6'>Požiadavek</th>
                 </tr>
             </thead>
             <tbody>
@@ -134,19 +134,19 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class='indescr' colspan='1'>Category:</td>
+                    <td class='indescr' colspan='1'>Kategória:</td>
                     <td colspan='4'>".$row['category']."</td>
                 </tr>
                 <tr>
-                    <td class='indescr' colspan='1'>Position:</td>
+                    <td class='indescr' colspan='1'>Pozícia:</td>
                     <td colspan='4'>".$row['lat']." : ".$row['lng']."</td>
                 </tr>
                 <tr>
-                    <td class='indescr' colspan='1'>Location:</td>
+                    <td class='indescr' colspan='1'>Poloha:</td>
                     ".$row['address_exp']."
                 </tr>
                 <tr class='expand-lastrow'>
-                    <td class='indescr' colspan='1'>Assignment:</td>
+                    <td class='indescr' colspan='1'>Zadanie:</td>
                     <td colspan='5' style='text-align:left;'>".$row['description_from_manager']."</td>
                 </tr>
             </tbody>
@@ -170,22 +170,22 @@
                 </colgroup>
                 <thead>
                     <tr>
-                        <th colspan='4'>Service</th>
+                        <th colspan='4'>Služba</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td class='indescr' colspan='1'>Expected date:</td>
+                        <td class='indescr' colspan='1'>Očakávaný dátum:</td>
                         <td colspan='1'><input type='date' id='expected_date$counter' name='expected_date'></td>
-                        <td class='indescr' colspan='1'>Price:</td>
+                        <td class='indescr' colspan='1'>Cena:</td>
                         <td colspan='1'><input type='number' step='0.01' id='price$counter' name='price'><br></td>
                     </tr>
                     <tr>
-                        <td class='indescr' colspan='1'>Comment:</td>
+                        <td class='indescr' colspan='1'>Komentár:</td>
                         <td colspan='3'><input style='width:92%;margin-right: 100px;' type='text' id='comment$counter' name='comment'></td>
                     </tr>
                     <tr>
-                        <td colspan='4'><button class='send-button' onclick='handle_button_0_1(".$row['id'].", $counter)'>SEND</button></td>
+                        <td colspan='4'><button class='send-button' onclick='handle_button_0_1(".$row['id'].", $counter)'>Odoslať</button></td>
                     </tr>
                 </tbody>
                 </table>
@@ -208,22 +208,22 @@
                 </colgroup>
                 <thead>
                     <tr>
-                        <th colspan='4'>Service</th>
+                        <th colspan='4'>Služba</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td class='indescr' colspan='1'>Expected date:</td>
+                        <td class='indescr' colspan='1'>Očakávaný dátum:</td>
                         <td colspan='1'>".$row['expected_date']."</td>
-                        <td class='indescr' colspan='1'>Price:</td>
+                        <td class='indescr' colspan='1'>Cena:</td>
                         <td colspan='1'>".$row['price']."</td>
                     </tr>
                     <tr>
-                        <td class='indescr' colspan='1'>Comment:</td>
+                        <td class='indescr' colspan='1'>Komentár:</td>
                         <td colspan='3' style='text-align:left;'>".$row['comment_from_worker']."</td>
                     </tr>
                     <tr>
-                        <td colspan='4'><button class='finish-button' onclick='handle_button_1_2(".$row['id'].")'>FINISH</button></td>
+                        <td colspan='4'><button class='finish-button' onclick='handle_button_1_2(".$row['id'].")'>Skončiť</button></td>
                     </tr>
                 </tbody>
                 </table>
@@ -249,20 +249,20 @@
                 </colgroup>
                 <thead>
                     <tr>
-                        <th colspan='7'>Service</th>
+                        <th colspan='7'>Služba</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td class='indescr' colspan='1'>Expected date:</td>
+                        <td class='indescr' colspan='1'>Očakávaný dátum:</td>
                         <td colspan='2'>".$row['expected_date']."</td>
-                        <td class='indescr' colspan='1'>Fixed date:</td>
+                        <td class='indescr' colspan='1'>Dátum opravy:</td>
                         <td colspan='1'>".$row['date_fixed']."</td>
-                        <td class='indescr' colspan='1'>Price:</td>
+                        <td class='indescr' colspan='1'>Cena:</td>
                         <td colspan='1'>".$row['price']."</td>
                     </tr>
                     <tr>
-                        <td class='indescr' colspan='2'>Comment:</td>
+                        <td class='indescr' colspan='2'>Komentár:</td>
                         <td colspan='5' style='text-align:left;'>".$row['comment_from_worker']."</td>
                     </tr>
                 </tbody>

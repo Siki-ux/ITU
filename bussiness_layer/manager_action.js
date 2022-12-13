@@ -29,14 +29,14 @@
   */
  function handle_button_0_1(rid, counter)
  {
-     if (confirm('Are you sure about sending the form?')) {
+     if (confirm('Ste si istý odoslaním formulára?')) {
  
          var price = document.getElementById("price"+counter).value;
          var exp_date = document.getElementById("expected_date"+counter).value;
          var comment = document.getElementById("comment"+counter).value;
  
          if (price == "" || exp_date == "") {
-             alert("Fill in all the fields!");
+             alert("Vyplňte všetky polia!");
          }
          else {
              state_update_xml_0_1(rid, price, exp_date, comment);
@@ -50,7 +50,7 @@
   */
  function handle_button_1_2(rid)
  {
-     if (confirm('Are you sure about finishing the request?')) {
+     if (confirm('Ste si istý dokončením žiadosti?')) {
          state_update_xml_1_2(rid);
          refresh_tables_after(100);
      }
@@ -82,13 +82,13 @@ function insert_req_xml(id, worker, task)
 
 function insert_req(id)
 {
-    if (confirm('Are you sure about create/update the request?')) {
+    if (confirm('Ste si istý vytvorením/aktualizáciou žiadosti?')) {
 
         var worker = document.getElementById("worker_"+id).value;
         var task = document.getElementById("task_"+id).value;
 
         if (worker == "") {
-            alert("Choose a worker!");
+            alert("Vyberte si technika!");
         }
         else {
             insert_req_xml(id, worker, task);

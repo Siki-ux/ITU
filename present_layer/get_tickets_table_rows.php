@@ -184,12 +184,12 @@
             </colgroup>
             <thead>
                 <tr>
-                    <th colspan='5'>Service</th>
+                    <th colspan='5'>Služba</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td colspan='1' class='indescr' style='text-align:center;'>Worker:</td>";
+                    <td colspan='1' class='indescr' style='text-align:center;'>Technik:</td>";
             
             if (!$assigned)
                 $name = worker_select_htmlgenerator($workers, $row['id']);
@@ -199,7 +199,7 @@
             $html_row .=
             "
                     <td colspan='1'>".$name."</td>
-                    <td colspan='1' class='indescr' style='text-align:center;'>Task:</td>";
+                    <td colspan='1' class='indescr' style='text-align:center;'>Zadanie:</td>";
 
             if (!$assigned)
                 $task = "<input style='width:97%;' type='text' id='task_".$row['id']."'>";
@@ -211,7 +211,7 @@
                     <td colspan='1' style='text-align:left;'>".$task."</td>";
 
             if (!$assigned)
-                $button = "<button class='send-button' onclick='insert_req(".$row['id'].")'>SEND</button>";
+                $button = "<button class='send-button' onclick='insert_req(".$row['id'].")'>Odoslať</button>";
             else
                 $button = '';
 
@@ -240,15 +240,15 @@
             <col width='12.5%'>
             </colgroup>
             <tr>
-                <td colspan='1' class='indescr'>Expected date</td>
+                <td colspan='1' class='indescr'>Očakávaný dátum</td>
                 <td colspan='2'>".$row['expected_date']."</td>
-                <td colspan='1' class='indescr'>Fixed date</td>
+                <td colspan='1' class='indescr'>Dátum opravy</td>
                 <td colspan='1'>".$row['date_fixed']."</td>
-                <td colspan='1' class='indescr'>Price</td>
+                <td colspan='1' class='indescr'>Cena</td>
                 <td colspan='1'>".$row['price']."</td>
             </tr>
             <tr>
-                <td colspan='2' class='indescr'>Comment</td>
+                <td colspan='2' class='indescr'>Komentár</td>
                 <td colspan='5' style='text-align:left; padding-bottom:12px;'>".$row['comment']."</td>
             </tr>
             </table>

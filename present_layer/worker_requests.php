@@ -9,8 +9,6 @@
     include_once('./bussiness_layer/constants.php');
     include_once("./data_layer/db_request.php");
     include_once('./bussiness_layer/checks.php');
-    include_once("./bussiness_layer/worker_ticket_print.php"); //*worker_request_print
-    include_once("./bussiness_layer/state_change.php");
 
     //change_state();
 
@@ -42,7 +40,7 @@
 
 <html>
     <head>
-        <title>My requests</title>
+        <title>Moje požiadavky</title>
         <link rel="stylesheet" type="text/css" href="./worker_requests.css"/>
         <script src="https://kit.fontawesome.com/ea2428928f.js" crossorigin="anonymous"></script>   
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -62,16 +60,16 @@
     <div>
         <h3>
             <div class="back-but">
-                <a href = "../index.php">Back</a>
+                <a href = "../index.php">Späť</a>
             </div>
-            <div class="headline">My Requests</div>
+            <div class="headline">Moje požiadavky</div>
         </h3>
     </div>
 
     <div class="choice">
         <label for="choice" class="choice-label"></label>
         <select class="filter-input" id="choice-select" onChange="choice_change()">
-            <option selected='selected' value='%'>All</option>
+            <option selected='selected' value='%'>Všetky</option>
             <option value='0'>Zaevidovaný</option>
             <option value='1'>Pracujeme na tom</option>
             <option value='2'>Vyriešené</option>"
@@ -88,10 +86,10 @@
         <thead>
             <tr>
                 <th><?php gen_col_head('RID',0); ?></th>
-                <th><?php gen_col_head('Category',1) ?></th>
-                <th><?php echo "Address" ?></th> 
-                <th><?php echo "Expected/Fixed date" ?></th>
-                <th><?php gen_col_head('State',2); ?></th> 
+                <th><?php gen_col_head('Kategória',1) ?></th>
+                <th><?php echo "Adresa" ?></th> 
+                <th><?php echo "Očakávaný/Opravy dátum" ?></th>
+                <th><?php gen_col_head('Stav',2); ?></th> 
                 <th>Action</th>
             </tr>
         </thead>

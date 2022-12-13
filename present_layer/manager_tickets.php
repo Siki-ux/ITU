@@ -8,8 +8,6 @@
     chdir('..'); // ---> root
     include_once('./bussiness_layer/constants.php');
     include_once('./bussiness_layer/checks.php');
-    include_once("./bussiness_layer/manager_ticket_print.php");
-    include_once("./bussiness_layer/state_change.php");
 
     //change_state();
 
@@ -41,7 +39,7 @@
 
 <html>
     <head>
-        <title>Tickets</title>
+        <title>Tickety</title>
         <link rel="stylesheet" type="text/css" href="./manager_tickets.css"/>
         <script src="https://kit.fontawesome.com/ea2428928f.js" crossorigin="anonymous"></script>   
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -66,13 +64,13 @@
                     <i class="ico fa-xl fa-solid fa-bars"></i>
                 </div>
                 <div id="dropdown-menu" class="dropdown-content content-hidden">
-                    <a href="./worker/add_worker.php">Add worker</a>
-                    <div onclick="filter_reset();">Reset filter</div>
-                    <a href="./authentication/logout.php">Logout</a>
+                    <a href="./add_worker.php">Pridať technika</a>
+                    <div onclick="filter_reset();">Resetovať filter</div>
+                    <a href="./authentication/logout.php">Odhlásiť sa</a>
 
                 </div>
             </div> 
-            <div class="headline">Tickets</div>
+            <div class="headline">Tickety</div>
         </h2>
     </nav>
 </div>
@@ -81,7 +79,7 @@
     <div class="choice">
         <label for="choice" class="choice-label"></label>
         <select class="filter-input" id="choice-select" onChange="choice_change()">
-            <option selected='selected' value='%'>All</option>
+            <option selected='selected' value='%'>Všetky</option>
             <option value='0'>Zaevidovaný</option>
             <option value='1'>Pracujeme na tom</option>
             <option value='2'>Vyriešené</option>"
@@ -98,15 +96,15 @@
         <thead>
             <tr>
                 <th style='width:4.5%;'><?php gen_col_head('ID',0); ?></th>
-                <th style='width:9%;'><?php gen_col_head('Category',1) ?></th>
-                <th style='width:14%;'><?php echo "Address" ?></th> 
-                <th style='width:7.5%;'><?php gen_col_head('Status',2) ?></th>
+                <th style='width:9%;'><?php gen_col_head('Kategória',1) ?></th>
+                <th style='width:14%;'><?php echo "Adresa" ?></th> 
+                <th style='width:7.5%;'><?php gen_col_head('Stav',2) ?></th>
                 <th style='width:4.5%;'><?php gen_col_head('Req',3) ?></th>
-                <th><?php echo "Message from manager" ?></th> 
-                <th style='width:7.5%;'><?php gen_col_head('Time created',4) ?></th>
-                <th style='width:7.5%;'><?php gen_col_head('Time modified',5) ?></th>
-                <th style='width:6%;'><?php echo "Photo" ?></th> 
-                <th style='width:4.5%;'>Action</th>
+                <th><?php echo "Správa od manažéra" ?></th> 
+                <th style='width:7.5%;'><?php gen_col_head('Čas vytvorenia',4) ?></th>
+                <th style='width:7.5%;'><?php gen_col_head('Čas úpravy',5) ?></th>
+                <th style='width:6%;'><?php echo "Fotka" ?></th> 
+                <th style='width:4.5%;'>Akcie</th>
             </tr>
         </thead>
         
