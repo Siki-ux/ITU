@@ -20,6 +20,20 @@ window.addEventListener('load', function(){
 }); 
 
 /***
+ * Prepare the document to hide menu contend when user clicks away
+ */
+ function setup_click_away(){
+    document.addEventListener('click', function handleClickOutsideBox(event) {
+        menu = document.getElementById('dropdown-menu');
+        menu_but = document.getElementById("menu-but");
+      
+        if ( /*(!menu.contains(event.target)) && */(!menu_but.contains(event.target)))
+            hide_dropdown_menu(menu);
+      });
+      
+}
+
+/***
  * Make sure that table order buttons are prepared correctly
  */
 function fix_order()

@@ -9,6 +9,8 @@ if(session_id() == "")
     session_start();
 if(! is_manager() )
     header('Location: ./index.php');
+
+    header('Location: ./present_layer/manager_tickets.php');
 ?>
 
 <html>
