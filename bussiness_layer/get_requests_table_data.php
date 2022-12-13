@@ -29,7 +29,8 @@
             $row_ticket = (get_ticket($row['for_ticket']))->fetch();
             $ticket = get_ticket_data($row_ticket);
 
-            $address = "<td id='address".$ticket[0]."'><script type='text/javascript'>get_address(".$ticket[0].",".$ticket[2].",".$ticket[3].");</script></td>"; //street
+            $address = "<td id='address".$ticket[0]."'><script type='text/javascript'>get_address('".$ticket[0]."',".$ticket[2].",".$ticket[3].");</script></td>";
+            $address_exp = "<td colspan='4' id='address".$ticket[0]."exp'><script type='text/javascript'>get_address('".$ticket[0]."exp',".$ticket[2].",".$ticket[3].");</script></td>";
 
             if($row['state'] != 2)
                 $date = $row['expected_date'];
@@ -40,6 +41,7 @@
             $json .= ' "id": '.' "'.$row[0].'" , ';
             $json .= ' "category":'.'"'.$ticket[1].'" ,';
             $json .= ' "address":'.'"'.$address.'" ,';
+            $json .= ' "address_exp":'.'"'.$address_exp.'" ,';
             $json .= ' "lat":'.'"'.$ticket[2].'" ,';
             $json .= ' "lng":'.'"'.$ticket[3].'" ,';
             $json .= ' "date":'.'"'.$date.'" ,';
