@@ -141,7 +141,7 @@
                 </tr>
                 <tr>
                     <td class='indescr' colspan='1'>Location:</td>
-                    <td colspan='4'>121212121</td>
+                    ".$row['address_exp']."
                 </tr>
                 <tr class='expand-lastrow'>
                     <td class='indescr' colspan='1'>Assignment:</td>
