@@ -15,12 +15,21 @@
 
     <head>
             <link rel="stylesheet" type="text/css" href="../present_layer/authentication/register.css"/>
+			<script src="https://kit.fontawesome.com/ea2428928f.js" crossorigin="anonymous"></script>
+			<title>Chytni závadu: Add worker</title>
     </head>
 
 
-    <nav>
-        <h3 class="back"><a href = "../manager.php">Späť</a></h2>
-    </nav> 
+	<div>
+        <nav>
+            <h2>
+				<a class="back-but ico-hover" id="back-but" href="./manager_tickets.php">
+                    <i class="ico fa-2xl fa-solid fa-arrow-left"></i>
+				</a>
+				<br>
+            </h2>
+        </nav>
+    </div>
 
     <h2>Pridať technckého pracovníka</h2>
 

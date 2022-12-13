@@ -53,14 +53,25 @@
     }    
 ?>
 
-    <div>
-        <h3>
-            <div class="back-but">
-                <a href = "../index.php">Back</a>
-            </div>
+<div>
+    <nav>
+        <h2>
+            <div class="menu-div">
+                <div class="sett-but ico-hover" id="menu-but" onclick="toggle_dropdown_menu()">
+                    <i class="ico fa-xl fa-solid fa-bars"></i>
+                </div>
+                <div id="dropdown-menu" class="dropdown-content content-hidden">
+                    <a href="./add_worker.php">Add worker</a>
+                    <div onclick="filter_reset();">Reset filter</div>
+                    <a href="./authentication/logout.php">Logout</a>
+
+                </div>
+            </div> 
             <div class="headline">Tickets</div>
-        </h3>
-    </div>
+        </h2>
+    </nav>
+</div>
+
 
     <div class="choice">
         <label for="choice" class="choice-label"></label>
