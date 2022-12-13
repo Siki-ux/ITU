@@ -3,11 +3,12 @@
 /***
  * @author xpavel39@stud.fit.vutbr.cz
  */
+if(session_id() == "")
+	session_start();
 chdir('../..'); // ---> root
 include_once('./bussiness_layer/checks.php');
 if(! is_manager() )
     header('Location: ./index.php');
-
 ?>	
 <html>
 
