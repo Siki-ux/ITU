@@ -95,7 +95,7 @@ include_once("./bussiness_layer/user.php");
             <h2>Dvojklikom na mapu zvoľte miesto problému</h2>
         </div>
         <div id="searchBar">
-            <form onkeydown="return event.key != 'Enter';">
+            <form id= "searchForm" >
                 <input type="text" placeholder="Zadaj vyhľadávanú adresu" id="ToSearch">
             </form>
         </div>
