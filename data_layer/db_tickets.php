@@ -109,4 +109,41 @@ function get_ticket_by_id($id){
     $stmt =  $db->query("SELECT * FROM TICKET WHERE id='".$id."';");
     return $stmt->fetch();
 }
+
+
+
+/***
+ * Get all rows from the TICKET table
+ * @return PDOStatement object
+ */
+function get_my_tickets_list($col = 'id', $asc = 1, $filter = "", $choice = "%")
+{
+    $pdo = get_pdo();
+
+    if($filter == "")
+        $filter = "%";
+
+    if($col == "description")
+        $zone = "CATEGORY";
+    else if($col == 'state')
+        $zone = "SERVICE_REQUEST";
+    else
+        $zone = "TICKET";
+
+    $stmt = $pdo->prepare("SELECT * FROM TICKET LEFT JOIN SERVICE_REQUEST ON TICKET.id=SERVICE_REQUEST.for_ticket LEFT JOIN CATEGORY ON TICKET.category=CATEGORY.id WHERE ( (TICKET.id LIKE '$filter') ) AND state_from_manager LIKE '$choice' ORDER BY $zone.$col ".(($asc == 1) ? 'ASC' : 'DESC').";");
+    $stmt->execute();
+
+    return $stmt;
+}
+
+/***
+ * Update row with 'id'. Change the value in 'col' to 'new_val'
+ */
+function update_ticket($id,$col,$new_val)
+{
+    $pdo = get_pdo();
+
+    $stmt = $pdo->prepare('UPDATE TICKET SET '.$col.' = :new_val WHERE id = :id');
+    $stmt->execute(['new_val' => $new_val , 'id' => $id]);
+}
 ?>
