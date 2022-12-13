@@ -8,11 +8,6 @@ ord_col = 0;
 ord_dir_up = true;
 filter = "";
 
-
-setInterval(function () {
-    refresh_tables();
-}, 30000); // TODO CHANGE!
-
 /***
  * Initial page preparation
  */
@@ -34,7 +29,12 @@ function setup_click_away(){
         if ( /*(!menu.contains(event.target)) && */(!menu_but.contains(event.target)))
             hide_dropdown_menu(menu);
       });
-      
+
+      document.addEventListener('keydown',(event) => {
+        if(event.key == "Escape")
+            document.activeElement.blur();
+      });
+       
 }
 
 /***
@@ -167,7 +167,8 @@ function field_change(event,id,col,reload=true)
     elt = document.getElementById(id + "_" + col);
     if(elt != null)
     {
-        update_user(id,col,elt.innerHTML);
+        new_val = elt.innerHTML.trim(); // Remove leading and ending spaces that sometimes appeared
+        update_user(id,col,new_val);
         if(reload)
         {
             refresh_tables_after(20);
