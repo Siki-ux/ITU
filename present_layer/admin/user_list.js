@@ -38,6 +38,16 @@ function setup_click_away(){
 }
 
 /***
+ * Reset order to first columnm, ascending.
+ */
+function reset_order()
+{
+    ord_col = 0;
+    ord_dir_up = true;
+    fix_order();
+}
+
+/***
  * Make sure that table order buttons are prepared correctly
  */
 function fix_order()

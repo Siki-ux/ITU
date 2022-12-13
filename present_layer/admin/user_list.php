@@ -38,9 +38,9 @@
                         <i class="ico fa-xl fa-solid fa-bars"></i>
                     </div>
                     <div id="dropdown-menu" class="dropdown-content content-hidden">
+                        <a href="./add_manager.php">Priať užívateľa</a> 
                         <div onclick="refresh_tables();">Obnoviť tabuľku</div>
-                        <a href="./add_manager.php">Priať užívateľa</a>
-                        <div onclick="filter_reset();">Resetovať filter</div>
+                        <div onclick="reset_order();filter_reset();">Reset</div>
                         <a href="../authentication/logout.php">Odhlásiť</a>
 
                     </div>

@@ -177,9 +177,23 @@ body{
 
 }
 
-.admin-table .even-row {
-    background-color: #f2f2f2;
-}
+
+
+.row{background-color: #ffffff;}
+.even-row{background-color: #f2f2f2;}
+
+.admin-row{background-color: #dbe9ff;}
+.even-admin-row{background-color: #ccd8ee;}
+
+.manager-row{background-color: #fbffdb;}
+.even-manager-row{background-color: #e8ecca;}
+
+.worker-row{background-color: #f3dffc;}
+.even-worker-row{background-color: #e1cceb;}
+
+
+
+
 
 .rem-usr-but:hover{
     color: #ff0000;

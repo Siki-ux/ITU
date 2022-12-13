@@ -52,6 +52,26 @@
         return $html;
     }
 
+    function gen_row_role($role, $even)
+    {
+        global $roles;
+
+        $res = 'class="';
+
+        if($even)
+            $res .= 'even-';
+
+        if($role == ADMIN)
+            $res .= 'admin-';
+        elseif($role == MANAGER)
+            $res .= 'manager-';
+        elseif($role == WORKER)
+            $res .= 'worker-';
+
+        $res .= 'row"';
+        return $res;
+    }
+
     /***
      * Return HTML of table containing all users 
      */
@@ -72,10 +92,7 @@
         $html = "";
 
         foreach($json as $row) { 
-            if($even)
-                $html_row = '<tr class="even-row" ';
-            else
-                $html_row = '<tr ';
+            $html_row = '<tr '.gen_row_role($row['role'],$even).' ';
 
             $even = !$even;
 
