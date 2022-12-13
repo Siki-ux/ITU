@@ -1,136 +1,102 @@
-<?php 
-chdir('..'); // ---> root
-include_once('./bussiness_layer/checks.php');
-include_once("./bussiness_layer/manager_ticket_print.php");
-include_once("./bussiness_layer/state_change.php");
+<meta name="viewport" content="width=device-width, initial-scale=0.49">
+<?php
+    chdir('..'); // ---> root
+    include_once('./bussiness_layer/constants.php');
+    include_once('./bussiness_layer/checks.php');
+    include_once("./bussiness_layer/manager_ticket_print.php");
+    include_once("./bussiness_layer/state_change.php");
 
-if(session_id() == "")
-    session_start();
-if(! is_manager() )
-    header('Location: ../index.php');
+    //change_state();
 
-/***
- * Parsing $email string and extracting first part
- * @return username
- */
-function print_user_from_email($email){ 
-    $pos = strpos($email,"@",0);
-    return substr($email,0,$pos);
-}
+    if(session_id() == "")
+        session_start();
+    if(! is_manager() )
+        header('Location: ../index.php');
 
-/***
- * Outputing select options depending on filter $mode
- */
-function select_output($mode)
-{
-    if($mode == 0) {
-        echo "
-        <option selected='selected' value=0>All</option>
-        <option value=1>Not assigned</option>
-        <option value=2>Assigned</option>
-        <option value=3>Fixing</option>
-        <option value=4>Fixed</option>";
+    /***
+     * Parsing email string and extracting first part
+     * @return username
+     */
+    function print_user_from_email($email){ 
+        $pos = strpos($email,"@",0);
+        return substr($email,0,$pos);
     }
-    else if($mode == 1) {
-        echo "
-        <option value=0>All</option>
-        <option selected='selected' value=1>Not assigned</option>
-        <option value=2>Assigned</option>
-        <option value=3>Fixing</option>
-        <option value=4>Fixed</option>";
-    }
-    else if($mode == 2) {
-        echo "
-        <option value=0>All</option>
-        <option value=1>Not assigned</option>
-        <option selected='selected' value=2>Assigned</option>
-        <option value=3>Fixing</option>
-        <option value=4>Fixed</option>";
-    }
-    else if($mode == 3) {
-        echo "
-        <option value=0>All</option>
-        <option value=1>Not assigned</option>
-        <option value=2>Assigned</option>
-        <option selected='selected' value=3>Fixing</option>
-        <option value=4>Fixed</option>";
-    }
-    else if($mode == 4) {
-        echo "
-        <option value=0>All</option>
-        <option value=1>Not assigned</option>
-        <option value=2>Assigned</option>
-        <option value=3>Fixing</option>
-        <option selected='selected' value=4>Fixed</option>";
-    }
-}
 
-// Ticket status update
-if (isset($_POST['status']))
-{
-    ticket_state_transition();
-}
+    function gen_col_head($name,$col)
+    {
+        echo '
+            <div class="order-div" onclick="order_change('.$col.')">
+                <div class="col-name" id="col-name-'.$col.'">'.$name.'</div>
+                <div class="order-but-div"><i id="order-but-'.$col.'" class="order-but fa-sharp fa-solid fa-xs fa-chevron-up"></i> </div>
+            </div>
 
-// The ticket message from manager update
-if (isset($_POST['contains_ticket_id_comment']))
-{
-    ticket_message_update();
-}
-
-// Assigning a request to a worker
-if (isset($_POST['contains_ticket_id']))
-{
-    request_assigning();
-}
-
+        ';
+    }
 ?>
 
 <html>
     <head>
-    <link rel="stylesheet" type="text/css" href="./manager_tickets.css" />
-    <script type="text/javascript" src="./onclick.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="../bussiness_layer/get_address.js"></script>
+        <title>Tickets</title>
+        <link rel="stylesheet" type="text/css" href="./manager_tickets.css"/>
+        <script src="https://kit.fontawesome.com/ea2428928f.js" crossorigin="anonymous"></script>   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript" src="./onclick.js"></script>
+        <script type="text/javascript" src="../bussiness_layer/get_address.js"></script>
+        <script type="text/javascript" src="../bussiness_layer/manager_action.js"></script>
+        <script type="text/javascript" src="./manager_list.js"></script>
     </head>
-    
-    <body>
-       <nav>
-            <h2 class="back"><a href = "../index.php">Späť</a></h2>
-            <h2 class="main">Tickets</h2>
-            <h2 class="user">Prihlásený ako:<br><?php echo print_user_from_email($_SESSION["email"]); ?></h2>
-        </nav> 
 
-        <form method="GET" action="">
-        <select style='width:12%; float:right; margin-bottom: 16px;' name="filter" onchange="this.form.submit()">
-            <?php 
-            if(isset($_GET['filter']))
-                select_output($_GET['filter']);
-            else
-                select_output(0);
-            ?>
+<?php
+    if(isset($_GET['requestID'])) {
+        $ref_id = $_GET['requestID'];
+        echo "<script type='text/javascript'>filter_init($ref_id);</script>";
+    }    
+?>
+
+    <div>
+        <h3>
+            <div class="back-but">
+                <a href = "../index.php">Back</a>
+            </div>
+            <div class="headline">Tickets</div>
+        </h3>
+    </div>
+
+    <div class="choice">
+        <label for="choice" class="choice-label"></label>
+        <select class="filter-input" id="choice-select" onChange="choice_change()">
+            <option selected='selected' value='%'>All</option>
+            <option value='0'>Zaevidovaný</option>
+            <option value='1'>Pracujeme na tom</option>
+            <option value='2'>Vyriešené</option>"
         </select>
-        </form>
+    </div>
 
-        <table cellpadding="0">
+    <div class="filter">
+        <label for="filter" class="filter-label"></label>
+        <input name="filter" class="filter-input" id="filter-input" onKeyUp="filter_change()">
+        <label onclick="filter_reset();" for="filter" class="filter-ico ico-hover"><i class="fa-lg fa-regular fa-circle-xmark"></i></label>
+    </div>
+
+    <table class="admin-table" id="usr-tab"> 
+        <thead>
             <tr>
-                <th>ID</th>
-                <th>Category</th>
-                <th style='width:13%;'>Position(Street)</th>
-                <th>Status</th>
-                <th>Req</th>
-                <th>Message from manager</th>
-                <th>Time created</th>
-                <th>Time modified</th>
-                <th>Photo</th>
-                <th style='width:5%;'>Action</th>
+                <th style='width:4.5%;'><?php gen_col_head('ID',0); ?></th>
+                <th style='width:9%;'><?php gen_col_head('Category',1) ?></th>
+                <th style='width:14%;'><?php echo "Address" ?></th> 
+                <th style='width:7.5%;'><?php gen_col_head('Status',2) ?></th>
+                <th style='width:4.5%;'><?php gen_col_head('Req',3) ?></th>
+                <th><?php echo "Message from manager" ?></th> 
+                <th style='width:7.5%;'><?php gen_col_head('Time created',4) ?></th>
+                <th style='width:7.5%;'><?php gen_col_head('Time modified',5) ?></th>
+                <th style='width:6%;'><?php echo "Photo" ?></th> 
+                <th style='width:4.5%;'>Action</th>
             </tr>
-            <?php 
-            if(isset($_GET['filter']))
-                echo ticket_rows($_GET['filter']);
-            else
-                echo ticket_rows(0);
-            ?>
-        </table>
+        </thead>
         
-    </body>
+        <tbody id="tab-of-tickets"> 
+
+        </tbody>
+    </table> 
+
 </html>
