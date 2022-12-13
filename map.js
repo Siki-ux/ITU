@@ -439,6 +439,28 @@ function initMap() {
         searchBar.value = "";
     });
 
+    const searchForm = document.getElementById("searchForm");
+    searchForm.addEventListener("keypress",(event) => {
+        if (event.key === "Enter"){
+            event.preventDefault();
+            const searchBar = document.getElementById("ToSearch");
+            if(searchBar.value !== ""){
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode({'address': searchBar.value },function(results,status){
+                    let lat = results[0].geometry.location.lat();
+                    let lng = results[0].geometry.location.lng();
+                    const pos = {
+                        lat: lat,
+                        lng: lng,
+                    };
+                    map.setCenter(pos);
+                });
+        }
+        searchBar.value = "";
+        }
+
+    });
+
     const locationButton = document.getElementById("myPosition");
     //Event in case locationButton is clicked
     //Map will be centered around user location, if its avalible
