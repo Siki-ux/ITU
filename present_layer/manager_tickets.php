@@ -1,5 +1,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=0.49">
 <?php
+    /**
+     * @author xtverd01
+     * Interface for ticket manager
+     * Core of table from: user_list.php
+     */
     chdir('..'); // ---> root
     include_once('./bussiness_layer/constants.php');
     include_once('./bussiness_layer/checks.php');

@@ -6,9 +6,6 @@
 
     chdir('../..'); // root
 
-    include_once('./bussiness_layer/admin/check_admin.php');
-    enforce_admin();
-
     include_once('./data_layer/db_user.php');
 
     if(isset($_POST['email_to_check']))

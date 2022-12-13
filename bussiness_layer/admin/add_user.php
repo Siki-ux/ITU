@@ -4,10 +4,7 @@
      * @author xpavel39@stud.fit.vutbr.cz
      */
 
-    chdir('../..'); // root
-
-    include_once('./bussiness_layer/admin/check_admin.php');
-    enforce_admin();
+    chdir('../..'); // root 
 
     include_once('./data_layer/db_user.php');
 

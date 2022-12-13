@@ -1,7 +1,9 @@
 <?php
-/***
+/**
  * Called using AJAX
  * @author xpavel39@stud.fit.vutbr.cz
+ * @Editor xtverd01@stud.fit.vutbr.cz
+ * Generating apropiate html code of table row-by-row
  */
     chdir('..'); // root
 

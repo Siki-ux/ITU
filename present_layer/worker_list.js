@@ -1,3 +1,7 @@
+/**
+ * @author xtverd01
+ * Script for updating worker table of requests.
+ */
 /// Variables used for ordering table by column
 ord_col = 0;
 ord_dir_up = true;

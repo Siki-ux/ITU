@@ -322,7 +322,7 @@ function makeMarkers(map,infoWindow){
             '<b>Popis:</b> '+all_tickets[i]["description"]+'<br>'+
             '<b>Očakávaná oprava do:</b> '+all_tickets[i]["expected_date"]+'<br>'+
             '<b>Posledná úprava:</b> '+all_tickets[i]["time_modified"]+'<br>'+
-            '<img class="infoImg" id= "infoImg" onClick="ZoomImg()" src="'+aliconl_tickets[i]["img"].substring(1)+'" alt="img">'+
+            '<img class="infoImg" id= "infoImg" onClick="ZoomImg()" src="'+all_tickets[i]["img"].substring(1)+'" alt="img">'+
             '<form action="present_layer/worker_requests.php" method="GET"><input type=hidden id="requestID" name=requestID value='+all_tickets[i]["id"]+'><input type="submit" id=redirectButton value="Prejsť na žiadosť"></form>';
         }
 

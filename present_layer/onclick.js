@@ -1,3 +1,7 @@
+/**
+ * @author xtverd01
+ * Collection of functions handling a specific click.
+ */
 var RowNested_last_num = null;
 
 /***

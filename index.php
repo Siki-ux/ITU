@@ -1,6 +1,6 @@
 <?php
-/***
- * @author: xsikul@stud.fit.vutbr.cz, Jakub Sikula
+/**
+ * @author xsikul@stud.fit.vutbr.cz, Jakub Sikula
  * This file serves as main aplication HTML and PHP with login and registration
  */
 chdir('.');

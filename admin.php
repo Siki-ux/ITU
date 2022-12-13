@@ -1,5 +1,5 @@
 <?php
-/***
+/**
  * Main screen for admin
  * @author xpavel39@stud.fit.vutbr.cz
  */
