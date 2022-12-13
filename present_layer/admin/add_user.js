@@ -2,6 +2,9 @@
  * @author Martin Pavella xpavel39
  */
 
+/// Bool indicating if a new user can be added ATM
+can_add = true;
+
 
 document.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
@@ -14,7 +17,11 @@ document.addEventListener('keypress', function (e) {
  * Handle form submit. Try to add new user or display error
  */
 function submit(){
-    // Check email is valid
+    if( ! can_add ) // Cannot add new user right now
+        return;
+    can_add = false;
+
+    // Check email is valid 
     e_email = document.getElementById("email");
     if(email == null)
         return;
@@ -69,6 +76,10 @@ function send_form()
                 // Everything OK
                 show_succ();
         }
+
+        if(this.readyState === 4)
+            // Allow new user to be added
+            can_add = true;
     };
     req.send("first_name=" + f_name + "&last_name=" + l_name + "&email=" + email + "&password=" + pwd + "&phone=" + phone + "&role=" + role);
 

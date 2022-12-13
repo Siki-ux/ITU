@@ -28,12 +28,12 @@ function setup_click_away(){
       
         if ( /*(!menu.contains(event.target)) && */(!menu_but.contains(event.target)))
             hide_dropdown_menu(menu);
-      });
+    });
 
-      document.addEventListener('keydown',(event) => {
+    document.addEventListener('keydown',(event) => {
         if(event.key == "Escape")
             document.activeElement.blur();
-      });
+    });
        
 }
 
