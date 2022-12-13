@@ -1,4 +1,8 @@
 <?php
+/**
+ * @author xpavel39@stud.fit.vutbr.cz
+ * Functions which interact with database
+ */
     include_once('db_setup.php');
 
 

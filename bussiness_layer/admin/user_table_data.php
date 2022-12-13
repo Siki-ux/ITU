@@ -1,6 +1,7 @@
 <?php
 /***
  * @author xpavel39@stud.fit.vutbr.cz
+ * Get data for table of users in json format
  */
     include_once('./data_layer/db_user.php');
     include_once('./bussiness_layer/constants.php');

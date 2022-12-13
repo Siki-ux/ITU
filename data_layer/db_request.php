@@ -1,15 +1,10 @@
 <?php
+/**
+ * @author xtverd01@stud.fit.vutbr.cz
+ * Functions which interact with database
+ */
 include_once("db_setup.php");
 include_once("db_user.php");
-
-/***
- * Getting requests depending on $state of $id worker
- * @return PDOStatement object
- */
-function get_my_requests_by_state($id, $state){
-    $db = get_pdo();
-    return $db->query("SELECT * FROM SERVICE_REQUEST WHERE worker_id=".$id." AND state=".$state.";");
-}
 
 /***
  * Getting all requests of $id worker
@@ -18,15 +13,6 @@ function get_my_requests_by_state($id, $state){
 function get_my_requests($id){
     $db = get_pdo();
     return $db->query("SELECT * FROM SERVICE_REQUEST WHERE worker_id=".$id.";");
-}
-
-/***
- * Getting all tickets attached to requests of $id worker
- * @return PDOStatement object
- */
-function get_request_tickets($id){
-    $db = get_pdo();
-    return $db->query("SELECT * FROM TICKET WHERE id = (SELECT for_ticket FROM SERVICE_REQUEST WHERE worker_id=".$id.");");
 }
 
 /***
@@ -94,22 +80,4 @@ function get_my_requests_list($col = 'id', $asc = 1, $filter = "", $choice = "%"
 
     return $stmt;
 }
-
-
-
-
-///////////
-// function insert_requestsss()
-// {
-
-//     $db = get_pdo();
-//     return $db->query('INSERT INTO PERSON (first_name,last_name,email,PW_HASH,role) VALUES ("Nimad","","nimad@fit.com","8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",1);');
-// }
-
-function change_state()
-{
-    $db = get_pdo();
-    return $db->query("UPDATE SERVICE_REQUEST SET state=1, date_fixed=CURDATE() WHERE id=2;");
-}
-
 ?>

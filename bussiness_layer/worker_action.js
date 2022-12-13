@@ -1,4 +1,5 @@
-/***
+/**
+ * @author xtverd01stud.fit.vutbr.cz
  * Using AJAX updating states
  */
 function state_update_xml_0_1(rid, price, exp_date, comment)

@@ -7,7 +7,6 @@ chdir('.');
 if (session_id() == "")
     session_start();
 
-include_once('./bussiness_layer/authentication/check_login.php');
 include_once("./bussiness_layer/checks.php");
 include_once("./bussiness_layer/admin/check_admin.php");
 include_once('./bussiness_layer/print_categories.php');

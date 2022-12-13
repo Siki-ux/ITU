@@ -1,4 +1,8 @@
 <?php
+/**
+ * @author xtverd01stud.fit.vutbr.cz
+ * Called using AJAX to update ticket
+ */
     chdir('..'); // root
 
     include_once('./data_layer/db_tickets.php');

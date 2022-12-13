@@ -143,7 +143,7 @@ function check_login(){
     }else {
         $.ajax({
             type:"POST",
-            url:"./bussiness_layer/authentication/check_loginXD.php",
+            url:"./bussiness_layer/authentication/check_login.php",
             data:{email:email.value,password:password.value},
             success: function(res){
                 if(res === '0'){
@@ -672,7 +672,7 @@ function submit_reg() {
     const formData = new FormData(form);
     $.ajax({
         type:"POST",
-        url:"./bussiness_layer/authentication/check_registerXD.php",
+        url:"./bussiness_layer/authentication/check_register.php",
         data: formData,
         processData: false,
         contentType: false,
@@ -681,7 +681,7 @@ function submit_reg() {
             if (res==="Uspešne zaregistrovaný"){
                 $.ajax({
                     type:"POST",
-                    url:"./bussiness_layer/authentication/check_loginXD.php",
+                    url:"./bussiness_layer/authentication/check_login.php",
                     data:formData,
                     processData: false,
                     contentType: false,

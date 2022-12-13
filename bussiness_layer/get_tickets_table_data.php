@@ -1,4 +1,8 @@
 <?php
+/**
+ * @author xtverd01@stud.fit.vutbr.cz
+ * Returns the json dictionary of needed data from database
+ */
     include_once("./data_layer/db_user.php");
     include_once("./data_layer/db_tickets.php");
     include_once("./bussiness_layer/get_ticket.php");

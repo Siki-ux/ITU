@@ -1,6 +1,7 @@
 <?php
 /***
  * @author xpavel39@stud.fit.vutbr.cz
+ * set of used constants
  */
     define('ADMIN',1);
     define('MANAGER',2);

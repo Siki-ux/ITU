@@ -1,4 +1,8 @@
 <?php
+/**
+ * @author sikul15@stud.fit.vutbr.cz
+ * Script for creating and checking new ticket
+ */
 if(session_id() == "")
   session_start();
 //default anonymous user for tickets registred by non registred users
@@ -66,7 +70,6 @@ if ($uploadOk == 0) {
     chmod($target_file, 0755);
     echo "Nový tiket je nahratý s obrákom ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). ".";
     upload_new_ticket($_POST["category"],$_POST["lng"],$_POST["lat"],$target_file,$author);
-    //header("refresh:0.1;redirect.php");
   } else {
     echo "Ospravedlňujeme sa nastala chyba s vaším súborom.";
   }

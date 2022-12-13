@@ -1,5 +1,6 @@
-/***
- * Using AJAX updating states
+/**
+ * @author xtverd01@stud.fit.vutbr.cz
+ * Using AJAX functions hanfling updates of ticket
  */
  function state_update_xml_0_1(rid, price, exp_date, comment)
  {

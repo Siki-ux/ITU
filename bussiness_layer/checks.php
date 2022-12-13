@@ -1,7 +1,10 @@
 <?php 
+/**
+ * @author xsikul15@stud.fit.vutbr.cz
+ * Functions used to check users
+ */
 include_once("./data_layer/db_user.php");
 include_once('./bussiness_layer/constants.php');
-include_once('./bussiness_layer/authentication/check_register.php');
 
 function is_logged(){
     if(session_id() == "")
@@ -42,15 +45,4 @@ function is_manager()
     }
     return false;
 }
-
-    /***
-     * Check if data submitted by form to register new worker are correct.
-     * If they are, also add the worker to database
-     */
-    function check_add_worker()
-    {
-        return check_registration(WORKER,false);
-    }
-
-//$pwd = (dir(getcwd()))->path;
 ?>

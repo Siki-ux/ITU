@@ -1,11 +1,11 @@
 <?php
 /***
  * @author xpavel39@stud.fit.vutbr.cz
+ * Used for admin authorisation
  */
     chdir('.'); // root
     include_once('./data_layer/db_user.php');
     include_once('./bussiness_layer/constants.php');
-    include_once('./bussiness_layer/authentication/check_register.php');
     include_once('./bussiness_layer/constants.php');
 
 
@@ -25,15 +25,6 @@
         }
         
         return false;
-    }
-
-    /***
-     * Check if data submitted by form to register new manager are correct.
-     * If they are, also add the manager to database
-     */
-    function check_add_manager()
-    {
-        return check_registration(MANAGER,false);
     }
 
     /***

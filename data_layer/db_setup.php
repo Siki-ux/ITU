@@ -1,4 +1,8 @@
 <?php
+/**
+ * @author xpavel39@stud.fit.vutbr.cz
+ * Database setup
+ */
     // Create connection with database
     $pdo;
     try{

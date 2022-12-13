@@ -1,3 +1,7 @@
+/**
+ * @author xsikul15@stud.fit.vutbr.cz
+ * Funtions to remove ticket
+ */
 //function which sends request to remove ticket
 //Takes: int: id of ticket
 function remove_ticket(id)

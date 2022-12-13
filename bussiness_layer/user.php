@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * @author xsikul15stud.fit.vutbr.cz
+ * Used to show name of logged in user
+ */
 include_once('./data_layer/db_user.php');
 
 function print_user_from_email($email){ 
