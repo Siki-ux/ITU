@@ -7,6 +7,8 @@
 
     enforce_admin();
 
+    include_once('./bussiness_layer/constants.php');
+
     function gen_col_head($name,$col)
     {
         echo '
@@ -40,14 +42,24 @@
                     <div id="dropdown-menu" class="dropdown-content content-hidden">
                         <a href="./add_manager.php">Priať užívateľa</a> 
                         <div onclick="refresh_tables();">Obnoviť tabuľku</div>
-                        <div onclick="reset_order();filter_reset();">Reset</div>
+                        <div onclick="reset();">Reset</div>
                         <a href="../authentication/logout.php">Odhlásiť</a>
-
                     </div>
                 </div> 
                 <div class="headline">Správa užívateľov</div>
             </h2>
         </nav>
+    </div>
+
+    <div class="role-filter">
+        <label for="role-filter" class="filter-label">Role: </label>
+        <select class="filter-input" id="role-select" onChange="role_choice_change()">
+            <option selected='selected' value=-1>Všetky</option>
+            <option value=0>Obyčajný užívateľ</option>
+            <option value=1 class="admin-row"><?php echo $roles[1]; ?></option>
+            <option value=2 class="manager-row"><?php echo $roles[2]; ?></option>"
+            <option value=3 class="worker-row"><?php echo $roles[3]; ?></option>"
+        </select>
     </div>
 
     <div class="filter">

@@ -3,10 +3,11 @@
  */
 
 
-/// Variables used for ordering table by column
+/// Variables used for formatting table
 ord_col = 0;
 ord_dir_up = true;
 filter = "";
+role = -1; // -1   all
 
 /***
  * Initial page preparation
@@ -35,6 +36,44 @@ function setup_click_away(){
             document.activeElement.blur();
     });
        
+}
+
+/***
+ * React to the change of role-select
+ */
+function role_choice_change()
+{
+    choice = document.getElementById("role-select");
+    if(choice == null)
+        return;
+
+    role = choice.value;
+    refresh_tables();
+}
+
+/***
+ * Reset everything to default view
+ */
+function reset()
+{
+    reset_role_filter();
+    reset_order();
+    filter_reset();
+}
+
+
+/***
+ * Reset role filter select
+ */
+function reset_role_filter()
+{
+    role = -1;
+
+    choice = document.getElementById("role-select");
+    if(choice == null)
+        return;
+    choice.value = -1;
+
 }
 
 /***
@@ -159,7 +198,7 @@ function refresh_usr_tab()
 {
     $.ajax({
         url:'get_user_table_rows.php',
-        data: jQuery.param({ col: ord_col, asc : ord_dir_up?1:0, filt : filter}),
+        data: jQuery.param({ col: ord_col, asc : ord_dir_up?1:0, filt : filter, role : role}),
         type: 'GET',
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
         success: function(response){

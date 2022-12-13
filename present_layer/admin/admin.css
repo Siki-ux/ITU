@@ -200,6 +200,10 @@ body{
 }
 
 
+.role-filter{
+    float: left;
+    height: 40px;
+}
 
 .role-select {
     appearance: none;

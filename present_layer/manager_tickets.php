@@ -75,7 +75,7 @@
     </nav>
 </div>
 
-
+    <span>
     <div class="choice">
         <label for="choice" class="choice-label"></label>
         <select class="filter-input" id="choice-select" onChange="choice_change()">
@@ -91,7 +91,7 @@
         <input name="filter" class="filter-input" id="filter-input" onKeyUp="filter_change()">
         <label onclick="filter_reset();" for="filter" class="filter-ico ico-hover"><i class="fa-lg fa-regular fa-circle-xmark"></i></label>
     </div>
-
+    </span>
     <table class="admin-table" id="usr-tab"> 
         <thead>
             <tr>
