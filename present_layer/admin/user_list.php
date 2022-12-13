@@ -41,8 +41,8 @@
                     </div>
                     <div id="dropdown-menu" class="dropdown-content content-hidden">
                         <a href="./add_manager.php">Priať užívateľa</a> 
-                        <div onclick="refresh_tables();">Obnoviť tabuľku</div>
                         <div onclick="reset();">Reset</div>
+                        <div onclick="refresh_tables();">Obnoviť tabuľku</div>
                         <a href="../authentication/logout.php">Odhlásiť</a>
                     </div>
                 </div> 
