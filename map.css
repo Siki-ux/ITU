@@ -571,6 +571,9 @@ input::file-selector-button:hover {
     right: 0;
     bottom: 0;
 }
+#form {
+    max-width: 800px;
+}
 /****************/
 @media only screen and (max-width: 775px) {
 

@@ -12,20 +12,6 @@ include_once("./bussiness_layer/admin/check_admin.php");
 include_once('./bussiness_layer/print_categories.php');
 include_once("./bussiness_layer/user.php");
 
-//The application is reloaded after logging in and changed accordingly for the user or worker
-/*$res = check_login();
-
-//User is alerted in case of unsuccessful login
-if( isset($_POST['email']) ){
-    if($res == 1){
-        echo '<script>alert("Neznámy email");</script>';
-    }else if($res == 2){
-        echo '<script>alert("Zlé heslo");</script>';
-    }
-    
-}*/
-
-
 ?>
 <html>
     <head>
@@ -125,7 +111,7 @@ if( isset($_POST['email']) ){
                 <select name="category" id="category">  <?php print_categories(); ?> </select>
                 <label for="fileToUpload" id="upload"><i class="fa fa-cloud-upload"></i> Nahraj fotku <i id="vol">(volitelné)</i></label>
                 <input type="file" id="fileToUpload" name="fileToUpload">
-                <input type = "submit" id="submit" value="Odoslat">
+                <input type = "submit" id="submit" value="Odoslať">
             </form>
         </div>
         <div id="bigSpot"></div>
