@@ -6,3 +6,10 @@ Celú databázu ide vytvoriť a nainicializovať MySQL scriptom *script.sql*. Sa
 ### Aplikácia
 Pre rozbehnutie aplikácie je postačujúce prekopirovať zdrojové súbory na adekvátny hosting. Ďalej treba v súbore *db_setup.php* naststaviť *pdo* pre databázu.<br>
 Hosting by mal podporovať PHP8.1, JavaScript, HTML5, jQuerry a iné základné webové prostriedky.
+## Knižnice
+Angular: https://angularjs.org<br>
+jQuery: https://jquery.com<br>
+FontAwesome: https://fontawesome.com<br>
+Lodash: https://lodash.com<br>
+polyfill: https://polyfill.io<br>
+
