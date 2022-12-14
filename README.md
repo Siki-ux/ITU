@@ -1,5 +1,7 @@
 # ITU - Chytni závadu!
 Tento školský projekt je webovou aplikáciou na hlásenie a správu hlásení závad v meste.
+## Aplikácia
+Fungujúca aplikácia je dostupná [tu](https://www.stud.fit.vutbr.cz/~xsikul15/ITU/index.php)
 ## Popis inštalácie
 ### Databáza
 Celú databázu ide vytvoriť a nainicializovať MySQL skriptom *script.sql*. Samozrejme, za predpokladu že server podporuje MySQL databázu.
