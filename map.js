@@ -98,6 +98,7 @@ function register_gen(){
     '</form>'+
     '</div>'+
     '';
+    document.getElementById("f_name").focus();
 }
 
 //Function which generate html in case button back from login is pressed
@@ -128,6 +129,7 @@ function login_gen(){
     '</form>'+
     '<div id=wrongLogin></div>'+
     '';
+    document.getElementById("email").focus();
     
 }
 
@@ -213,10 +215,13 @@ function SearchIcon(){
     if(x.style.width === "40ch"){
         x.style.animation = "search_in 0.7s";
         x.style.width = "0ch";
+        x.blur();
     }else {
+        x.focus();
         x.style.animation = "search_out 0.7s";
         x.style.width = "40ch";
     }
+    
 }
 
 //Function which changes atributes and animation of hint bar on closing
