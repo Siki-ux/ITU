@@ -674,7 +674,9 @@ function createTicket(){
         processData: false,
         contentType: false,
         success: function(res){
-           alert(res);
+           if(res !== "Nový tiket je nahratý bez obrázku."){
+            alert(res);
+           }
            formular_close(newMarker);
         }
     })
