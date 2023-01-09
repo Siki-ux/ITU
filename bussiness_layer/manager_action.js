@@ -50,10 +50,8 @@
   */
  function handle_button_1_2(rid)
  {
-     if (confirm('Ste si istý dokončením žiadosti?')) {
          state_update_xml_1_2(rid);
          refresh_tables_after(100);
-     }
  }
 
 
@@ -82,8 +80,6 @@ function insert_req_xml(id, worker, task)
 
 function insert_req(id)
 {
-    if (confirm('Ste si istý vytvorením/aktualizáciou žiadosti?')) {
-
         var worker = document.getElementById("worker_"+id).value;
         var task = document.getElementById("task_"+id).value;
 
@@ -94,5 +90,4 @@ function insert_req(id)
             insert_req_xml(id, worker, task);
             refresh_tables_after(100);
         }
-    }
 }
