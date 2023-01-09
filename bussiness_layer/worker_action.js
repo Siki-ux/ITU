@@ -39,10 +39,7 @@ function state_update_xml_1_2(rid)
  * Handle form sending
  */
 function handle_button_0_1(rid, counter)
-{
-    if (confirm('Ste si istý odoslaním formulára?')) {
-
-        
+{        
         var price = document.getElementById("price"+counter).value;
         var exp_date = document.getElementById("expected_date"+counter).value;
         var comment = document.getElementById("comment"+counter).value;
@@ -54,7 +51,6 @@ function handle_button_0_1(rid, counter)
             state_update_xml_0_1(rid, price, exp_date, comment);
             refresh_tables_after(100);
         }
-    }
 }
 
 /***
@@ -62,10 +58,8 @@ function handle_button_0_1(rid, counter)
  */
 function handle_button_1_2(rid)
 {
-    if (confirm('Ste si istý dokončením žiadosti?')) {
         state_update_xml_1_2(rid);
         refresh_tables_after(100);
-    }
 }
 
 
